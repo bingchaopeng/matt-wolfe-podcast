@@ -1,0 +1,32 @@
+channel:
+  name: "Matt Wolfe"
+  youtube_url: "https://www.youtube.com/@mattwolfe"
+  channel_id: ""
+
+llm:
+  provider: "anthropic"
+  anthropic_base_url: "https://api.deepseek.com/anthropic"
+  model: "deepseek-v4-flash"
+  max_tokens: 4096
+  temperature: 0.3
+
+tts:
+  engine: "edge-tts"
+  voice: "zh-CN-XiaoxiaoNeural"
+  rate: "+0%"
+  volume: "+0%"
+
+podcast:
+  title: "Matt Wolfe 中文播报"
+  description: "每日精选 Matt Wolfe 的最新 AI 资讯，中文同音翻译播客，开车通勤最佳伴侣"
+  author: "AI 播客工坊"
+  language: "zh-CN"
+  output_dir: "./public"
+  episodes_dir: "./data/episodes"
+  feed_filename: "feed.xml"
+  website: "https://bingchaopeng.github.io/matt-wolfe-podcast"
+  episode_image_url: ""
+
+schedule:
+  daily_time: "21:00"
+  max_episodes_per_run: 1
