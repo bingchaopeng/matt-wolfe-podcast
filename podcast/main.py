@@ -47,7 +47,7 @@ def run_daily(dry_run: bool = False) -> dict:
 
     # Step 1: Get latest videos
     logger.info("Checking %s for new videos...", config.channel_name)
-    videos = get_channel_videos(config.channel_url, max_results=5)
+    videos = get_channel_videos(config.channel_url, max_results=5, channel_id_override=config.channel_id)
     if not videos:
         logger.warning("No videos found from channel")
         return result

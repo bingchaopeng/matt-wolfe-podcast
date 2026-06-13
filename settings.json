@@ -2,9 +2,25 @@
   "permissions": {
     "allow": [
       "Bash(*)",
+      "PowerShell(*)",
       "Edit(*)",
       "Write(*)",
-      "Read(*)"
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "TaskCreate(*)",
+      "TaskUpdate(*)",
+      "TaskList(*)",
+      "TaskGet(*)",
+      "CronCreate(*)",
+      "CronList(*)",
+      "CronDelete(*)",
+      "NotebookEdit(*)",
+      "Skill(*)",
+      "EnterWorktree(*)",
+      "ExitWorktree(*)"
     ],
     "deny": []
   }

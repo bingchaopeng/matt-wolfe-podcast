@@ -1,7 +1,7 @@
 channel:
   name: "Matt Wolfe"
-  youtube_url: "https://www.youtube.com/@mattwolfe"
-  channel_id: ""
+  youtube_url: "https://www.youtube.com/@mreflow"
+  channel_id: "UChpleBmo18P08aKCIgti38g"
 
 llm:
   provider: "anthropic"

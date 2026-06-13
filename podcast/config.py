@@ -53,6 +53,8 @@ class Config:
     @property
     def channel_url(self) -> str: return self._data.get('channel', {}).get('youtube_url', '')
     @property
+    def channel_id(self) -> str: return self._data.get('channel', {}).get('channel_id', '')
+    @property
     def llm_model(self) -> str: return self._data.get('llm', {}).get('model', 'deepseek-v4-flash')
     @property
     def llm_base_url(self) -> str: return self._data.get('llm', {}).get('anthropic_base_url', 'https://api.deepseek.com/anthropic')

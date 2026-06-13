@@ -79,21 +79,24 @@ def resolve_channel_id(channel_url: str) -> Optional[str]:
 
 
 def get_channel_videos(
-    channel_url: str, max_results: int = 5
+    channel_url: str, max_results: int = 5, channel_id_override: str = ""
 ) -> list[dict]:
     """获取指定 YouTube 频道的最新视频列表。
 
-    内部通过 ``resolve_channel_id`` 解析频道 ID，然后读取 YouTube 官方 RSS feed。
+    先尝试使用 ``channel_id_override``（来自配置文件），
+    否则通过 ``resolve_channel_id`` 从页面解析通道 ID，
+    然后读取 YouTube 官方 RSS feed。
 
     Args:
-        channel_url: 频道 URL。
-        max_results:  返回的最大视频数量，默认 5。
+        channel_url:         频道 URL。
+        max_results:         返回的最大视频数量，默认 5。
+        channel_id_override: 预配置的频道 ID（可避免请求频道页面）。
 
     Returns:
         ``[{id, title, published, updated, link, url}, ...]`` 格式的列表。
         失败时返回空列表并记录警告日志。
     """
-    channel_id = resolve_channel_id(channel_url)
+    channel_id = channel_id_override or resolve_channel_id(channel_url)
     if not channel_id:
         logger.warning("无法获取频道 ID，跳过视频列表获取: %s", channel_url)
         return []
