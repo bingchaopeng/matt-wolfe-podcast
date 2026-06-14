@@ -12,13 +12,9 @@ build/
 # Authentication
 cookies.txt
 
-# Audio files
-data/episodes/*.mp3
-data/episodes/*.wav
-
-# Generated output
-public/*.xml
-data/processed_videos.json
+# Generated data
+data/
+public/
 
 # OS
 .DS_Store
