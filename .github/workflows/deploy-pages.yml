@@ -2,10 +2,11 @@ name: Deploy Podcast to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'public/**'
       - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
