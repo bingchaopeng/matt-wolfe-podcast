@@ -135,6 +135,12 @@ def run_daily(dry_run: bool = False) -> dict:
                 'url': video_url,
             })
 
+            # Copy episode audio to public dir for GitHub Pages
+            import shutil
+            public_ep_dir = os.path.join(config.podcast_output_dir, "episodes")
+            os.makedirs(public_ep_dir, exist_ok=True)
+            shutil.copy2(audio_path, os.path.join(public_ep_dir, audio_filename))
+
             # Rebuild complete RSS feed from all processed episodes
             feed_path = os.path.join(config.podcast_output_dir, config.feed_filename)
             all_episodes = tracker.get_all_processed()
