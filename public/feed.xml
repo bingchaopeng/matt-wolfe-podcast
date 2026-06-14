@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Matt Wolfe 中文播报</title>
+    <link>https://bingchaopeng.github.io/matt-wolfe-podcast</link>
+    <description>每日精选 Matt Wolfe 的最新 AI 资讯，中文同音翻译播客，开车通勤最佳伴侣</description>
+    <atom:link href="https://bingchaopeng.github.io/matt-wolfe-podcast/feed.xml" rel="self"/>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>Matt Wolfe Chinese Podcast Generator</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 14 Jun 2026 09:05:11 +0000</lastBuildDate>
+    <itunes:author>AI 播客工坊</itunes:author>
+    <item>
+      <title>【Matt Wolfe 中文播报】AI News: An INSANE Week… Here’s What Matters</title>
+      <link>https://www.youtube.com/watch?v=nydHKXjwu0U</link>
+      <description>Matt Wolfe 最新视频《AI News: An INSANE Week… Here’s What Matters》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/nydHKXjwu0U.mp3" length="5154768" type="audio/mpeg"/>
+      <pubDate>Fri, 12 Jun 2026 15:00:18 +0000</pubDate>
+      <itunes:duration>1383</itunes:duration>
+    </item>
+  </channel>
+</rss>

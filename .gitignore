@@ -12,9 +12,11 @@ build/
 # Authentication
 cookies.txt
 
-# Generated data
-data/
-public/
+# Generated data (tracked separately via git lfs or manual deploy)
+data/episodes/*.mp3
+data/episodes/*.wav
+data/episodes/*.srt
+data/processed_videos.json
 
 # OS
 .DS_Store
