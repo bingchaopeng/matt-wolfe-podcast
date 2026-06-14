@@ -27,6 +27,9 @@ podcast:
   website: "https://bingchaopeng.github.io/matt-wolfe-podcast"
   episode_image_url: ""
 
+network:
+  proxy: "http://127.0.0.1:7890"
+
 schedule:
   daily_time: "21:00"
   max_episodes_per_run: 1

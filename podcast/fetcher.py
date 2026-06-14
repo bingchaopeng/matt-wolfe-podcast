@@ -434,13 +434,22 @@ class ProcessedTracker:
 
 
 def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str) -> None:
-    """使用 yt-dlp 下载字幕（优先使用 cookies.txt 认证）。"""
+    """使用 yt-dlp 下载字幕（cookies.txt + 代理认证）。"""
     project_root = os.path.dirname(os.path.dirname(__file__))
     cookie_file = os.path.join(project_root, "cookies.txt")
 
     cmd = [sys.executable, "-m", "yt_dlp"]
     if os.path.isfile(cookie_file) and os.path.getsize(cookie_file) > 100:
         cmd += ["--cookies", cookie_file]
+
+    # 添加代理（从 config 读取）
+    try:
+        from podcast.config import get_config
+        proxy = get_config().proxy
+        if proxy:
+            cmd += ["--proxy", proxy]
+    except Exception:
+        pass
 
     cmd += [
         "--write-auto-subs", "--write-subs",
@@ -452,14 +461,25 @@ def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str
         video_url,
     ]
 
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    # 设置 ffmpeg 路径
+    env = os.environ.copy()
+    ffmpeg_candidates = [
+        r"C:\Users\30777\AppData\Local\kzip_sogou\ffmpeg.exe",
+        r"C:\Program Files\ffmpeg\bin\ffmpeg.exe",
+    ]
+    for ff in ffmpeg_candidates:
+        if os.path.isfile(ff):
+            env["PATH"] = os.pathsep.join([os.path.dirname(ff), env.get("PATH", "")])
+            break
+
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300, env=env)
     if result.returncode != 0:
         stderr = result.stderr.strip()
         if "Sign in to confirm" in stderr or "cookies" in stderr.lower():
             raise RuntimeError(
-                "YouTube 需要登录认证。请运行 setup.bat 导出 cookies，"
-                "或手动操作：Chrome 登录 YouTube → 安装 Get cookies.txt 扩展 → "
-                "导出 cookies 到 cookies.txt"
+                "YouTube 需要登录认证。请检查 cookies.txt 是否有效，"
+                "或重新导出：Chrome 登录 YouTube → Get cookies.txt 扩展 → "
+                "Export 到 cookies.txt"
             )
         raise RuntimeError(f"yt-dlp failed (code {result.returncode}): {stderr}")
 

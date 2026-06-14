@@ -17,6 +17,16 @@ from anthropic import Anthropic
 logger = logging.getLogger(__name__)
 
 
+def _extract_text(response) -> str:
+    """从 Anthropic API 响应中提取文本，自动跳过 ThinkingBlock。"""
+
+    result = []
+    for block in response.content:
+        if hasattr(block, "text"):
+            result.append(block.text)
+    return "".join(result)
+
+
 def get_client() -> Anthropic:
     """获取 DeepSeek 的 Anthropic 兼容 API 客户端。
 
@@ -127,7 +137,7 @@ def translate_text(
                     messages=[{"role": "user", "content": chunk}],
                     **kwargs,
                 )
-                translated = response.content[0].text
+                translated = _extract_text(response)
                 translated_chunks.append(translated)
                 logger.info("第 %d 块翻译完成 (尝试 %d 次)", idx + 1, attempt)
                 break
@@ -213,7 +223,7 @@ def polish_for_podcast(
                 **kwargs,
             )
             logger.info("播客润色完成 (尝试 %d 次)", attempt)
-            return response.content[0].text
+            return _extract_text(response)
         except Exception as exc:
             last_error = exc
             logger.warning("播客润色失败 (尝试 %d/%d): %s", attempt, max_retries, exc)
@@ -313,7 +323,7 @@ def _translate_and_polish_single(
                 **kwargs,
             )
             logger.info("翻译+润色一步完成 (尝试 %d 次)", attempt)
-            return response.content[0].text
+            return _extract_text(response)
         except Exception as exc:
             last_error = exc
             logger.warning(
@@ -393,7 +403,7 @@ def get_podcast_script(
                 messages=[{"role": "user", "content": user_prompt}],
             )
             logger.info("播客脚本生成完成 (尝试 %d 次)", attempt)
-            return response.content[0].text
+            return _extract_text(response)
         except Exception as exc:
             last_error = exc
             logger.warning(
