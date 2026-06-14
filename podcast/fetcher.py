@@ -9,8 +9,8 @@ import logging
 import os
 import re
 import subprocess
+import sys
 import threading
-import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from typing import Optional
@@ -167,44 +167,12 @@ def download_subtitles(video_url: str, output_dir: str) -> Optional[str]:
     os.makedirs(output_dir, exist_ok=True)
     out_template = os.path.join(output_dir, "%(id)s")
 
-    cmd = [
-        "yt-dlp",
-        "--write-auto-subs",
-        "--write-subs",
-        "--sub-langs", "en",
-        "--skip-download",
-        "--convert-subs", "srt",
-        "--output", out_template,
-        "--no-progress",
-        video_url,
-    ]
-
     logger.info("下载字幕: %s", video_url)
     try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=300,
-        )
-        if result.returncode != 0:
-            logger.warning(
-                "yt-dlp 字幕下载失败 (return code %d): %s",
-                result.returncode,
-                result.stderr.strip() or result.stdout.strip(),
-            )
-            return None
-
-        # 从输出中找到 SRT 文件路径
+        _download_subtitles_ytdlp(video_url, output_dir, out_template)
         return _find_srt_file(output_dir, video_url)
 
-    except subprocess.TimeoutExpired:
-        logger.warning("字幕下载超时: %s", video_url)
-        return None
-    except FileNotFoundError:
-        logger.error("未找到 yt-dlp，请确认已安装 (pip install yt-dlp)")
-        return None
-    except OSError as exc:
+    except Exception as exc:
         logger.warning("字幕下载异常: %s", exc)
         return None
 
@@ -314,41 +282,30 @@ def download_audio(video_url: str, output_dir: str) -> Optional[str]:
     os.makedirs(output_dir, exist_ok=True)
     out_template = os.path.join(output_dir, "%(id)s.%(ext)s")
 
-    cmd = [
-        "yt-dlp",
-        "-x",
-        "--audio-format", "mp3",
-        "--output", out_template,
-        "--no-progress",
-        video_url,
-    ]
-
     logger.info("下载音频: %s", video_url)
     try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=600,
-        )
-        if result.returncode != 0:
-            logger.warning(
-                "yt-dlp 音频下载失败 (return code %d): %s",
-                result.returncode,
-                result.stderr.strip() or result.stdout.strip(),
-            )
-            return None
+        import yt_dlp
+        _cookie_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cookies.txt")
+        ydl_opts = {
+            "format": "bestaudio/best",
+            "postprocessors": [{
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": "mp3",
+                "preferredquality": "192",
+            }],
+            "outtmpl": out_template,
+            "quiet": True,
+            "no_warnings": False,
+            "extract_flat": False,
+        }
+        if os.path.isfile(_cookie_file) and os.path.getsize(_cookie_file) > 100:
+            ydl_opts["cookiefile"] = _cookie_file
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([video_url])
 
-        # 从输出中匹配最终文件名
         return _find_audio_file(output_dir, video_url)
 
-    except subprocess.TimeoutExpired:
-        logger.warning("音频下载超时: %s", video_url)
-        return None
-    except FileNotFoundError:
-        logger.error("未找到 yt-dlp，请确认已安装 (pip install yt-dlp)")
-        return None
-    except OSError as exc:
+    except Exception as exc:
         logger.warning("音频下载异常: %s", exc)
         return None
 
@@ -373,7 +330,8 @@ class ProcessedTracker:
         """
         if json_path is None:
             json_path = os.path.join(
-                "C:\\Users\\30777\\matt-wolfe-podcast", "data", "processed_videos.json"
+                os.path.dirname(os.path.dirname(__file__)),
+                "data", "processed_videos.json",
             )
         self._json_path = json_path
         self._data: dict[str, dict] = {}
@@ -473,6 +431,37 @@ class ProcessedTracker:
 
 
 # ── 内部辅助函数 ──────────────────────────────────────────
+
+
+def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str) -> None:
+    """使用 yt-dlp 下载字幕（优先使用 cookies.txt 认证）。"""
+    project_root = os.path.dirname(os.path.dirname(__file__))
+    cookie_file = os.path.join(project_root, "cookies.txt")
+
+    cmd = [sys.executable, "-m", "yt_dlp"]
+    if os.path.isfile(cookie_file) and os.path.getsize(cookie_file) > 100:
+        cmd += ["--cookies", cookie_file]
+
+    cmd += [
+        "--write-auto-subs", "--write-subs",
+        "--sub-langs", "en",
+        "--skip-download",
+        "--convert-subs", "srt",
+        "--output", out_template,
+        "--no-progress",
+        video_url,
+    ]
+
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    if result.returncode != 0:
+        stderr = result.stderr.strip()
+        if "Sign in to confirm" in stderr or "cookies" in stderr.lower():
+            raise RuntimeError(
+                "YouTube 需要登录认证。请运行 setup.bat 导出 cookies，"
+                "或手动操作：Chrome 登录 YouTube → 安装 Get cookies.txt 扩展 → "
+                "导出 cookies 到 cookies.txt"
+            )
+        raise RuntimeError(f"yt-dlp failed (code {result.returncode}): {stderr}")
 
 
 def _extract_video_id(entry: ET.Element, ns: dict) -> Optional[str]:

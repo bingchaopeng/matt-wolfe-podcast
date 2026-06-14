@@ -92,6 +92,7 @@ def translate_text(
     model: str = "deepseek-v4-flash",
     max_tokens: int = 4096,
     max_retries: int = 3,
+    **kwargs,
 ) -> str:
     """将英文文本翻译成中文。
 
@@ -124,6 +125,7 @@ def translate_text(
                     max_tokens=max_tokens,
                     system=SYSTEM_PROMPT,
                     messages=[{"role": "user", "content": chunk}],
+                    **kwargs,
                 )
                 translated = response.content[0].text
                 translated_chunks.append(translated)
@@ -173,6 +175,7 @@ def polish_for_podcast(
     model: str = "deepseek-v4-flash",
     max_tokens: int = 4096,
     max_retries: int = 3,
+    **kwargs,
 ) -> str:
     """为翻译后的文本添加播客风格的开场和结尾。
 
@@ -207,6 +210,7 @@ def polish_for_podcast(
                 max_tokens=max_tokens,
                 system=POLISH_SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_prompt}],
+                **kwargs,
             )
             logger.info("播客润色完成 (尝试 %d 次)", attempt)
             return response.content[0].text
@@ -276,9 +280,9 @@ def translate_and_polish(
             text, video_title, video_url, client, model, max_tokens, max_retries, **kwargs
         )
 
-    # 多块：逐块翻译，最后统一润色
-    translated = translate_text(text, model, max_tokens, max_retries)
-    return polish_for_podcast(translated, video_title, video_url, model, max_tokens, max_retries)
+    # 多块：逐块翻译，最后统一润色（forward kwargs）
+    translated = translate_text(text, model, max_tokens, max_retries, **kwargs)
+    return polish_for_podcast(translated, video_title, video_url, model, max_tokens, max_retries, **kwargs)
 
 
 def _translate_and_polish_single(

@@ -4,7 +4,7 @@ channel:
   channel_id: "UChpleBmo18P08aKCIgti38g"
 
 llm:
-  provider: "anthropic"
+  provider: "deepseek"
   anthropic_base_url: "https://api.deepseek.com/anthropic"
   model: "deepseek-v4-flash"
   max_tokens: 4096

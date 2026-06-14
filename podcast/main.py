@@ -8,7 +8,7 @@ from podcast.config import get_config
 from podcast.fetcher import get_channel_videos, download_subtitles, extract_text_from_srt, ProcessedTracker
 from podcast.translator import get_podcast_script
 from podcast.tts import generate_audio_long_text
-from podcast.rss import create_feed, add_episode, save_feed
+from podcast.rss import create_feed, add_episode, build_feed_from_history, save_feed
 
 logger = logging.getLogger(__name__)
 
@@ -114,19 +114,10 @@ def run_daily(dry_run: bool = False) -> dict:
                 voice=config.tts_voice
             )
 
-            # Update RSS feed
-            feed_path = os.path.join(config.podcast_output_dir, config.feed_filename)
-
-            if os.path.exists(feed_path):
-                # Parse existing feed and add episode (simplified: recreate)
-                feed = create_feed(config)
-                # Re-add all previously processed episodes would go here
-                # For simplicity, we build the feed fresh each time
-            else:
-                feed = create_feed(config)
-
-            # Audio URL (relative to feed for local, or the public URL)
-            audio_url = "https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/{}".format(audio_filename)
+            # Audio URL (for RSS enclosure)
+            audio_url = "{}/episodes/{}".format(
+                config.podcast_website.rstrip("/"), audio_filename
+            )
 
             # Parse published date
             published = datetime.fromisoformat(video['published']) if 'published' in video else datetime.now()
@@ -134,27 +125,26 @@ def run_daily(dry_run: bool = False) -> dict:
             # Generate episode description
             episode_desc = "Matt Wolfe 最新视频《{}》的中文同音翻译播客版本。".format(video_title)
 
-            add_episode(
-                feed,
-                title="【Matt Wolfe 中文播报】{}".format(video_title),
-                description=episode_desc,
-                audio_path=audio_path,
-                audio_url=audio_url,
-                duration=int(audio_result.get('duration_seconds', 0)),
-                published=published,
-                video_url=video_url
-            )
-
-            save_feed(feed, feed_path)
-
-            # Mark as processed
+            # Mark as processed FIRST so it's included in the feed rebuild
             tracker.mark_processed(video_id, {
                 'title': video_title,
                 'published': video['published'],
                 'processed_at': datetime.now().isoformat(),
                 'audio_file': audio_filename,
-                'duration_seconds': audio_result.get('duration_seconds', 0)
+                'duration_seconds': audio_result.get('duration_seconds', 0),
+                'url': video_url,
             })
+
+            # Rebuild complete RSS feed from all processed episodes
+            feed_path = os.path.join(config.podcast_output_dir, config.feed_filename)
+            all_episodes = tracker.get_all_processed()
+            # Sort by published date (oldest first for chronological order)
+            sorted_eps = sorted(
+                all_episodes.values(),
+                key=lambda e: e.get("published", ""),
+            )
+            feed = build_feed_from_history(config, sorted_eps)
+            save_feed(feed, feed_path)
 
             logger.info("Successfully processed: %s", video_title)
             result['processed'].append({

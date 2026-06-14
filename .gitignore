@@ -9,9 +9,16 @@ build/
 .env
 .env.local
 
+# Authentication
+cookies.txt
+
 # Audio files
 data/episodes/*.mp3
 data/episodes/*.wav
+
+# Generated output
+public/*.xml
+data/processed_videos.json
 
 # OS
 .DS_Store

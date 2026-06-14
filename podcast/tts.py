@@ -77,6 +77,7 @@ def generate_audio(
     voice: str = "zh-CN-XiaoxiaoNeural",
     rate: str = "+0%",
     volume: str = "+0%",
+    **kwargs: Any,
 ) -> Dict[str, Any]:
     """
     将中文文本转换为语音并保存为音频文件。
@@ -301,7 +302,10 @@ def _concatenate_audio_files(chunk_files: List[str], output_path: str) -> None:
     """
     将多个音频文件拼接为一个。
 
-    优先使用 pydub，如果不可用则使用二进制拼接。
+    拼接方式优先级：
+    1. pydub（最准确，保留元数据）
+    2. ffmpeg concat（无需额外库）
+    3. 二进制拼接（最终回退，跳过除第一块外的 ID3 头）
 
     Args:
         chunk_files: 音频文件路径列表
@@ -313,7 +317,7 @@ def _concatenate_audio_files(chunk_files: List[str], output_path: str) -> None:
     if not chunk_files:
         raise RuntimeError("没有可拼接的音频文件")
 
-    # 尝试使用 pydub
+    # 方法 1: pydub（最推荐）
     try:
         from pydub import AudioSegment  # type: ignore[import-untyped]
 
@@ -321,24 +325,62 @@ def _concatenate_audio_files(chunk_files: List[str], output_path: str) -> None:
         for f in chunk_files:
             segment = AudioSegment.from_mp3(f)
             combined += segment
-
         combined.export(output_path, format="mp3")
         logger.info("使用 pydub 完成音频拼接")
         return
     except ImportError:
-        logger.info("pydub 未安装，使用二进制拼接")
+        logger.info("pydub 未安装")
     except Exception as exc:
-        logger.warning("pydub 拼接失败，回退到二进制拼接: %s", exc)
+        logger.warning("pydub 拼接失败: %s", exc)
 
-    # 回退：二进制拼接（MP3 帧格式支持直接拼接）
+    # 方法 2: ffmpeg concat
+    try:
+        # 创建 ffmpeg concat 文件列表
+        list_path = output_path + ".list.txt"
+        with open(list_path, "w", encoding="utf-8") as f:
+            for cf in chunk_files:
+                f.write("file '{}'\n".format(cf.replace("'", "'\\''")))
+        result = subprocess.run(
+            ["ffmpeg", "-f", "concat", "-safe", "0",
+             "-i", list_path,
+             "-c", "copy",
+             "-y", output_path],
+            capture_output=True, text=True, timeout=120,
+        )
+        os.remove(list_path)
+        if result.returncode == 0 and os.path.exists(output_path):
+            logger.info("使用 ffmpeg concat 完成音频拼接")
+            return
+        logger.warning("ffmpeg concat 失败 (code %d): %s",
+                       result.returncode, result.stderr.strip())
+    except FileNotFoundError:
+        logger.info("ffmpeg 未安装")
+    except Exception as exc:
+        logger.warning("ffmpeg concat 异常: %s", exc)
+
+    # 方法 3: 二进制拼接（最终回退，跳过 ID3 头）
     try:
         with open(output_path, "wb") as outfile:
-            for f in chunk_files:
+            for i, f in enumerate(chunk_files):
                 with open(f, "rb") as infile:
-                    outfile.write(infile.read())
-        logger.info("使用二进制拼接完成音频拼接")
+                    data = infile.read()
+                if i > 0:
+                    # 跳过 ID3v2 头（前 10 字节标识，之后是头大小）
+                    if data[:3] == b"ID3":
+                        header_size = 10
+                        if len(data) >= 10:
+                            size_bytes = data[6:10]
+                            id3_size = (
+                                (size_bytes[0] << 21) |
+                                (size_bytes[1] << 14) |
+                                (size_bytes[2] << 7) |
+                                size_bytes[3]
+                            )
+                            data = data[header_size + id3_size:]
+                outfile.write(data)
+        logger.info("使用二进制拼接（跳过 ID3）完成音频拼接")
     except OSError as exc:
-        raise RuntimeError(f"音频文件二进制拼接失败: {exc}") from exc
+        raise RuntimeError(f"音频文件拼接失败: {exc}") from exc
 
 
 def _cleanup_temp_files(temp_dir: str) -> None:
