@@ -285,7 +285,6 @@ def download_audio(video_url: str, output_dir: str) -> Optional[str]:
     logger.info("下载音频: %s", video_url)
     try:
         import yt_dlp
-        _cookie_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cookies.txt")
         ydl_opts = {
             "format": "bestaudio/best",
             "postprocessors": [{
@@ -297,9 +296,8 @@ def download_audio(video_url: str, output_dir: str) -> Optional[str]:
             "quiet": True,
             "no_warnings": False,
             "extract_flat": False,
+            "cookiesfrombrowser": ("chrome",),
         }
-        if os.path.isfile(_cookie_file) and os.path.getsize(_cookie_file) > 100:
-            ydl_opts["cookiefile"] = _cookie_file
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([video_url])
 
@@ -434,13 +432,11 @@ class ProcessedTracker:
 
 
 def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str) -> None:
-    """使用 yt-dlp 下载字幕（cookies.txt + 代理认证）。"""
-    project_root = os.path.dirname(os.path.dirname(__file__))
-    cookie_file = os.path.join(project_root, "cookies.txt")
-
+    """使用 yt-dlp 下载字幕（自动从浏览器提取 cookies + 代理认证）。"""
     cmd = [sys.executable, "-m", "yt_dlp"]
-    if os.path.isfile(cookie_file) and os.path.getsize(cookie_file) > 100:
-        cmd += ["--cookies", cookie_file]
+
+    # 优先从浏览器自动提取 cookies（无需手动维护 cookies.txt）
+    cmd += ["--cookies-from-browser", "chrome"]
 
     # 添加代理（从 config 读取）
     try:

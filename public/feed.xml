@@ -8,8 +8,32 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Matt Wolfe Chinese Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 14 Jun 2026 09:05:11 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jun 2026 13:45:12 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
+    <item>
+      <title>【Matt Wolfe 中文播报】Midjourney Built What?!?</title>
+      <link>https://www.youtube.com/watch?v=Qy25rSEXpPQ</link>
+      <description>Matt Wolfe 最新视频《Midjourney Built What?!?》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/Qy25rSEXpPQ.mp3" length="952128" type="audio/mpeg"/>
+      <pubDate>Thu, 18 Jun 2026 04:32:28 +0000</pubDate>
+      <itunes:duration>158</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe 中文播报】PewDiePie’s FREE Odysseus AI (Full Review &amp; Setup)</title>
+      <link>https://www.youtube.com/watch?v=_7BHqZayPOc</link>
+      <description>Matt Wolfe 最新视频《PewDiePie’s FREE Odysseus AI (Full Review &amp; Setup)》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/_7BHqZayPOc.mp3" length="3963981" type="audio/mpeg"/>
+      <pubDate>Wed, 17 Jun 2026 16:12:43 +0000</pubDate>
+      <itunes:duration>660</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe 中文播报】The Most Insane iPhone AI Features</title>
+      <link>https://www.youtube.com/watch?v=NQof8hG8FwE</link>
+      <description>Matt Wolfe 最新视频《The Most Insane iPhone AI Features》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/NQof8hG8FwE.mp3" length="1001664" type="audio/mpeg"/>
+      <pubDate>Mon, 15 Jun 2026 23:35:04 +0000</pubDate>
+      <itunes:duration>166</itunes:duration>
+    </item>
     <item>
       <title>【Matt Wolfe 中文播报】AI News: An INSANE Week… Here’s What Matters</title>
       <link>https://www.youtube.com/watch?v=nydHKXjwu0U</link>
@@ -17,6 +41,38 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/nydHKXjwu0U.mp3" length="5154768" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 15:00:18 +0000</pubDate>
       <itunes:duration>1383</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe 中文播报】Unpopular opinion: you don't need to ask ChatGPT everything</title>
+      <link>https://www.youtube.com/watch?v=1greFablcZY</link>
+      <description>Matt Wolfe 最新视频《Unpopular opinion: you don't need to ask ChatGPT everything》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/1greFablcZY.mp3" length="766800" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 12:55:30 +0000</pubDate>
+      <itunes:duration>193</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe 中文播报】Why Everyone Is Freaking Out About Fable 5 (Mythos)</title>
+      <link>https://www.youtube.com/watch?v=2lE1-5hBfKk</link>
+      <description>Matt Wolfe 最新视频《Why Everyone Is Freaking Out About Fable 5 (Mythos)》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/2lE1-5hBfKk.mp3" length="4974048" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 01:34:23 +0000</pubDate>
+      <itunes:duration>1319</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe 中文播报】GitHub Just Made a Big AI Coding Move</title>
+      <link>https://www.youtube.com/watch?v=X9cvCQ3qrVk</link>
+      <description>Matt Wolfe 最新视频《GitHub Just Made a Big AI Coding Move》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/X9cvCQ3qrVk.mp3" length="638784" type="audio/mpeg"/>
+      <pubDate>Wed, 10 Jun 2026 14:11:43 +0000</pubDate>
+      <itunes:duration>184</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe 中文播报】THIS was the whole point of Microsoft Builld</title>
+      <link>https://www.youtube.com/watch?v=wg9jm_d7Emk</link>
+      <description>Matt Wolfe 最新视频《THIS was the whole point of Microsoft Builld》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/wg9jm_d7Emk.mp3" length="787248" type="audio/mpeg"/>
+      <pubDate>Tue, 09 Jun 2026 12:49:35 +0000</pubDate>
+      <itunes:duration>217</itunes:duration>
     </item>
   </channel>
 </rss>

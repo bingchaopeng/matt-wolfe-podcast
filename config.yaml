@@ -32,4 +32,4 @@ network:
 
 schedule:
   daily_time: "21:00"
-  max_episodes_per_run: 1
+  max_episodes_per_run: 3
