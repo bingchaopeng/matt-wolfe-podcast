@@ -95,7 +95,9 @@ def auto_mode():
         ctx = pw.chromium.launch_persistent_context(
             user_data_dir=PROFILE,
             headless=True,
-            args=["--no-first-run", "--no-default-browser-check"],
+            args=["--no-first-run", "--no-default-browser-check",
+                  "--disable-blink-features=AutomationControlled"],
+            ignore_default_args=["--enable-automation", "--disable-extensions"],
         )
 
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
@@ -125,7 +127,9 @@ def interactive_mode():
         ctx = pw.chromium.launch_persistent_context(
             user_data_dir=PROFILE,
             headless=False,
-            args=["--no-first-run", "--no-default-browser-check"],
+            args=["--no-first-run", "--no-default-browser-check",
+                  "--disable-blink-features=AutomationControlled"],
+            ignore_default_args=["--enable-automation", "--disable-extensions"],
             viewport={"width": 1280, "height": 800},
         )
 

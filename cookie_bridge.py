@@ -119,7 +119,7 @@ def main():
     )
     if "Sign in" not in r.stderr and r.returncode == 0:
         print(f"  VERIFIED: {r.stdout.strip()[:60]}")
-        print("\n✅ SUCCESS! Cookies are valid. Pipeline will run automatically.")
+        print("\n[SUCCESS] Cookies are valid. Pipeline will run automatically.")
         return 0
     else:
         print(f"  FAILED: {r.stderr[-100:]}")
