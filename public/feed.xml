@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 20 Jun 2026 09:46:29 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 10:00:02 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <item>
       <title>【】AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker</title>
@@ -73,6 +73,14 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/0Qd-nUslXGE.mp3" length="500544" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 11:00:29 +0000</pubDate>
       <itunes:duration>83</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】How Does Cursor Index Your Codebase?</title>
+      <link>https://manthanguptaa.in/posts/how_cursor_index_your_codebase/</link>
+      <description>Matt Wolfe 最新视频《How Does Cursor Index Your Codebase?》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/cursor_index_article.mp3" length="8569677" type="audio/mpeg"/>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <itunes:duration>1428</itunes:duration>
     </item>
     <item>
       <title>【】The Most Insane iPhone AI Features</title>
@@ -201,14 +209,6 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/ZHXt0-_gSj4.mp3" length="663696" type="audio/mpeg"/>
       <pubDate>Thu, 21 May 2026 21:49:47 +0000</pubDate>
       <itunes:duration>110</itunes:duration>
-    </item>
-    <item>
-      <title>【Matt Wolfe】Reverse Engineering ChatGPT Memory System</title>
-      <link>https://manthanguptaa.in/posts/chatgpt_memory/</link>
-      <description>Matt Wolfe 最新视频《Reverse Engineering ChatGPT Memory System》的中文同音翻译播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/chatgpt_memory_article.mp3" length="3074637" type="audio/mpeg"/>
-      <pubDate>Tue, 09 Dec 2025 00:00:00 +0000</pubDate>
-      <itunes:duration>512</itunes:duration>
     </item>
   </channel>
 </rss>

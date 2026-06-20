@@ -1,0 +1,250 @@
+大家好，欢迎收听 Matt Wolfe 中文播报。今天我们来聊一聊：**Cursor 如何索引你的代码库？**
+
+你有没有遇到过这种情况——在几万文件的巨型仓库里，问 Cursor “身份验证在哪处理？”，它一秒之内就指向了正确的文件？这不是魔法，背后是一套精巧的组合：Merkle 树、三元组索引、AST 语法分块、一个自训练的嵌入模型，还有一个存储了超过一万亿向量的向量数据库——Turbopuffer。今天我们就来拆解这个系统。
+
+---
+
+### 双索引策略
+
+大多数人以为 Cursor 只有一个索引——把代码转化成向量存进数据库。但实际上，Cursor 维护着**两个完全不同的索引**，各司其职：
+
+- **语义索引（向量索引）**：处理自然语言查询，比如“支付重试在哪处理？”、“展示数据库连接逻辑”。
+- **Trigram 风格的倒排索引**：处理正则表达式搜索，像 grep 那样精确匹配结构，但避免了 O(n×文件数) 的代价。生产版本用的是稀疏 n-gram，不是简单的三元组，后面会细说。
+
+这两个索引不能互换。语义索引擅长概念查找，但没法告诉你“找到所有用 `db.execute` 带上原始字符串的地方”；正则索引精确但完全不懂语义。Cursor 的智能体把两者结合起来，上下文质量才够高，生成的代码才能真的留在你的代码库里。
+
+Cursor 自己的数据显示：在 grep 之上叠加语义搜索，智能体准确率平均提升 12.5%（根据模型不同，范围在 6.5% 到 23.5%），大型代码库的代码保留率提升 2.6%，不满意的后续请求减少 2.2%。
+
+---
+
+### 构建语义索引
+
+你打开一个项目，Cursor 就开始构建语义索引。对全新代码库来说，它会读取每个文件，分割成块，给每块生成向量，然后上传到向量数据库。下面一步步拆解。
+
+#### 分块：用 Tree-sitter 做语法分块
+
+Cursor 用的是“语法块”而不是固定窗口。先把代码解析成抽象语法树（AST），然后沿着 AST 边界——比如函数、类、方法、代码块——来分块。标准工具是 Tree-sitter，支持几十种语言语法。
+
+函数是代码里天然的意义单位，在索引里也就成为一个自然单位。通常的做法是：小的兄弟节点会合并到一起，直到达到 token 上限；而像函数或类这样的连贯单元保持完整，这样每个块的向量捕获的是有意义的语义，而不是任意截取的一段字符。
+
+下面是一个简化的 AST 分块代码示例：
+
+```python
+import tree_sitter_python as tspython
+from tree_sitter import Language, Parser
+
+PY_LANGUAGE = Language(tspython.language())
+parser = Parser(PY_LANGUAGE)
+MAX_CHUNK_BYTES = 1500
+
+def chunk_file(source_code: bytes) -> list[str]:
+    tree = parser.parse(source_code)
+    chunks = []
+    for node in tree.root_node.children:
+        if node.type in ("function_definition", "class_definition"):
+            chunk_text = source_code[node.start_byte:node.end_byte].decode()
+            chunks.append(chunk_text)
+        else:
+            if chunks and len(chunks[-1]) + len(source_code[node.start_byte:node.end_byte]) < MAX_CHUNK_BYTES:
+                chunks[-1] += "\n" + source_code[node.start_byte:node.end_byte].decode()
+            else:
+                chunks.append(source_code[node.start_byte:node.end_byte].decode())
+    return chunks
+```
+
+真正的实现会更复杂——要处理嵌套结构、多语言语法、各种边界情况，但思路是一样的。
+
+#### 自定义嵌入模型：用智能体轨迹训练
+
+有意思的是，Cursor 没有直接用现成的嵌入模型如 `text-embedding-ada-002`，而是自己训练。训练信号来自智能体会话本身。
+
+聪明的地方在于训练标签怎么来。Cursor 的做法是：把智能体会话当作训练数据。当一个智能体在完成任务时，它会多次搜索、打开文件，最后找到正确的代码。通过分析这些轨迹，就能看出——在对话的早期，它本来应该检索到什么内容。
+
+他们把这些轨迹喂给一个大语言模型（LLM），让 LLM 对每一步最有帮助的内容进行排序，然后训练嵌入模型，让它的相似度分数去对齐那些排序。这就是他们的描述，我把它当作可信的说法。
+
+我个人的理解是：一次会话其实就是一个自动标注的数据集。智能体最终成功修改的代码，以及它反复回去看的文件，恰恰是 LLM 评分器用来判断“这一步应该浮现出什么内容”的 hindsight 信号。而“对齐相似度分数与排序”几乎总是落地成某种对比学习目标：拉近查询向量和那些证明有用的块，推远那些只是看起来相似但没用的块。
+
+最终效果就是他们明确说的：模型不再优化“这两段代码是否相似”，而是优化“给定这个任务和上下文，哪个块真正能帮助智能体”。这就形成了一个基于智能体实际使用代码的反馈循环，而不是通用的代码相似性。和人类反馈偏好数据（RLHF）是同一个思路，但用在了检索上。
+
+#### Turbopuffer：每个代码库一个命名空间
+
+嵌入向量最终存到 Turbopuffer——一个向量数据库。它的对象存储架构支持无限命名空间，天然适合 Cursor 的“每个代码库一个命名空间”的场景。
+
+每个代码库拥有自己的命名空间。活跃的命名空间保存在内存或 NVMe 里，不活跃的则转入对象存储。当查询进来时，如果不活跃的命名空间被命中，它会按需“热起来”。
+
+现在 Cursor 运行着超过 1 万亿个向量，分布在 8000 万个命名空间上。他们之前用的向量数据库需要手动把命名空间打包到服务器上，是个持续的头疼问题。Turbopuffer 的无服务器架构完全解决了这个问题，还把成本降低了 20 倍。
+
+它的 API 很直接：
+
+```python
+import turbopuffer
+
+tpuf = turbopuffer.Turbopuffer(region="gcp-us-central1")
+ns = tpuf.namespace(f"codebase-{repo_hash}")
+
+ns.write(
+    upsert_rows=[
+        {"id": chunk.id, "vector": chunk.embedding, "file_path": chunk.path}
+        for chunk in chunks
+    ],
+    distance_metric="cosine_distance",
+    schema={"file_path": {"type": "string", "glob": True}},
+)
+
+results = ns.query(
+    rank_by=("vector", "ANN", query_embedding),
+    top_k=20,
+    filters=("file_path", "Glob", "src/**/*.py"),
+    include_attributes=["file_path"],
+)
+```
+
+#### 用 Merkle 树高效同步
+
+嵌入计算很贵。在大型代码库里，每次改动都从头嵌入所有块，会慢得不可接受。Cursor 用 Merkle 树来精确知道哪些块需要重新嵌入。
+
+Merkle 树给每个文件分配一个加密哈希（SHA-256），然后基于子节点的哈希计算出目录的哈希。这和 Git 的对象模型是同一个思路——Git 也是用内容哈希作为对象的键，层层链起来（只不过 Git 用的是 SHA-1）。这样，任何文件的改动都会通过父目录传播到根节点。
+
+当文件变化时，Cursor 遍历 Merkle 树，找到客户端和服务端之间哪些分支不一致。只有变化了的文件才需要重新分块和嵌入。流程如下：
+
+```python
+import hashlib
+from pathlib import Path
+from dataclasses import dataclass
+
+@dataclass
+class MerkleNode:
+    path: str
+    hash: str
+    children: list["MerkleNode"]
+    is_file: bool
+
+def hash_file(path: Path) -> str:
+    content = path.read_bytes()
+    return hashlib.sha256(content).hexdigest()
+
+def build_merkle_tree(root: Path) -> MerkleNode:
+    if root.is_file():
+        return MerkleNode(str(root), hash_file(root), [], is_file=True)
+    children = [build_merkle_tree(child) for child in sorted(root.iterdir())]
+    combined = "".join(child.hash for child in children)
+    dir_hash = hashlib.sha256(combined.encode()).hexdigest()
+    return MerkleNode(str(root), dir_hash, children, is_file=False)
+
+def find_changed_files(client_tree: MerkleNode, server_tree: MerkleNode) -> list[str]:
+    if client_tree.hash == server_tree.hash:
+        return []
+    if client_tree.is_file:
+        return [client_tree.path]
+    server_children = {child.path: child for child in server_tree.children}
+    changed = []
+    for client_child in client_tree.children:
+        if client_child.path not in server_children:
+            changed.append(client_child.path)
+        else:
+            changed.extend(find_changed_files(client_child, server_children[client_child.path]))
+    return changed
+```
+
+效率提升很大。一个 5 万文件的工作区，仅文件名和 SHA-256 哈希加起来就大约 3.2 MB。如果没有 Merkle 树，每次更新都要传输全部数据来检查变化；有了树，你只遍历哈希不同的分支，通常一次正常编码会话后只有几个文件变了。
+
+#### 复用队友的索引
+
+我认为 Cursor 索引管线里最巧妙的部分是性能优化：大型 monorepo 从头索引需要几个小时。但团队里大多数工程师的代码副本几乎相同——组织内克隆平均相似度 92%。重复嵌入相同的代码完全是浪费计算和存储。
+
+当新用户打开一个代码库时，Cursor 计算 Merkle 树并推导出一个 simhash——一个总结文件内容哈希分布的单值，类似于局部敏感哈希。客户端把这个 simhash 发送给服务器，服务器在组织内所有已有 simhash 的向量数据库里搜索最相似的现有索引。
+
+如果相似度超过阈值，Cursor 就会用 Turbopuffer 的 `copy_from_namespace` 操作，从现有索引为新用户的命名空间“播种”，还能享受 50% 的写入折扣。用户立即可以查询这个复制过来的索引，同时后台同步功能会处理差异以及用户相对于被复制代码库的本地修改。
+
+结果：中位数仓库的首次查询时间从 7.87 秒降到 525 毫秒；90 百分位从 2.82 分钟降到 1.87 秒；99 百分位从 4.03 小时降到 21 秒。
+
+但这带来了安全问题：用户 A 的索引里可能含有用户 B 不该看到的代码。怎么在跨信任边界复用索引的同时不泄漏代码呢？
+
+#### 用 Merkle 证明来验证访问权限
+
+解决方案很优雅。由于 Merkle 树中每个节点都是下方内容的加密哈希，只有真正拥有文件的人才能计算出这个哈希。当用户 B 从复制的索引启动时，他的客户端会上传完整的 Merkle 树。服务器把这个树存储为一组“内容证明”——对于索引中每个文件路径，对应一个哈希，证明客户端拥有该文件。
+
+当用户 B 执行语义搜索时，结果通过检查返回块的 `file_path` 是否在用户 B 的内容证明中来过滤。如果用户 B 不能证明自己拥有某个文件（因为哈希不在他的 Merkle 树里），结果就被丢弃。他只能看到自己机器上实际包含的代码的搜索结果。
+
+这样，你就得到了共享索引和硬性安全保证，不需要服务器端检查文件内容。服务器仍然存储嵌入向量和用于查询的模糊化文件路径，但从未看到原始源码。访问决策完全依赖客户端只有真正拥有文件才能产出的哈希。
+
+---
+
+### Trigram（三元组）索引
+
+语义索引处理概念查询，但智能体还需要精确的模式匹配。问题在于，小项目里 ripgrep 很快，但大型 monorepo 上 Cursor 看到 `rg` 调用有时超过 15 秒。这会让整个智能体工作流停下来等搜索结果。
+
+Cursor 的基础是 trigram 索引，也就是 1993 年 Zobel、Moffat 和 Sacks-Davis 描述、2012 年 Russ Cox 关于 Google Code Search 的博客文章推广的方法。思路是在代码库中预先构建一个倒排索引，覆盖所有重叠的 3 字符序列（trigram）。
+
+```python
+def extract_trigrams(text: str) -> set[str]:
+    return {text[i:i+3] for i in range(len(text)-2)}
+
+def build_trigram_index(files: dict[str, str]) -> dict[str, set[str]]:
+    index = {}
+    for file_id, content in files.items():
+        for trigram in extract_trigrams(content):
+            index.setdefault(trigram, set()).add(file_id)
+    return index
+```
+
+查询时，一个像 `db\.execute\(` 的正则表达式被分解成它的字面 trigrams：`db.`、`b.e`、`.ex`、`exe`、`xec`、`ecu`、`cut`、`ute`、`te(`。搜索引擎对这些 trigrams 的帖子列表做交集，找到候选文件——只占代码库的极小一部分。然后只在那些候选文件上执行真正的正则匹配，以确认实际命中。
+
+```python
+def regex_candidate_files(pattern: str, index: dict[str, set[str]]) -> set[str] | None:
+    literal_parts = extract_literals_from_regex(pattern)
+    if not literal_parts:
+        return None
+    trigrams = set()
+    for literal in literal_parts:
+        trigrams.update(extract_trigrams(literal))
+    candidate_files = None
+    for trigram in trigrams:
+        matching_files = index.get(trigram, set())
+        if candidate_files is None:
+            candidate_files = matching_files
+        else:
+            candidate_files &= matching_files
+    return candidate_files or set()
+```
+
+Trigram 索引充当一个过滤器。如果你的正则表达式有足够多的字面字符（大多数实际模式都满足），你可以把候选集从 5 万个文件缩小到几个，然后才运行真正的正则匹配。误报率很低，所以过滤步骤主导了性能。
+
+经典 trigram 索引是 Cursor 最早实现的起点，但他们很快发现纯 trigrams 在 monorepo 规模上会遇到容量问题：常见 trigrams 产生的帖子列表太大，加载它们几乎和全扫描一样慢。所以 Cursor 的生产索引在两个方向上做了扩展：它使用稀疏 n-gram——确定性选择、变长的 n-gram，而不是固定的 3 字符窗口，这样索引更小，查询分解成更少、更具选择性的查找。另外，每个帖子附带小型的布隆过滤器掩码，编码了 trigram 后面的字符以及出现的位置，这样你可以用 quadgram 级别的精度查询 trigram 键的索引，并验证匹配的 trigrams 实际上是相邻的。
+
+理解层面的模型是经典的 trigram 过滤器，但实际交付的系统把这个过滤器磨得非常尖锐，使得候选集足够小，可以用内存映射查找在本地确认。
+
+还有一点容易忽略但很重要的架构决策：语义索引存在 Cursor 的服务器上，但正则索引是在本地机器上构建和查询的。原因在于**新鲜度**。一个过时的嵌入向量在向量空间中仍然大致指向正确方向，所以语义索引可以稍微滞后于你的编辑，影响不大。但正则索引不能：当智能体搜索它刚写好的代码而索引里还没有时，它会陷入一场浪费时间的搜索。Cursor 通过锚定当前 Git 提交并在上面叠加用户和智能体的编辑，来保持本地索引的实时性，这样每次按键都能低成本更新，启动时也能快速加载。
+
+---
+
+### 动态上下文发现
+
+还有一个值得了解的层次。智能体并不会把所有检索到的块都塞进上下文窗口。Cursor 采用了所谓的“动态上下文发现”，把**文件**作为上下文管理的单位。不是急不可待地把检索内容注入提示，而是把太庞大的工具响应写进临时文件。智能体得到文件路径，然后可以根据当前推理状态决定是否读取、尾随或 grep 这个文件。
+
+这防止了大型工具响应导致的上下文膨胀，同时确保不会因为截断而丢失信息。同样模式适用于终端输出、MCP 工具响应和聊天历史。智能体可能需要的所有东西都可以作为文件访问，按需检索，而不是一次性全塞进去。
+
+在 MCP 工具使用的 A/B 测试中，这种做法减少了智能体总 token 消耗 46.9%。这是一个非常有趣的方法，我认为这是保持上下文窗口小巧、让智能体专注于手头任务的好办法。
+
+---
+
+### 结论
+
+我们来看看完整的索引管线从头到尾是如何工作的：
+
+- **项目打开时**：在代码库所有文件上构建一棵 Merkle 树。
+- **语义索引（服务器端）**：
+  - 首次：用 Tree-sitter 分块，用 Cursor 的自定义模型嵌入，上传到 Turbopuffer 中每个代码库的命名空间。这就是语义索引，存在 Cursor 的服务器上。
+  - 后续打开：计算 simhash，检查组织内相似现有索引，用 `copy_from_namespace` 复制最接近的匹配。
+  - 后台同步：遍历 Merkle 树差异找到变化文件，只重新嵌入那些文件，更新命名空间。嵌入可以容忍一些延迟，所以是异步进行的。
+- **正则索引（客户端）**：在本地机器上构建 trigram / 稀疏 n-gram 索引，从当前 Git 提交开始，上面叠加用户和智能体的编辑。和语义索引不同，它每次编辑都会保持新鲜，因为一旦正则匹配漏掉智能体刚写的代码，智能体就会像无头苍蝇一样乱转。
+- **搜索时**：语义查询发送到 Turbopuffer，附上内容证明用于访问控制；正则查询命中本地索引，先过滤候选文件，再运行实际正则匹配。
+- **上下文中**：检索到的内容以文件形式呈现，智能体按需读取，而不是预先注入。
+
+我觉得这个架构有意思的地方不在于任何一个单独的组件——Merkle 树、trigram 索引、基于内容的寻址都是几十年前的技术。而在于它们的组合：用 Merkle 树的密码学特性同时做变更检测和访问控制；基于智能体会话轨迹而不是代码相似性来训练嵌入模型；以及贯穿整个系统的“文件即上下文”抽象。
+
+下次当 Cursor 在 5 万文件中半秒内找到你心里想的那个函数时，你就知道引擎盖下发生了什么了。
+
+---
+
+以上就是本期 Matt Wolfe 中文播报的全部内容。如果觉得有帮助，欢迎分享给更多朋友。我们下期再见！
