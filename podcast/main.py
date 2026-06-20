@@ -130,6 +130,7 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
                 audio_path,
                 person_name=channel.name,
                 voice_override=channel.tts_voice,  # 使用配置的语音
+                style_override=channel.tts_style,  # 使用配置的播报风格
             )
 
             audio_url = f"{config.podcast_website.rstrip('/')}/episodes/{audio_filename}"

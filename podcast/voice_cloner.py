@@ -37,12 +37,13 @@ os.makedirs(VOICE_PROFILES_DIR, exist_ok=True)
 VOICE_PROFILES = {
     "Andrej Karpathy": {
         "name": "Andrej Karpathy",
-        "engine": "edge-tts",         # 当前使用引擎
-        "language": "zh-CN",           # 目标语言
-        "edge_voice": "zh-CN-YunjianNeural",  # 最接近的男声
-        "reference_audio": "",          # 参考音频路径（用于克隆）
-        "clone_model": "",             # 克隆模型路径
+        "engine": "edge-tts",
+        "language": "zh-CN",
+        "edge_voice": "zh-CN-YunjianNeural",
+        "reference_audio": "",
+        "clone_model": "",
         "description": "技术深度、逻辑清晰的男声",
+        "style": "serious",
     },
     "Matt Wolfe": {
         "name": "Matt Wolfe",
@@ -52,6 +53,7 @@ VOICE_PROFILES = {
         "reference_audio": "",
         "clone_model": "",
         "description": "热情、易懂的男声（女声替代）",
+        "style": "lively",
     },
     "Lenny's Podcast": {
         "name": "Lenny's Podcast",
@@ -61,6 +63,7 @@ VOICE_PROFILES = {
         "reference_audio": "",
         "clone_model": "",
         "description": "深度、好奇的对话风格",
+        "style": "relaxed",
     },
     "Dwarkesh Patel": {
         "name": "Dwarkesh Patel",
@@ -70,6 +73,51 @@ VOICE_PROFILES = {
         "reference_audio": "",
         "clone_model": "",
         "description": "理性、深入的男声",
+        "style": "serious",
+    },
+}
+
+# ── TTS 播报风格配置 ──────────────────────────────────────
+# 三种风格：科技大佬动态 / 科技工具评测 / 行业八卦闲聊
+
+TTS_STYLES = {
+    "serious": {
+        "label": "科技大佬动态",
+        "rate": "-5%",
+        "volume": "+5%",
+        "edge_desc": "沉稳、权威、冷静",
+        # 用于 CosyVoice 2 inference_instruct2 的指令提示词
+        "instruct": (
+            "资深科技记者，冷静、客观、沉稳。"
+            "语速中等偏慢，字正腔圆，强调逻辑重音。"
+            "不要有过多的气声，不要夸张的笑声。"
+        ),
+        # 正文处理提示（后续可加入文本预处理自动插入停顿标记）
+        "prose_hint": "在技术术语和关键数据后加入自然停顿，保持严肃权威的报道感",
+    },
+    "lively": {
+        "label": "科技工具/AI 评测",
+        "rate": "+15%",
+        "volume": "+10%",
+        "edge_desc": "热情、活泼、有感染力",
+        "instruct": (
+            "热情的科技博主，充满活力，带有感染力和轻微的惊讶感。"
+            "语速稍快，像在跟朋友分享好东西。"
+            "允许适当的语气词（Wow, 天呐）。"
+        ),
+        "prose_hint": "加入语气词和感叹，保持分享感和感染力，语速明快",
+    },
+    "relaxed": {
+        "label": "行业八卦/闲聊",
+        "rate": "-8%",
+        "volume": "+0%",
+        "edge_desc": "慵懒、亲切、思考感",
+        "instruct": (
+            "深夜电台主播，慵懒、随性、亲切。"
+            "语速舒缓，带有思考感，偶尔带一点笑意。"
+            "允许自然的呼吸声和停顿。"
+        ),
+        "prose_hint": "语气像朋友聊天，加入自然的停顿和思考感，娓娓道来",
     },
 }
 
@@ -177,42 +225,54 @@ class VoiceCloner:
         output_path: str,
         person_name: str = "",
         voice_override: str = "",
+        style_override: str = "",
     ) -> dict:
         """
-        生成 TTS 音频，自动选择最佳声音方案。
+        生成 TTS 音频，自动选择最佳声音方案并匹配播报风格。
 
         Args:
             text: 要合成的文本
             output_path: 输出音频路径
-            person_name: 人物名称（用于选择克隆声音）
+            person_name: 人物名称（用于选择克隆声音和风格）
             voice_override: 强制使用指定的 edge-tts 语音
+            style_override: 强制使用指定的播报风格 (serious/lively/relaxed)
 
         Returns:
-            {filepath, duration_seconds, size_bytes, voice}
+            {filepath, duration_seconds, size_bytes, voice, style}
         """
         from podcast.tts import generate_audio_long_text
 
         # 确定使用的语音
         if voice_override:
             voice = voice_override
-            engine = "edge-tts"
-            logger.info("使用指定的语音: %s", voice)
         elif person_name and self.has_cloned_voice(person_name):
-            # 使用克隆声音
-            voice = self._cloned_voices[person_name]["model_path"]
-            engine = self._cloned_voices[person_name]["engine"]
-            logger.info("使用克隆声音: %s (%s)", person_name, engine)
-            # TODO: 当克隆模型就绪时，调用 ONNX 推理
-            # 目前回退到 edge-tts
             profile = self.get_profile(person_name)
             voice = profile.get("edge_voice", "zh-CN-YunjianNeural")
         else:
             profile = self.get_profile(person_name)
             voice = profile.get("edge_voice", "zh-CN-YunjianNeural")
 
-        # 当前实现：使用 edge-tts
-        logger.info("TTS: person=%s voice=%s", person_name, voice)
-        return generate_audio_long_text(text, output_path, voice=voice)
+        # 确定播报风格
+        style = style_override
+        if not style:
+            profile = self.get_profile(person_name)
+            style = profile.get("style", "lively")
+        if style not in TTS_STYLES:
+            style = "lively"
+
+        style_cfg = TTS_STYLES[style]
+        rate = style_cfg["rate"]
+        volume = style_cfg["volume"]
+
+        logger.info("TTS: person=%s voice=%s style=%s(%s) rate=%s volume=%s",
+                     person_name, voice, style, style_cfg["label"], rate, volume)
+
+        result = generate_audio_long_text(
+            text, output_path, voice=voice, rate=rate, volume=volume
+        )
+        result["style"] = style
+        result["style_label"] = style_cfg["label"]
+        return result
 
     def install_onnx_model(self, model_type: str = "gpt-sovits") -> bool:
         """

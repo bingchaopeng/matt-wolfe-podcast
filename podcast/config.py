@@ -21,6 +21,8 @@ class ChannelConfig:
     @property
     def tts_voice(self) -> str: return self._data.get("tts_voice", "zh-CN-XiaoxiaoNeural")
     @property
+    def tts_style(self) -> str: return self._data.get("tts_style", "lively")
+    @property
     def podcast_title(self) -> str: return self._data.get("podcast_title", "")
     @property
     def podcast_description(self) -> str: return self._data.get("podcast_description", "")
