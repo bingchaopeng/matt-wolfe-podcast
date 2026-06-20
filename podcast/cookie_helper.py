@@ -171,14 +171,59 @@ def _export_via_browser_cookie3() -> bool:
         return False
 
 
+def _export_via_playwright() -> bool:
+    """
+    使用 Playwright Chromium (v145) 导出 cookies — 推荐策略。
+
+    使用 Playwright 打包的 Chromium（可在本环境正常启动），
+    通过浏览器 API 获取 cookies（与 Get cookies.txt 的 chrome.cookies.getAll 相同）。
+
+    Returns:
+        True if cookies were exported successfully.
+    """
+    import subprocess, sys
+    from datetime import datetime
+
+    pw_script = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cookie_playwright.py")
+
+    if not os.path.isfile(pw_script):
+        logger.error("Playwright script not found: %s", pw_script)
+        return False
+
+    # Check if we have valid cookies from persistent profile first
+    pw_profile = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".pw-cookies")
+    if os.path.isdir(pw_profile):
+        logger.info("Playwright: 使用持久配置文件 %s", pw_profile)
+
+    try:
+        result = subprocess.run(
+            [sys.executable, pw_script],
+            capture_output=True, text=True, timeout=120,
+        )
+        if result.returncode == 0:
+            logger.info("Playwright: cookies exported successfully")
+            return True
+        else:
+            stderr = result.stderr.strip()[-300:] if result.stderr.strip() else ""
+            logger.warning("Playwright: exit code %d: %s", result.returncode, stderr)
+            return False
+    except subprocess.TimeoutExpired:
+        logger.warning("Playwright: timed out (browser window may still be open)")
+        return False
+    except Exception as exc:
+        logger.warning("Playwright: error: %s", exc)
+        return False
+
+
 def auto_refresh_cookies() -> bool:
     """
     自动刷新 YouTube cookies，供 yt-dlp 使用。
 
     策略链：
-    1. PowerShell CDP（最可靠，Windows 原生支持）
-    2. Selenium WebDriver（次选）
-    3. browser_cookie3（最后尝试）
+    1. Playwright Chromium（推荐 — 唯一可在本环境工作）
+    2. PowerShell CDP（备选）
+    3. Selenium WebDriver（次选）
+    4. browser_cookie3（最后尝试）
 
     Returns:
         True if any strategy succeeded.
@@ -186,6 +231,7 @@ def auto_refresh_cookies() -> bool:
     logger.info("自动刷新 YouTube cookies...")
 
     strategies = [
+        ("Playwright Chromium", _export_via_playwright),
         ("PowerShell CDP", _export_via_cdp_powershell),
         ("Selenium", _export_via_selenium),
         ("browser_cookie3", _export_via_browser_cookie3),
