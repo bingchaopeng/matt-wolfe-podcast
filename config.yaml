@@ -1,7 +1,39 @@
-channel:
-  name: "Matt Wolfe"
-  youtube_url: "https://www.youtube.com/@mreflow"
-  channel_id: "UChpleBmo18P08aKCIgti38g"
+channels:
+  - name: "Matt Wolfe"
+    youtube_url: "https://www.youtube.com/@mreflow"
+    channel_id: "UChpleBmo18P08aKCIgti38g"
+    tts_voice: "zh-CN-XiaoxiaoNeural"
+    podcast_title: "Matt Wolfe 中文播报"
+    podcast_description: "每日精选 Matt Wolfe 的最新 AI 资讯，中文同音翻译播客，开车通勤最佳伴侣"
+    podcast_author: "AI 播客工坊"
+    feed_filename: "feed.xml"
+
+  - name: "Lenny's Podcast"
+    youtube_url: "https://www.youtube.com/@lennyspodcast"
+    channel_id: "UC6t1O76G0jYXOAoYCm153dA"
+    tts_voice: "zh-CN-XiaoyiNeural"
+    podcast_title: "Lenny's Podcast 中文精选"
+    podcast_description: "Lenny's Podcast 精选内容，中文同音翻译播客，学习产品增长与商业思维"
+    podcast_author: "AI 播客工坊"
+    feed_filename: "lenny-feed.xml"
+
+  - name: "Dwarkesh Patel"
+    youtube_url: "https://www.youtube.com/@dwarkeshpatel"
+    channel_id: "UCZa18YV7qayTh-MRIrBhDpA"
+    tts_voice: "zh-CN-YunxiNeural"
+    podcast_title: "Dwarkesh Patel 中文播报"
+    podcast_description: "Dwarkesh Patel 深度对话，中文同音翻译播客，探索 AI 与科技前沿"
+    podcast_author: "AI 播客工坊"
+    feed_filename: "dwarkesh-feed.xml"
+
+  - name: "Andrej Karpathy"
+    youtube_url: "https://www.youtube.com/@AndrejKarpathy"
+    channel_id: "UCYO_jab_esuFRV4b17AJtAw"
+    tts_voice: "zh-CN-YunjianNeural"
+    podcast_title: "Andrej Karpathy 中文播报"
+    podcast_description: "Andrej Karpathy 的 AI 深度讲解，中文同音翻译播客"
+    podcast_author: "AI 播客工坊"
+    feed_filename: "karpathy-feed.xml"
 
 llm:
   provider: "deepseek"
@@ -12,18 +44,13 @@ llm:
 
 tts:
   engine: "edge-tts"
-  voice: "zh-CN-XiaoxiaoNeural"
   rate: "+0%"
   volume: "+0%"
 
 podcast:
-  title: "Matt Wolfe 中文播报"
-  description: "每日精选 Matt Wolfe 的最新 AI 资讯，中文同音翻译播客，开车通勤最佳伴侣"
-  author: "AI 播客工坊"
   language: "zh-CN"
   output_dir: "./public"
   episodes_dir: "./data/episodes"
-  feed_filename: "feed.xml"
   website: "https://bingchaopeng.github.io/matt-wolfe-podcast"
   episode_image_url: ""
 

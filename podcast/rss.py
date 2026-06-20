@@ -7,26 +7,43 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-def create_feed(config) -> FeedGenerator:
+
+def create_feed(
+    title: str,
+    description: str,
+    author: str,
+    language: str = "zh-CN",
+    website: str = "",
+    feed_filename: str = "feed.xml",
+) -> FeedGenerator:
     """
-    Create a new podcast RSS feed from config.
-    Compatible with xiaoyuzhou podcast import format.
+    Create a new podcast RSS feed.
+
+    Args:
+        title: Podcast title.
+        description: Podcast description.
+        author: Podcast author name.
+        language: Language code (default: zh-CN).
+        website: Website URL for the podcast.
+        feed_filename: RSS feed filename (for self-link URL).
+
+    Returns:
+        FeedGenerator instance.
     """
     fg = FeedGenerator()
-    fg.title(config.podcast_title)
-    fg.description(config.podcast_description)
-    # self link = feed URL, alternate link = website
-    feed_url = "{}/{}".format(config.podcast_website.rstrip("/"), config.feed_filename)
-    fg.link(href=feed_url, rel='self')
-    fg.link(href=config.podcast_website, rel='alternate')
-    fg.language(config.podcast_language)
-    fg.author({'name': config.podcast_author})
-    fg.generator('Matt Wolfe Chinese Podcast Generator')
+    fg.title(title)
+    fg.description(description)
+    feed_url = f"{website.rstrip('/')}/{feed_filename}"
+    fg.link(href=feed_url, rel="self")
+    fg.link(href=website, rel="alternate")
+    fg.language(language)
+    fg.author({"name": author})
+    fg.generator("AI Podcast Generator")
     fg.lastBuildDate(datetime.now(timezone.utc))
-    # iTunes compatible
-    fg.load_extension('podcast')
-    fg.podcast.itunes_author(config.podcast_author)
+    fg.load_extension("podcast")
+    fg.podcast.itunes_author(author)
     return fg
+
 
 def add_episode(feed: FeedGenerator, title: str, description: str,
                 audio_path: str, audio_url: str, duration: int,
@@ -43,41 +60,68 @@ def add_episode(feed: FeedGenerator, title: str, description: str,
     fe.description(description)
     fe.link(href=video_url if video_url else "")
     fe.published(published)
-    # Audio enclosure
     audio_size = os.path.getsize(audio_path) if os.path.exists(audio_path) else 0
     if audio_size == 0:
         logger.warning("Audio file missing or empty: %s", audio_path)
-    fe.enclosure(audio_url, str(audio_size), 'audio/mpeg')
-    # iTunes duration
+    fe.enclosure(audio_url, str(audio_size), "audio/mpeg")
     fe.podcast.itunes_duration(str(duration))
     return feed
 
-def build_feed_from_history(config, episodes: list[dict]) -> FeedGenerator:
+
+def build_feed_from_history(config, episodes: list[dict],
+                            channel_name: str = "", channel_config=None) -> FeedGenerator:
     """
-    Rebuild the complete RSS feed from all processed episodes.
-    Preserves episode history so subscribers see all content.
+    Rebuild RSS feed from all processed episodes.
 
     Args:
-        config: Config instance
-        episodes: List of episode dicts from ProcessedTracker, sorted oldest-first.
-                  Each dict must have: title, audio_file, duration_seconds, published, url
+        config: Config instance.
+        episodes: List of episode dicts, sorted oldest-first.
+        channel_name: Channel name for filtering. If empty, builds unified feed.
+        channel_config: ChannelConfig for per-channel feed. If None, builds unified.
 
     Returns:
-        FeedGenerator with all episodes added
+        FeedGenerator with all episodes added.
     """
-    feed = create_feed(config)
+    if channel_config:
+        feed = create_feed(
+            title=channel_config.podcast_title,
+            description=channel_config.podcast_description,
+            author=channel_config.podcast_author,
+            language=config.podcast_language,
+            website=config.podcast_website,
+            feed_filename=channel_config.feed_filename,
+        )
+        title_prefix = f"【{channel_config.podcast_title}】"
+        channel_name = channel_config.name
+    else:
+        feed = create_feed(
+            title="AI 播客精选合集",
+            description="Matt Wolfe、Lenny's Podcast、Dwarkesh Patel、Andrej Karpathy 等频道的中文播客合集",
+            author="AI 播客工坊",
+            language=config.podcast_language,
+            website=config.podcast_website,
+            feed_filename="feed.xml",
+        )
+        title_prefix = ""
+        channel_name = ""
+
     for ep in episodes:
         audio_filename = ep.get("audio_file", "")
-        audio_path = os.path.join(config.podcast_episodes_dir, audio_filename)
-        audio_url = "{}/episodes/{}".format(config.podcast_website.rstrip("/"), audio_filename)
+        audio_path = os.path.join(config.podcast_episodes_dir, audio_filename) if audio_filename else ""
+        audio_url = f"{config.podcast_website.rstrip('/')}/episodes/{audio_filename}" if audio_filename else ""
         try:
             published = datetime.fromisoformat(ep["published"]) if "published" in ep else datetime.now()
         except (ValueError, TypeError):
             published = datetime.now()
-        episode_desc = "Matt Wolfe 最新视频《{}》的中文同音翻译播客版本。".format(ep.get("title", ""))
+        ep_channel = ep.get("channel", channel_name)
+        title_text = ep.get("title", "")
+        full_title = f"{title_prefix}{title_text}"
+        if not title_prefix:
+            full_title = f"【{ep_channel}】{title_text}"
+        episode_desc = f"{ep_channel} 最新视频《{title_text}》的中文同音翻译播客版本。"
         add_episode(
             feed,
-            title="【Matt Wolfe 中文播报】{}".format(ep.get("title", "")),
+            title=full_title,
             description=episode_desc,
             audio_path=audio_path,
             audio_url=audio_url,
@@ -87,8 +131,10 @@ def build_feed_from_history(config, episodes: list[dict]) -> FeedGenerator:
         )
     return feed
 
+
 def save_feed(feed: FeedGenerator, output_path: str) -> str:
     """Save RSS feed to file as RSS 2.0 XML."""
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     feed.rss_file(output_path, pretty=True)
     logger.info("RSS feed saved to %s", output_path)
     return output_path

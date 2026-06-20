@@ -1,8 +1,40 @@
-"""Configuration loader for Matt Wolfe podcast project."""
+"""Configuration loader for multi-channel podcast project."""
 import os
 import yaml
 from pathlib import Path
 from typing import Any
+
+
+class ChannelConfig:
+    """Configuration for a single channel."""
+
+    def __init__(self, data: dict, root: "Config"):
+        self._data = data
+        self._root = root
+
+    @property
+    def name(self) -> str: return self._data.get("name", "")
+    @property
+    def youtube_url(self) -> str: return self._data.get("youtube_url", "")
+    @property
+    def channel_id(self) -> str: return self._data.get("channel_id", "")
+    @property
+    def tts_voice(self) -> str: return self._data.get("tts_voice", "zh-CN-XiaoxiaoNeural")
+    @property
+    def podcast_title(self) -> str: return self._data.get("podcast_title", "")
+    @property
+    def podcast_description(self) -> str: return self._data.get("podcast_description", "")
+    @property
+    def podcast_author(self) -> str: return self._data.get("podcast_author", "AI 播客工坊")
+    @property
+    def feed_filename(self) -> str: return self._data.get("feed_filename", "feed.xml")
+    @property
+    def feed_path(self) -> str:
+        return str(self._root.project_root / self._root._data.get("podcast", {}).get("output_dir", "./public") / self.feed_filename)
+
+    def __repr__(self) -> str:
+        return f"<Channel: {self.name}>"
+
 
 class Config:
     """Singleton configuration loaded from config.yaml and .env."""
@@ -22,79 +54,121 @@ class Config:
         self._load()
 
     def _load(self):
-        # Find config.yaml (look in project root)
         config_path = self._find_config()
-        with open(config_path, 'r', encoding='utf-8') as f:
+        self.project_root = Path(config_path).parent
+        with open(config_path, "r", encoding="utf-8") as f:
             self._data = yaml.safe_load(f)
-        # Load .env
         self._load_env()
+        # Build channel configs
+        self._channels: list[ChannelConfig] = [
+            ChannelConfig(c, self) for c in self._data.get("channels", [])
+        ]
 
     def _find_config(self) -> str:
-        # Search from current dir up to find config.yaml
-        # Fall back to default path: ROOT/config.yaml
         ROOT = Path(__file__).parent.parent
-        return str(ROOT / 'config.yaml')
+        return str(ROOT / "config.yaml")
 
     def _load_env(self):
-        """Load .env file if exists."""
         root = Path(self._find_config()).parent
-        env_path = root / '.env'
+        env_path = root / ".env"
         if env_path.exists():
             with open(env_path) as f:
                 for line in f:
                     line = line.strip()
-                    if line and not line.startswith('#') and '=' in line:
-                        key, val = line.split('=', 1)
+                    if line and not line.startswith("#") and "=" in line:
+                        key, val = line.split("=", 1)
                         os.environ.setdefault(key.strip(), val.strip())
 
-    # Properties for each config section
+    # ── Channels ──
     @property
-    def channel_name(self) -> str: return self._data.get('channel', {}).get('name', '')
+    def channels(self) -> list[ChannelConfig]:
+        return self._channels
+
+    def get_channel(self, name: str) -> ChannelConfig | None:
+        for c in self._channels:
+            if c.name == name:
+                return c
+        return None
+
+    # ── Legacy single-channel properties (backward compat) ──
     @property
-    def channel_url(self) -> str: return self._data.get('channel', {}).get('youtube_url', '')
+    def channel_name(self) -> str:
+        return self._channels[0].name if self._channels else ""
+
     @property
-    def channel_id(self) -> str: return self._data.get('channel', {}).get('channel_id', '')
+    def channel_url(self) -> str:
+        return self._channels[0].youtube_url if self._channels else ""
+
     @property
-    def proxy(self) -> str: return self._data.get('network', {}).get('proxy', '')
+    def channel_id(self) -> str:
+        return self._channels[0].channel_id if self._channels else ""
+
     @property
-    def channel_id(self) -> str: return self._data.get('channel', {}).get('channel_id', '')
+    def tts_voice(self) -> str:
+        return self._channels[0].tts_voice if self._channels else "zh-CN-XiaoxiaoNeural"
+
     @property
-    def llm_model(self) -> str: return self._data.get('llm', {}).get('model', 'deepseek-v4-flash')
+    def proxy(self) -> str:
+        return self._data.get("network", {}).get("proxy", "")
+
+    # ── LLM ──
     @property
-    def llm_base_url(self) -> str: return self._data.get('llm', {}).get('anthropic_base_url', 'https://api.deepseek.com/anthropic')
+    def llm_model(self) -> str:
+        return self._data.get("llm", {}).get("model", "deepseek-v4-flash")
+
     @property
-    def llm_max_tokens(self) -> int: return self._data.get('llm', {}).get('max_tokens', 4096)
+    def llm_base_url(self) -> str:
+        return self._data.get("llm", {}).get("anthropic_base_url",
+                                              "https://api.deepseek.com/anthropic")
+
     @property
-    def llm_temperature(self) -> float: return self._data.get('llm', {}).get('temperature', 0.3)
+    def llm_max_tokens(self) -> int:
+        return self._data.get("llm", {}).get("max_tokens", 4096)
+
     @property
-    def tts_voice(self) -> str: return self._data.get('tts', {}).get('voice', 'zh-CN-XiaoxiaoNeural')
+    def llm_temperature(self) -> float:
+        return self._data.get("llm", {}).get("temperature", 0.3)
+
+    # ── TTS ──
     @property
-    def tts_rate(self) -> str: return self._data.get('tts', {}).get('rate', '+0%')
+    def tts_engine(self) -> str:
+        return self._data.get("tts", {}).get("engine", "edge-tts")
+
     @property
-    def podcast_title(self) -> str: return self._data.get('podcast', {}).get('title', '')
+    def tts_rate(self) -> str:
+        return self._data.get("tts", {}).get("rate", "+0%")
+
     @property
-    def podcast_description(self) -> str: return self._data.get('podcast', {}).get('description', '')
+    def tts_volume(self) -> str:
+        return self._data.get("tts", {}).get("volume", "+0%")
+
+    # ── Podcast ──
     @property
-    def podcast_author(self) -> str: return self._data.get('podcast', {}).get('author', '')
-    @property
-    def podcast_language(self) -> str: return self._data.get('podcast', {}).get('language', 'zh-CN')
+    def podcast_language(self) -> str:
+        return self._data.get("podcast", {}).get("language", "zh-CN")
+
     @property
     def podcast_output_dir(self) -> str:
-        return str(Path(self._find_config()).parent / self._data.get('podcast', {}).get('output_dir', './public'))
+        return str(self.project_root / self._data.get("podcast", {}).get("output_dir", "./public"))
+
     @property
     def podcast_episodes_dir(self) -> str:
-        return str(Path(self._find_config()).parent / self._data.get('podcast', {}).get('episodes_dir', './data/episodes'))
-    @property
-    def feed_filename(self) -> str: return self._data.get('podcast', {}).get('feed_filename', 'feed.xml')
-    @property
-    def podcast_website(self) -> str: return self._data.get('podcast', {}).get('website', '')
-    @property
-    def max_episodes_per_run(self) -> int: return self._data.get('schedule', {}).get('max_episodes_per_run', 1)
-    @property
-    def daily_time(self) -> str: return self._data.get('schedule', {}).get('daily_time', '21:00')
+        return str(self.project_root / self._data.get("podcast", {}).get("episodes_dir", "./data/episodes"))
 
-config = Config()  # module-level singleton
+    @property
+    def podcast_website(self) -> str:
+        return self._data.get("podcast", {}).get("website", "")
+
+    @property
+    def max_episodes_per_run(self) -> int:
+        return self._data.get("schedule", {}).get("max_episodes_per_run", 1)
+
+    @property
+    def daily_time(self) -> str:
+        return self._data.get("schedule", {}).get("daily_time", "21:00")
+
+
+config = Config()
 
 def get_config() -> Config:
-    """Get the singleton config instance."""
     return Config()

@@ -343,24 +343,37 @@ def _translate_and_polish_single(
 # 完整播客脚本生成
 # ---------------------------------------------------------------------------
 
-PIPELINE_SYSTEM_PROMPT = (
-    "你是一个 AI 科技内容播客脚本制作专家。\n"
-    "请根据提供的视频元数据（标题、描述）和英文字幕转录文本，制作一份完整的、可直接用于 TTS 录制的中文播客脚本。\n\n"
-    "要求：\n"
-    "1. 开场白：「大家好，欢迎收听 Matt Wolfe 中文播报。今天我们来聊一聊：<视频标题>」\n"
-    "2. 正文：将英文转录准确翻译成中文，保持热情易懂的风格，长句拆短句，口语化表达\n"
-    "3. 术语准确：AGI、LLM、Transformer 等保留英文或使用公认译法\n"
-    "4. 人名/产品名/公司名保留并括号标注英文原名\n"
-    "5. 正文中加入自然空行分段，便于 TTS 停顿\n"
-    "6. 结尾：「以上就是本期 Matt Wolfe 中文播报的全部内容。如果觉得有帮助，欢迎分享给更多朋友。我们下期再见！」\n"
-    "7. 如果视频描述中有重要背景信息，可以自然地融入正文介绍中"
-)
+def make_pipeline_system_prompt(host_name: str = "Matt Wolfe", host_style: str = "") -> str:
+    """Generate a channel-aware system prompt for podcast script generation."""
+    if not host_style:
+        host_style = "热情、易懂、有见解"
+    podcast_name = {
+        "Matt Wolfe": "Matt Wolfe 中文播报",
+        "Lenny's Podcast": "Lenny's Podcast 中文精选",
+        "Dwarkesh Patel": "Dwarkesh Patel 中文播报",
+        "Andrej Karpathy": "Andrej Karpathy 中文播报",
+    }.get(host_name, f"{host_name} 中文播报")
+
+    return (
+        "你是一个 AI 科技内容播客脚本制作专家。\n"
+        f"请根据提供的视频元数据（标题、描述）和英文字幕转录文本，制作一份完整的、可直接用于 TTS 录制的中文播客脚本。\n\n"
+        "要求：\n"
+        f"1. 开场白：「大家好，欢迎收听 {podcast_name}。今天我们来聊一聊：<视频标题>」\n"
+        f"2. 正文：将英文转录准确翻译成中文，保持原播主的主持风格（{host_style}），长句拆短句，口语化表达\n"
+        "3. 术语准确：AGI、LLM、Transformer 等保留英文或使用公认译法\n"
+        "4. 人名/产品名/公司名保留并括号标注英文原名\n"
+        "5. 正文中加入自然空行分段，便于 TTS 停顿\n"
+        f"6. 结尾：「以上就是本期 {podcast_name} 的全部内容。如果觉得有帮助，欢迎分享给更多朋友。我们下期再见！」\n"
+        "7. 如果视频描述中有重要背景信息，可以自然地融入正文介绍中"
+    )
 
 
 def get_podcast_script(
     video_title: str,
     video_description: str,
     transcript: str,
+    host_name: str = "Matt Wolfe",
+    host_style: str = "",
     model: str = "deepseek-v4-flash",
     max_tokens: int = 8192,
     max_retries: int = 3,
@@ -374,6 +387,8 @@ def get_podcast_script(
         video_title: 视频标题。
         video_description: 视频描述/简介。
         transcript: 英文字幕转录文本。
+        host_name: 频道/播主名称，用于定制开场风格。
+        host_style: 播主风格描述，留空自动匹配。
         model: DeepSeek 模型名称，默认为 "deepseek-v4-flash"。
         max_tokens: 每次 API 调用的最大 token 数，默认为 8192。
         max_retries: API 调用失败时的最大重试次数，默认为 3。
@@ -385,6 +400,7 @@ def get_podcast_script(
         RuntimeError: 所有重试均失败时抛出。
     """
     client = get_client()
+    system_prompt = make_pipeline_system_prompt(host_name, host_style)
 
     user_prompt = (
         f"视频标题：{video_title}\n\n"
@@ -399,7 +415,7 @@ def get_podcast_script(
             response = client.messages.create(
                 model=model,
                 max_tokens=max_tokens,
-                system=PIPELINE_SYSTEM_PROMPT,
+                system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}],
             )
             logger.info("播客脚本生成完成 (尝试 %d 次)", attempt)

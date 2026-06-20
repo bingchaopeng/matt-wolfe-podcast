@@ -32,17 +32,20 @@ def cmd_run(args):
     print()
     print('=' * 50)
     print("Processing complete!")
-    print("New videos found: {}".format(result['new_videos_found']))
-    print("Successfully processed: {}".format(len(result['processed'])))
-    if result['errors']:
-        print("Failed: {}".format(len(result['errors'])))
-        for e in result['errors']:
-            print("  X {}: {}".format(e['id'], e['reason']))
-    if result['processed']:
+    print("Channels checked: {}".format(result.get('channels_checked', 0)))
+    for ch in result.get('results', []):
+        ch_name = ch.get('channel', '?')
         print()
-        print("Episodes in this run:")
-        for p in result['processed']:
-            print("  V {}".format(p['title']))
+        print("  【{}】".format(ch_name))
+        print("    New videos: {}".format(ch['new_videos_found']))
+        print("    Processed:  {}".format(len(ch['processed'])))
+        if ch['errors']:
+            print("    Failed:     {}".format(len(ch['errors'])))
+            for e in ch['errors']:
+                print("      X {}: {}".format(e['id'], e['reason']))
+        if ch['processed']:
+            for p in ch['processed']:
+                print("    V {}".format(p['title']))
     print('=' * 50)
 
 def cmd_dry_run(args):
@@ -61,16 +64,21 @@ def cmd_status(args):
     from podcast.main import get_status
     status = get_status()
     print()
-    print('=' * 50)
-    print("Matt Wolfe Chinese Podcast -- Status")
-    print('=' * 50)
-    print("Channel: {}".format(status['channel']))
-    print("Processed: {} videos".format(status['total_processed']))
-    print("Last processed: {}".format(status['last_processed']))
-    print("Audio directory: {}".format(status['episodes_dir']))
-    print("RSS file: {}".format(status['feed_path']))
-    print("Feed exists: {}".format('Yes' if status['feed_exists'] else 'No'))
-    print('=' * 50)
+    print('=' * 60)
+    print("AI 播客 -- Status")
+    print('=' * 60)
+    print("总处理数: {} videos".format(status['total_processed']))
+    print()
+    for ch_name, ch_stat in status.get('channel_stats', {}).items():
+        print("  【{}】".format(ch_name))
+        print("    已处理: {} videos".format(ch_stat['count']))
+        print("    最后处理: {}".format(ch_stat['last_processed']))
+        print("     Feed: {}".format(ch_stat['feed_path']))
+        print("     存在: {}".format('Yes' if ch_stat['feed_exists'] else 'No'))
+        print()
+    print("音频目录: {}".format(status['episodes_dir']))
+    print("输出目录: {}".format(status['output_dir']))
+    print('=' * 60)
 
 def cmd_list_voices(args):
     """List available Chinese TTS voices."""

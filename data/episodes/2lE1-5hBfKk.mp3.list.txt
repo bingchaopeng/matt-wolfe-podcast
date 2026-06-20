@@ -1,0 +1,2 @@
+file 'C:\Users\30777\AppData\Local\Temp\tts_chunk_9g9qterx\chunk_0000.mp3'
+file 'C:\Users\30777\AppData\Local\Temp\tts_chunk_9g9qterx\chunk_0001.mp3'
