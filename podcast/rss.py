@@ -118,7 +118,7 @@ def build_feed_from_history(config, episodes: list[dict],
         full_title = f"{title_prefix}{title_text}"
         if not title_prefix:
             full_title = f"【{ep_channel}】{title_text}"
-        episode_desc = f"{ep_channel} 最新视频《{title_text}》的中文同音翻译播客版本。"
+        episode_desc = f"{ep_channel} 最新视频《{title_text}》的peter播客版本。"
         add_episode(
             feed,
             title=full_title,

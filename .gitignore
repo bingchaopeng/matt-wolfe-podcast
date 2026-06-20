@@ -12,6 +12,10 @@ build/
 # Authentication
 cookies.txt
 
+# Virtual environments
+.venv*/
+chatterbox-tts/
+
 # Generated data (tracked separately via git lfs or manual deploy)
 data/episodes/*.mp3
 data/episodes/*.wav

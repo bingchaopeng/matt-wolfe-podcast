@@ -1,6 +1,6 @@
 # Matt Wolfe 中文播报
 
-每日精选 Matt Wolfe 的最新 AI 资讯，中文同音翻译播客，开车通勤最佳伴侣。
+每日精选 Matt Wolfe 的最新 AI 资讯，peter播客，开车通勤最佳伴侣。
 
 ## 功能特性
 

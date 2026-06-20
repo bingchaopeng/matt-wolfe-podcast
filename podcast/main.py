@@ -136,7 +136,7 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
             audio_url = f"{config.podcast_website.rstrip('/')}/episodes/{audio_filename}"
             published = datetime.fromisoformat(video["published"]) if "published" in video else datetime.now()
 
-            episode_desc = f"{channel.name} 最新视频《{video_title}》的中文同音翻译播客版本。"
+            episode_desc = f"{channel.name} 最新视频《{video_title}》的peter播客版本。"
 
             # Mark as processed
             tracker.mark_processed(video_id, {
@@ -208,7 +208,7 @@ def build_channel_feed(config, channel: ChannelConfig, episodes: list[dict]):
             published = datetime.fromisoformat(ep["published"]) if "published" in ep else datetime.now()
         except (ValueError, TypeError):
             published = datetime.now()
-        episode_desc = f"{channel.name} 最新视频《{ep.get('title', '')}》的中文同音翻译播客版本。"
+        episode_desc = f"{channel.name} 最新视频《{ep.get('title', '')}》的peter播客版本。"
         add_episode(
             feed,
             title=f"【{channel.podcast_title}】{ep.get('title', '')}",
