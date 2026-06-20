@@ -5,7 +5,7 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
-from podcast.config import get_config, ChannelConfig
+from podcast.config import get_config, ChannelConfig, make_episode_filename
 from podcast.fetcher import get_channel_videos, download_subtitles, extract_text_from_srt, ProcessedTracker
 from podcast.translator import get_podcast_script
 from podcast.tts import generate_audio_long_text
@@ -117,7 +117,7 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
             )
 
             # Generate audio using VoiceCloner (supports voice cloning)
-            audio_filename = f"{video_id}.mp3"
+            audio_filename = make_episode_filename(video_title, video_id, channel.name)
             audio_path = os.path.join(config.podcast_episodes_dir, audio_filename)
 
             logger.info("[%s] Generating audio: %s (voice=%s)",

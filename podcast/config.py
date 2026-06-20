@@ -1,5 +1,7 @@
 """Configuration loader for multi-channel podcast project."""
 import os
+import re
+import unicodedata
 import yaml
 from pathlib import Path
 from typing import Any
@@ -174,3 +176,71 @@ config = Config()
 
 def get_config() -> Config:
     return Config()
+
+
+# ── MP3 文件名生成规则 ──────────────────────────────────
+
+# 文件名中需移除的非法字符（Windows + URL safe）
+_FILENAME_BLACKLIST = re.compile(r'[<>:"/\\|?*%\x00-\x1f]')
+# 多个连续空白/分隔符折叠为一个连字符
+_MULTI_DASH = re.compile(r'-{2,}')
+
+
+def make_episode_filename(
+    title: str,
+    video_id: str,
+    channel_name: str = "",
+    max_len: int = 80,
+) -> str:
+    """
+    根据视频标题生成有意义的 MP3 文件名。
+
+    规则：
+    1. 标题做 slugify（去特殊字符、转 ASCII、空格→连字符）
+    2. 可选前置频道名
+    3. 尾部追加 video_id 确保唯一性
+    4. 截断至 max_len 字符
+
+    例：
+        title="AI News: An INSANE Week… Here's What Matters"
+        video_id="nydHKXjwu0U"
+        channel="Matt Wolfe"
+        → "Matt-Wolfe-AI-News-An-INSANE-Week-Heres-What_nydHKXjwu0U.mp3"
+    """
+    # Slugify: 去 html 实体，统一空白，转 ASCII，去非法字符
+    slug = title.replace("&", "and").replace("@", "at")
+    slug = unicodedata.normalize("NFKD", slug).encode("ascii", "ignore").decode("ascii")
+    slug = _FILENAME_BLACKLIST.sub("", slug)
+    slug = slug.strip().lower()
+    slug = re.sub(r"\s+", "-", slug)
+    slug = re.sub(r"[,_;:.!'\"(){}\[\]—–-]+", "-", slug)
+    slug = _MULTI_DASH.sub("-", slug).strip("-")
+
+    # 前置频道名（取简短形式）
+    prefix = ""
+    if channel_name:
+        short = channel_name.replace("'s", "").replace("'", "")
+        prefix = short.split()[0].lower() + "-"
+
+    # 组合：前缀 + slug（截断）+ _videoId.mp3
+    base = f"{prefix}{slug}"
+    max_base = max_len - len(video_id) - 5  # 5 = _ + .mp3
+    if len(base) > max_base and max_base > 20:
+        base = base[:max_base].rstrip("-")
+
+    return f"{base}_{video_id}.mp3"
+
+
+def rename_episode_file(
+    old_path: str,
+    new_name: str,
+) -> str:
+    """重命名音频文件，返回新路径。若目标已存在则直接返回。"""
+    parent = os.path.dirname(old_path)
+    new_path = os.path.join(parent, new_name)
+    if old_path == new_path:
+        return new_path
+    if os.path.isfile(new_path):
+        return new_path
+    os.rename(old_path, new_path)
+    return new_path
