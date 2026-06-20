@@ -533,10 +533,10 @@ def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str
 
     raise RuntimeError(
         "YouTube 需要登录认证。请手动刷新 cookies.txt：\n"
-        "1. 打开 Chrome，登录 YouTube\n"
-        "2. 安装 'Get cookies.txt' 扩展 (Chrome 应用商店)\n"
-        "3. 在 YouTube 页面点击扩展 → Export\n"
-        f"4. 保存到 {cookie_file}\n"
+        "在终端输入以下命令，会打开 Chrome 并指导你导出 cookies：\n"
+        f"    python refresh_cookies.py --manual\n"
+        f"或从 Chrome 扩展 Get cookies.txt 导出后保存到：\n"
+        f"    {cookie_file}\n"
         f"原始错误: {stderr[:200]}"
     )
 

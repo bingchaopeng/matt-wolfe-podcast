@@ -1,170 +1,200 @@
 """
-Chrome YouTube Cookie 自动刷新工具
-用法: python refresh_cookies.py
+YouTube Cookie 刷新工具
 
-工作方式：
-1. 先尝试通过 Chrome DevTools Protocol 从运行中的 Chrome 提取
-2. 如果 Chrome 没开调试端口，启动新 headless Chrome 实例
-3. 提取 YouTube cookies 并保存为 cookies.txt
+用法：
+  自动模式:  python refresh_cookies.py
+             尝试通过 CDP 自动提取（可能受限于环境）
+
+  手动模式:  python refresh_cookies.py --manual
+             打开 Chrome 并指导你手动导出 cookies
+
+cookies 过期时，pipeline 会自动调用此脚本。
 """
+
+import argparse
+import logging
 import os
-import json
+import subprocess
 import sys
 import time
-import subprocess
-import tempfile
-from urllib.request import urlopen
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+log = logging.getLogger(__name__)
 
 COOKIE_PATH = os.path.join(os.path.dirname(__file__), "cookies.txt")
 
 
-def find_chrome():
-    """查找 Chrome 可执行文件路径"""
-    candidates = [
-        os.path.expanduser(r"~\AppData\Local\Google\Chrome\Application\chrome.exe"),
-        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-    ]
-    for p in candidates:
-        if os.path.isfile(p):
-            return p
-    return None
+def try_cdp_auto():
+    """尝试通过 CDP 自动获取 cookies（在部分环境中可能失败）。"""
+    import urllib.request, json, websocket
 
+    CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    USER_DATA = os.path.expanduser("~/AppData/Local/Google/Chrome/User Data")
 
-def read_cookie_db_direct():
-    """直接读取 Chrome cookie 数据库（需要管理员权限）"""
-    try:
-        import browser_cookie3
-        cj = browser_cookie3.chrome(domain_name="youtube.com")
-        cookies = list(cj)
-        if not cookies:
-            return None
-        return cookies
-    except Exception as e:
-        print(f"  browser-cookie3: {e}")
-        return None
+    # 杀掉旧 Chrome，重新启动
+    subprocess.run(["taskkill", "/F", "/IM", "chrome.exe"], capture_output=True)
+    time.sleep(3)
 
+    proc = subprocess.Popen(
+        [CHROME_PATH,
+         "--remote-debugging-port=9222",
+         "--remote-allow-origins=*",
+         "--no-first-run",
+         "--no-default-browser-check",
+         f"--user-data-dir={USER_DATA}",
+         "https://www.youtube.com"],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,
+    )
+    log.info("Chrome started (PID=%d), waiting for CDP...", proc.pid)
 
-def extract_via_cdp(user_data_dir=None):
-    """启动 Chrome 并通过 CDP 提取 cookies"""
-    chrome = find_chrome()
-    if not chrome:
-        print("  Chrome not found")
-        return None
-
-    port = 9222
-    if not user_data_dir:
-        user_data_dir = tempfile.mkdtemp(prefix="chrome_cookies_")
-
-    try:
-        cmd = [
-            chrome,
-            f"--remote-debugging-port={port}",
-            "--remote-allow-origins=*",
-            f"--user-data-dir={user_data_dir}",
-            "--headless=new",
-            "--no-first-run",
-            "--no-default-browser-check",
-            "https://www.youtube.com",
-        ]
-        proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        time.sleep(4)
-
-        # Try CDP
-        import websocket
-        resp = urlopen(f"http://127.0.0.1:{port}/json/version", timeout=5)
-        data = json.loads(resp.read())
-        ws_url = data["webSocketDebuggerUrl"]
-
-        ws = websocket.create_connection(ws_url, timeout=10)
-        msg_id = 1
-
-        def send(method, params=None):
-            nonlocal msg_id
-            mid = msg_id
-            msg_id += 1
-            msg = {"id": mid, "method": method}
-            if params:
-                msg["params"] = params
-            ws.send(json.dumps(msg))
-            while True:
-                r = json.loads(ws.recv())
-                if r.get("id") == mid:
-                    return r.get("result", {})
-
-        # Navigate to YouTube and wait
-        send("Page.navigate", {"url": "https://www.youtube.com"})
-        time.sleep(5)
-
-        # Get cookies
-        result = send("Network.getCookies", {"urls": ["https://www.youtube.com"]})
-        ws.close()
-        proc.terminate()
-        proc.wait(timeout=5)
-
-        cookies = result.get("cookies", [])
-        yt_cookies = [c for c in cookies if "youtube" in c.get("domain", "")]
-        return yt_cookies or cookies
-
-    except Exception as e:
-        print(f"  CDP error: {e}")
+    # 最多等 60 秒
+    for i in range(60):
+        time.sleep(1)
         try:
-            proc.terminate()
+            resp = urllib.request.urlopen("http://127.0.0.1:9222/json/version", timeout=2)
+            data = json.loads(resp.read())
+            log.info("CDP ready after %ds!", i + 1)
+            ws_url = data["webSocketDebuggerUrl"]
+            break
         except Exception:
-            pass
-        return None
+            continue
+    else:
+        log.warning("CDP not available after 60s")
+        proc.kill()
+        return False
+
+    # 获取 cookies
+    ws = websocket.create_connection(ws_url, timeout=10)
+    ws.send(json.dumps({"id": 1, "method": "Network.getAllCookies"}))
+    while True:
+        r = json.loads(ws.recv())
+        if r.get("id") == 1:
+            cookies = r.get("result", {}).get("cookies", [])
+            break
+    ws.close()
+
+    yt = [c for c in cookies if "youtube.com" in c.get("domain", "")]
+    if not yt:
+        log.warning("No YouTube cookies found (not logged in?)")
+        proc.kill()
+        return False
+
+    _write_cookies(yt)
+    log.info("CDP 自动提取成功! 导出 %d 个 YouTube cookies", len(yt))
+    proc.kill()
+    return True
 
 
-def save_cookies(cookies):
-    """将 cookies 保存为 Netscape 格式"""
-    lines = ["# Netscape HTTP Cookie File"]
+def do_manual_export():
+    """手动模式：打开 Chrome 并指导用户导出 cookies。"""
+    print()
+    print("=" * 60)
+    print("  Cookie 手动导出指南")
+    print("=" * 60)
+    print()
+    print("即将打开 Chrome 到 YouTube...")
+    print()
+
+    # 打开 Chrome
+    chrome = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    if os.path.isfile(chrome):
+        subprocess.Popen([chrome, "https://www.youtube.com"])
+    else:
+        subprocess.Popen(["start", "https://www.youtube.com"], shell=True)
+
+    print("请按以下步骤操作：")
+    print()
+    print("  1. 确保已登录 YouTube")
+    print("  2. 点击地址栏右侧的 Get cookies.txt 扩展图标")
+    print("  3. 点击 Export 按钮")
+    print("  4. 将下载的文件保存/复制到：")
+    print(f"      {COOKIE_PATH}")
+    print()
+    print("完成后，在此终端输入 y 并回车确认：", end="")
+    sys.stdout.flush()
+
+    # 等待用户确认
+    try:
+        response = input().strip().lower()
+        if response == "y":
+            if os.path.isfile(COOKIE_PATH) and os.path.getsize(COOKIE_PATH) > 100:
+                print(f"\nOK! cookies.txt ({os.path.getsize(COOKIE_PATH)} bytes)")
+                return True
+            else:
+                print(f"\n❌ 未检测到 cookies.txt，请检查文件路径")
+                return False
+        else:
+            print("\n已取消")
+            return False
+    except (EOFError, KeyboardInterrupt):
+        print("\n已取消")
+        return False
+
+
+def _write_cookies(cookies):
+    """写入 Netscape 格式 cookies.txt"""
+    lines = [
+        "# Netscape HTTP Cookie File",
+        f"# Generated by refresh_cookies.py at {time.strftime('%Y-%m-%d %H:%M:%S')}",
+        "",
+    ]
     for c in cookies:
-        domain = getattr(c, "domain", c.get("domain", ".youtube.com"))
-        if isinstance(domain, str) and not domain.startswith("."):
-            domain = "." + domain
-
-        path = getattr(c, "path", c.get("path", "/"))
-        secure = getattr(c, "secure", c.get("secure", False))
-        secure_str = "TRUE" if secure else "FALSE"
-
-        expires = getattr(c, "expires", c.get("expires", 0))
-        expires_str = str(int(expires)) if expires else "0"
-
-        name = getattr(c, "name", c.get("name", ""))
-        value = getattr(c, "value", c.get("value", ""))
-
-        lines.append(f"{domain}\tTRUE\t{path}\t{secure_str}\t{expires_str}\t{name}\t{value}")
-
+        domain = c.get("domain", ".youtube.com")
+        df = "TRUE" if domain.startswith(".") else "FALSE"
+        httponly = "#HttpOnly_" if c.get("httpOnly", False) else ""
+        lines.append(
+            f'{httponly}{domain}\t{df}\t{c.get("path","/")}\t'
+            f'{"TRUE" if c.get("secure") else "FALSE"}\t'
+            f'{max(int(c.get("expires",0)),0)}\t'
+            f'{c.get("name","")}\t{c.get("value","")}'
+        )
     with open(COOKIE_PATH, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-
-    return len(lines) - 1
+        f.write("\n".join(lines) + "\n")
 
 
-def refresh():
-    """主入口：刷新 cookies"""
-    print("Refreshing YouTube cookies...")
+def verify_cookies():
+    """快速验证 cookies 是否有效。"""
+    try:
+        import subprocess
+        result = subprocess.run(
+            [sys.executable, "-m", "yt_dlp",
+             "--cookies", COOKIE_PATH,
+             "--skip-download", "--print", "title",
+             "https://www.youtube.com/watch?v=Db260rUuKJg"],
+            capture_output=True, text=True, timeout=30,
+        )
+        if "Sign in" not in result.stderr and result.returncode == 0:
+            return True
+        return False
+    except Exception:
+        return False
 
-    # Method 1: Read from Chrome database (fast, might need admin)
-    print("Method 1: browser-cookie3...")
-    cookies = read_cookie_db_direct()
-    if cookies and len(cookies) >= 5:
-        count = save_cookies(cookies)
-        print(f"  OK: {count} cookies saved")
-        return True
 
-    # Method 2: CDP via headless Chrome
-    print("Method 2: CDP headless Chrome...")
-    cookies = extract_via_cdp()
-    if cookies and len(cookies) >= 5:
-        count = save_cookies(cookies)
-        print(f"  OK: {count} cookies saved")
-        return True
+def main():
+    parser = argparse.ArgumentParser(description="YouTube Cookie 刷新工具")
+    parser.add_argument("--manual", action="store_true", help="手动导出模式")
+    args = parser.parse_args()
 
-    print("FAILED: No method could extract YouTube cookies")
-    return False
+    if args.manual:
+        success = do_manual_export()
+    else:
+        print("尝试 CDP 自动提取...")
+        success = try_cdp_auto()
+        if not success:
+            print("\n⚠️  CDP 自动提取失败，切换到手动模式")
+            print("   这是因为 Git Bash 环境无法启动 Chrome 调试端口")
+            success = do_manual_export()
+
+    # 验证 cookies
+    if success and os.path.isfile(COOKIE_PATH):
+        if verify_cookies():
+            print("\n✅ Cookie 验证通过! yt-dlp 可以正常使用")
+        else:
+            print("\n⚠️  Cookie 文件已保存但验证未通过（可能已过期）")
+
+    return 0 if success else 1
 
 
 if __name__ == "__main__":
-    success = refresh()
-    sys.exit(0 if success else 1)
+    sys.exit(main())

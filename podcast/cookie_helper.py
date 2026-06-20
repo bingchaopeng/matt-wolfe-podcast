@@ -23,6 +23,16 @@ logger = logging.getLogger(__name__)
 COOKIE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "cookies.txt")
 
 
+def _file_md5(path: str) -> str:
+    """Get MD5 hash of a file."""
+    import hashlib
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def _write_netscape_cookies(cookies: list, path: str) -> int:
     """Write cookies in Netscape HTTP Cookie File format (for yt-dlp)."""
     lines = [
@@ -49,29 +59,58 @@ def _write_netscape_cookies(cookies: list, path: str) -> int:
 
 def _export_via_cdp_powershell() -> bool:
     """
-    通过 PowerShell 启动 Chrome CDP 并导出 cookies.
+    通过 Python 直接启动 Chrome CDP 并导出 cookies.
 
-    这是最可靠的方案，因为 PowerShell 有完整的 Windows API 访问权限。
+    这是最可靠的方案：
+    1. 关闭旧 Chrome
+    2. 用真实用户配置启动 Chrome + CDP
+    3. 通过 DevTools Protocol 提取 cookies
+    4. 保存为 cookies.txt
     """
-    ps_script = os.path.join(os.path.dirname(os.path.dirname(__file__)), "export_cookies.ps1")
-    if not os.path.isfile(ps_script):
-        logger.error("PowerShell script not found: %s", ps_script)
+    refresh_script = os.path.join(os.path.dirname(os.path.dirname(__file__)), "refresh_cookies.py")
+    if not os.path.isfile(refresh_script):
+        logger.error("refresh_cookies.py not found")
         return False
 
     try:
+        # Record file state BEFORE running
+        old_mtime = os.path.getmtime(COOKIE_PATH) if os.path.isfile(COOKIE_PATH) else 0
+        old_size = os.path.getsize(COOKIE_PATH) if os.path.isfile(COOKIE_PATH) else 0
+        old_md5 = _file_md5(COOKIE_PATH) if os.path.isfile(COOKIE_PATH) else ""
+
         result = subprocess.run(
-            ["powershell", "-ExecutionPolicy", "Bypass", "-File", ps_script],
+            [sys.executable, refresh_script],
             capture_output=True, text=True, timeout=120,
         )
-        logger.info("PowerShell output: %s", result.stdout[-500:])
-        if result.stderr:
-            logger.debug("PowerShell stderr: %s", result.stderr[-300:])
+        stdout = result.stdout.strip()
+        stderr = result.stderr.strip()
 
-        if os.path.isfile(COOKIE_PATH) and os.path.getsize(COOKIE_PATH) > 100:
-            logger.info("CDP PowerShell: exported %d bytes", os.path.getsize(COOKIE_PATH))
+        if stdout:
+            for line in stdout.splitlines():
+                logger.info("refresh: %s", line)
+        if stderr:
+            for line in stderr.splitlines()[-5:]:
+                logger.debug("refresh stderr: %s", line)
+
+        new_md5 = _file_md5(COOKIE_PATH) if os.path.isfile(COOKIE_PATH) else ""
+
+        if new_md5 and new_md5 != old_md5:
+            new_size = os.path.getsize(COOKIE_PATH)
+            logger.info("Cookies refreshed (%d -> %d bytes, md5 changed)", old_size, new_size)
             return True
 
-        logger.warning("CDP PowerShell failed")
+        if result.returncode == 0 and "SUCCESS" in stdout:
+            logger.info("Script reported SUCCESS (file may have same content)")
+            return True
+
+        logger.warning("Cookie refresh script returned code %d", result.returncode)
+        return False
+
+    except subprocess.TimeoutExpired:
+        logger.warning("Cookie refresh timed out")
+        return False
+    except Exception as exc:
+        logger.warning("Cookie refresh error: %s", exc)
         return False
 
     except subprocess.TimeoutExpired:
