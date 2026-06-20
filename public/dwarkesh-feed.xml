@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 20 Jun 2026 03:55:16 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 04:13:17 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <item>
       <title>【Dwarkesh Patel 中文播报】Von Neumann Probes and the End of Human Wages – Alex Imas and Phil Trammell</title>
@@ -33,6 +33,22 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dT24XjECL3k.mp3" length="1334736" type="audio/mpeg"/>
       <pubDate>Sun, 14 Jun 2026 13:15:36 +0000</pubDate>
       <itunes:duration>222</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】AI Should Be Commoditized – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=a8IW1LyDSTw</link>
+      <description>Dwarkesh Patel 最新视频《AI Should Be Commoditized – Alex Imas and Phil Trammell》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/a8IW1LyDSTw.mp3" length="1066608" type="audio/mpeg"/>
+      <pubDate>Sat, 13 Jun 2026 13:15:09 +0000</pubDate>
+      <itunes:duration>177</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=AWXM5nXyh5U</link>
+      <description>Dwarkesh Patel 最新视频《Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell》的中文同音翻译播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/AWXM5nXyh5U.mp3" length="1186128" type="audio/mpeg"/>
+      <pubDate>Fri, 12 Jun 2026 12:00:15 +0000</pubDate>
+      <itunes:duration>197</itunes:duration>
     </item>
   </channel>
 </rss>
