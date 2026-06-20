@@ -8,21 +8,28 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 20 Jun 2026 14:17:40 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 14:28:37 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <item>
       <title>【Dwarkesh Patel】How Florence Afforded the Renaissance</title>
       <link>https://www.youtube.com/watch?v=7x8EOcp8l88</link>
       <description>Dwarkesh Patel 最新视频《How Florence Afforded the Renaissance》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh-how-florence-afforded-the-renaissance_7x8EOcp8l88.mp3" length="1916640" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_how_florence_afforded_the_renaissance_201146.mp3" length="1916640" type="audio/mpeg"/>
       <pubDate>Sat, 20 Jun 2026 12:00:05 +0000</pubDate>
       <itunes:duration>319</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】ChatGPT Memory</title>
+      <description>Matt Wolfe 最新视频《ChatGPT Memory》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/chatgpt_memory_article.mp3" length="3074637" type="audio/mpeg"/>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
+      <itunes:duration>600</itunes:duration>
     </item>
     <item>
       <title>【】AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker</title>
       <link>https://www.youtube.com/watch?v=Db260rUuKJg</link>
       <description> 最新视频《AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/ai-news-fable-banned-new-open-source-leader-midjourney-shocker_Db260rUuKJg.mp3" length="3950445" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_AI_News_Fable_被封禁_新的开源领导者_Midjourney_震惊消息_Db260rUuKJg.mp3" length="3950445" type="audio/mpeg"/>
       <pubDate>Fri, 19 Jun 2026 15:00:23 +0000</pubDate>
       <itunes:duration>658</itunes:duration>
     </item>
@@ -30,7 +37,7 @@
       <title>【Lenny's Podcast】Do we need a new social app?</title>
       <link>https://www.youtube.com/watch?v=IvHtY1X-wzM</link>
       <description>Lenny's Podcast 最新视频《Do we need a new social app?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny-do-we-need-a-new-social-app_IvHtY1X-wzM.mp3" length="570384" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_do_we_need_a_new_social_app_IvHtY1X-wzM.mp3" length="570384" type="audio/mpeg"/>
       <pubDate>Thu, 18 Jun 2026 11:00:30 +0000</pubDate>
       <itunes:duration>95</itunes:duration>
     </item>
@@ -38,15 +45,15 @@
       <title>【】Midjourney Built What?!?</title>
       <link>https://www.youtube.com/watch?v=Qy25rSEXpPQ</link>
       <description> 最新视频《Midjourney Built What?!?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/midjourney-built-what_Qy25rSEXpPQ.mp3" length="952128" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_Midjourney_构建了什么_Qy25rSEXpPQ.mp3" length="952128" type="audio/mpeg"/>
       <pubDate>Thu, 18 Jun 2026 04:32:28 +0000</pubDate>
       <itunes:duration>158</itunes:duration>
     </item>
     <item>
-      <title>【】PewDiePie’s FREE Odysseus AI (Full Review &amp; Setup)</title>
+      <title>【】PewDiePie鈥檚 FREE Odysseus AI (Full Review &amp; Setup)</title>
       <link>https://www.youtube.com/watch?v=_7BHqZayPOc</link>
-      <description> 最新视频《PewDiePie’s FREE Odysseus AI (Full Review &amp; Setup)》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/pewdiepies-free-odysseus-ai-full-review-and-setup__7BHqZayPOc.mp3" length="3963981" type="audio/mpeg"/>
+      <description> 最新视频《PewDiePie鈥檚 FREE Odysseus AI (Full Review &amp; Setup)》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_PewDiePie_的免费_Odysseus_AI_完整评测与设置__7BHqZayPOc.mp3" length="3963981" type="audio/mpeg"/>
       <pubDate>Wed, 17 Jun 2026 16:12:43 +0000</pubDate>
       <itunes:duration>660</itunes:duration>
     </item>
@@ -54,7 +61,7 @@
       <title>【Lenny's Podcast】You should be less ambitious</title>
       <link>https://www.youtube.com/watch?v=Dr9_Qjr_Nok</link>
       <description>Lenny's Podcast 最新视频《You should be less ambitious》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny-you-should-be-less-ambitious_Dr9_Qjr_Nok.mp3" length="738288" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_you_should_be_less_ambitious_Dr9_Qjr_Nok.mp3" length="738288" type="audio/mpeg"/>
       <pubDate>Wed, 17 Jun 2026 11:00:33 +0000</pubDate>
       <itunes:duration>123</itunes:duration>
     </item>
@@ -62,7 +69,7 @@
       <title>【Andrej Karpathy】100 random chords, how many intersections?</title>
       <link>https://www.youtube.com/watch?v=wGffBCfrAsE</link>
       <description>Andrej Karpathy 最新视频《100 random chords, how many intersections?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-100-random-chords-how-many-intersections_wGffBCfrAsE.mp3" length="607392" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_100_random_chords_how_many_intersections_wGffBCfrAsE.mp3" length="607392" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 18:04:05 +0000</pubDate>
       <itunes:duration>101</itunes:duration>
     </item>
@@ -70,7 +77,7 @@
       <title>【Dwarkesh Patel】Von Neumann Probes and the End of Human Wages – Alex Imas and Phil Trammell</title>
       <link>https://www.youtube.com/watch?v=AtX1OUacxDM</link>
       <description>Dwarkesh Patel 最新视频《Von Neumann Probes and the End of Human Wages – Alex Imas and Phil Trammell》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh-von-neumann-probes-and-the-end-of-human-wages-alex-imas_AtX1OUacxDM.mp3" length="865728" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_von_neumann_probes_and_the_end_of_human_wages_alex_imas_AtX1OUacxDM.mp3" length="865728" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 13:15:32 +0000</pubDate>
       <itunes:duration>144</itunes:duration>
     </item>
@@ -78,7 +85,7 @@
       <title>【Lenny's Podcast】Innovation starts with copying</title>
       <link>https://www.youtube.com/watch?v=0Qd-nUslXGE</link>
       <description>Lenny's Podcast 最新视频《Innovation starts with copying》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny-innovation-starts-with-copying_0Qd-nUslXGE.mp3" length="500544" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_创新始于模仿_0Qd-nUslXGE.mp3" length="500544" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 11:00:29 +0000</pubDate>
       <itunes:duration>83</itunes:duration>
     </item>
@@ -86,7 +93,7 @@
       <title>【Matt Wolfe】How Does Cursor Index Your Codebase?</title>
       <link>https://manthanguptaa.in/posts/how_cursor_index_your_codebase/</link>
       <description>Matt Wolfe 最新视频《How Does Cursor Index Your Codebase?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt-how-does-cursor-index-your-codebase_cursor_index_article_2026.mp3" length="8569677" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_Cursor_如何索引你的代码库_180002.mp3" length="8569677" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
       <itunes:duration>1428</itunes:duration>
     </item>
@@ -94,7 +101,7 @@
       <title>【】The Most Insane iPhone AI Features</title>
       <link>https://www.youtube.com/watch?v=NQof8hG8FwE</link>
       <description> 最新视频《The Most Insane iPhone AI Features》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/the-most-insane-iphone-ai-features_NQof8hG8FwE.mp3" length="1001664" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_最疯狂的_iPhone_AI_功能_NQof8hG8FwE.mp3" length="1001664" type="audio/mpeg"/>
       <pubDate>Mon, 15 Jun 2026 23:35:04 +0000</pubDate>
       <itunes:duration>166</itunes:duration>
     </item>
@@ -102,7 +109,7 @@
       <title>【Dwarkesh Patel】When hiring humans is too great a risk – Alex Imas and Phil Trammell</title>
       <link>https://www.youtube.com/watch?v=hgbZNU1pMmw</link>
       <description>Dwarkesh Patel 最新视频《When hiring humans is too great a risk – Alex Imas and Phil Trammell》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh-when-hiring-humans-is-too-great-a-risk-alex-imas-and-ph_hgbZNU1pMmw.mp3" length="1122624" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_当雇佣人类风险太大_Alex_Imas_和_Phil_Trammell_hgbZNU1pMmw.mp3" length="1122624" type="audio/mpeg"/>
       <pubDate>Mon, 15 Jun 2026 13:15:13 +0000</pubDate>
       <itunes:duration>187</itunes:duration>
     </item>
@@ -110,7 +117,7 @@
       <title>【Dwarkesh Patel】The GPU Pricing Paradox – Alex Imas and Phil Trammell</title>
       <link>https://www.youtube.com/watch?v=dT24XjECL3k</link>
       <description>Dwarkesh Patel 最新视频《The GPU Pricing Paradox – Alex Imas and Phil Trammell》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh-the-gpu-pricing-paradox-alex-imas-and-phil-trammell_dT24XjECL3k.mp3" length="1334736" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_GPU_定价悖论_Alex_Imas_和_Phil_Trammell_dT24XjECL3k.mp3" length="1334736" type="audio/mpeg"/>
       <pubDate>Sun, 14 Jun 2026 13:15:36 +0000</pubDate>
       <itunes:duration>222</itunes:duration>
     </item>
@@ -118,7 +125,7 @@
       <title>【Lenny's Podcast】The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)</title>
       <link>https://www.youtube.com/watch?v=7eh9C3TUotc</link>
       <description>Lenny's Podcast 最新视频《The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny-the-hidden-pattern-behind-successful-products-mark-pincus_7eh9C3TUotc.mp3" length="1354896" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_the_hidden_pattern_behind_successful_products_mark_pincus_7eh9C3TUotc.mp3" length="1354896" type="audio/mpeg"/>
       <pubDate>Sun, 14 Jun 2026 12:30:37 +0000</pubDate>
       <itunes:duration>225</itunes:duration>
     </item>
@@ -126,7 +133,7 @@
       <title>【Dwarkesh Patel】AI Should Be Commoditized – Alex Imas and Phil Trammell</title>
       <link>https://www.youtube.com/watch?v=a8IW1LyDSTw</link>
       <description>Dwarkesh Patel 最新视频《AI Should Be Commoditized – Alex Imas and Phil Trammell》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh-ai-should-be-commoditized-alex-imas-and-phil-trammell_a8IW1LyDSTw.mp3" length="1066608" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_ai_should_be_commoditized_alex_imas_and_phil_trammell_a8IW1LyDSTw.mp3" length="1066608" type="audio/mpeg"/>
       <pubDate>Sat, 13 Jun 2026 13:15:09 +0000</pubDate>
       <itunes:duration>177</itunes:duration>
     </item>
@@ -134,7 +141,7 @@
       <title>【】AI News: An INSANE Week… Here’s What Matters</title>
       <link>https://www.youtube.com/watch?v=nydHKXjwu0U</link>
       <description> 最新视频《AI News: An INSANE Week… Here’s What Matters》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/ai-news-an-insane-week-heres-what-matters_nydHKXjwu0U.mp3" length="5154768" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_ai_news_an_insane_week_heres_what_matters_nydHKXjwu0U.mp3" length="5154768" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 15:00:18 +0000</pubDate>
       <itunes:duration>1383</itunes:duration>
     </item>
@@ -142,7 +149,7 @@
       <title>【Andrej Karpathy】Measuring the entropy of English</title>
       <link>https://www.youtube.com/watch?v=-7etvZSBxlk</link>
       <description>Andrej Karpathy 最新视频《Measuring the entropy of English》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-measuring-the-entropy-of-english_-7etvZSBxlk.mp3" length="1105632" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_测量英语的熵_-7etvZSBxlk.mp3" length="1105632" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 13:22:02 +0000</pubDate>
       <itunes:duration>184</itunes:duration>
     </item>
@@ -150,7 +157,7 @@
       <title>【Dwarkesh Patel】Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell</title>
       <link>https://www.youtube.com/watch?v=AWXM5nXyh5U</link>
       <description>Dwarkesh Patel 最新视频《Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh-is-ai-more-like-electricity-or-social-media-alex-imas-a_AWXM5nXyh5U.mp3" length="1186128" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_AI_更像是电力还是社交媒体_Alex_Imas_和_Phil_Trammell_AWXM5nXyh5U.mp3" length="1186128" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 12:00:15 +0000</pubDate>
       <itunes:duration>197</itunes:duration>
     </item>
@@ -158,7 +165,7 @@
       <title>【】Unpopular opinion: you don't need to ask ChatGPT everything</title>
       <link>https://www.youtube.com/watch?v=1greFablcZY</link>
       <description> 最新视频《Unpopular opinion: you don't need to ask ChatGPT everything》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unpopular-opinion-you-don-t-need-to-ask-chatgpt-everything_1greFablcZY.mp3" length="766800" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_非主流观点_你不需要问_ChatGPT_一切_1greFablcZY.mp3" length="766800" type="audio/mpeg"/>
       <pubDate>Thu, 11 Jun 2026 12:55:30 +0000</pubDate>
       <itunes:duration>193</itunes:duration>
     </item>
@@ -166,7 +173,7 @@
       <title>【Lenny's Podcast】The first iPod wasn't a success</title>
       <link>https://www.youtube.com/watch?v=kpg09CKw3b0</link>
       <description>Lenny's Podcast 最新视频《The first iPod wasn't a success》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny-the-first-ipod-wasn-t-a-success_kpg09CKw3b0.mp3" length="489168" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_the_first_ipod_wasn_t_a_success_kpg09CKw3b0.mp3" length="489168" type="audio/mpeg"/>
       <pubDate>Thu, 11 Jun 2026 11:00:31 +0000</pubDate>
       <itunes:duration>81</itunes:duration>
     </item>
@@ -174,7 +181,7 @@
       <title>【】Why Everyone Is Freaking Out About Fable 5 (Mythos)</title>
       <link>https://www.youtube.com/watch?v=2lE1-5hBfKk</link>
       <description> 最新视频《Why Everyone Is Freaking Out About Fable 5 (Mythos)》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/why-everyone-is-freaking-out-about-fable-5-mythos_2lE1-5hBfKk.mp3" length="4974048" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_why_everyone_is_freaking_out_about_fable_5_mythos_2lE1-5hBfKk.mp3" length="4974048" type="audio/mpeg"/>
       <pubDate>Thu, 11 Jun 2026 01:34:23 +0000</pubDate>
       <itunes:duration>1319</itunes:duration>
     </item>
@@ -182,7 +189,7 @@
       <title>【】GitHub Just Made a Big AI Coding Move</title>
       <link>https://www.youtube.com/watch?v=X9cvCQ3qrVk</link>
       <description> 最新视频《GitHub Just Made a Big AI Coding Move》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/github-just-made-a-big-ai-coding-move_X9cvCQ3qrVk.mp3" length="638784" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_GitHub_刚刚做出重大_AI_编码举措_X9cvCQ3qrVk.mp3" length="638784" type="audio/mpeg"/>
       <pubDate>Wed, 10 Jun 2026 14:11:43 +0000</pubDate>
       <itunes:duration>184</itunes:duration>
     </item>
@@ -190,7 +197,7 @@
       <title>【Andrej Karpathy】What's the perfect encoding? How do you know?</title>
       <link>https://www.youtube.com/watch?v=7L_eTem1SQ4</link>
       <description>Andrej Karpathy 最新视频《What's the perfect encoding? How do you know?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-what-s-the-perfect-encoding-how-do-you-know_7L_eTem1SQ4.mp3" length="1338192" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_什么是完美的编码_你怎么知道_7L_eTem1SQ4.mp3" length="1338192" type="audio/mpeg"/>
       <pubDate>Wed, 10 Jun 2026 13:26:34 +0000</pubDate>
       <itunes:duration>223</itunes:duration>
     </item>
@@ -198,7 +205,7 @@
       <title>【】THIS was the whole point of Microsoft Builld</title>
       <link>https://www.youtube.com/watch?v=wg9jm_d7Emk</link>
       <description> 最新视频《THIS was the whole point of Microsoft Builld》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/this-was-the-whole-point-of-microsoft-builld_wg9jm_d7Emk.mp3" length="787248" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_这是_Microsoft_Builld_的全部意义_wg9jm_d7Emk.mp3" length="787248" type="audio/mpeg"/>
       <pubDate>Tue, 09 Jun 2026 12:49:35 +0000</pubDate>
       <itunes:duration>217</itunes:duration>
     </item>
@@ -206,7 +213,7 @@
       <title>【Andrej Karpathy】Reinventing Entropy | Compression is Intelligence Part 1</title>
       <link>https://www.youtube.com/watch?v=l6DKRf-fAAM</link>
       <description>Andrej Karpathy 最新视频《Reinventing Entropy | Compression is Intelligence Part 1》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-reinventing-entropy-compression-is-intelligence-part-1_l6DKRf-fAAM.mp3" length="10195437" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_重塑熵_压缩即智能_第一部分_l6DKRf-fAAM.mp3" length="10195437" type="audio/mpeg"/>
       <pubDate>Sun, 07 Jun 2026 11:49:51 +0000</pubDate>
       <itunes:duration>1699</itunes:duration>
     </item>
@@ -214,7 +221,7 @@
       <title>【Andrej Karpathy】Tie random ends: How many loops?</title>
       <link>https://www.youtube.com/watch?v=ZHXt0-_gSj4</link>
       <description>Andrej Karpathy 最新视频《Tie random ends: How many loops?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-tie-random-ends-how-many-loops_ZHXt0-_gSj4.mp3" length="663696" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_tie_random_ends_how_many_loops_ZHXt0-_gSj4.mp3" length="663696" type="audio/mpeg"/>
       <pubDate>Thu, 21 May 2026 21:49:47 +0000</pubDate>
       <itunes:duration>110</itunes:duration>
     </item>

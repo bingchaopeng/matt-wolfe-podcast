@@ -15,6 +15,7 @@ cookies.txt
 # Virtual environments
 .venv*/
 chatterbox-tts/
+cosyvoice-src/
 
 # Generated data (tracked separately via git lfs or manual deploy)
 data/episodes/*.mp3

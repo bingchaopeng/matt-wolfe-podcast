@@ -8,13 +8,13 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 20 Jun 2026 14:17:40 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 14:28:37 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <item>
       <title>【Andrej Karpathy 中文播报】100 random chords, how many intersections?</title>
       <link>https://www.youtube.com/watch?v=wGffBCfrAsE</link>
       <description>Andrej Karpathy 最新视频《100 random chords, how many intersections?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-100-random-chords-how-many-intersections_wGffBCfrAsE.mp3" length="607392" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_100_random_chords_how_many_intersections_wGffBCfrAsE.mp3" length="607392" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 18:04:05 +0000</pubDate>
       <itunes:duration>101</itunes:duration>
     </item>
@@ -22,7 +22,7 @@
       <title>【Andrej Karpathy 中文播报】Measuring the entropy of English</title>
       <link>https://www.youtube.com/watch?v=-7etvZSBxlk</link>
       <description>Andrej Karpathy 最新视频《Measuring the entropy of English》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-measuring-the-entropy-of-english_-7etvZSBxlk.mp3" length="1105632" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_测量英语的熵_-7etvZSBxlk.mp3" length="1105632" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 13:22:02 +0000</pubDate>
       <itunes:duration>184</itunes:duration>
     </item>
@@ -30,7 +30,7 @@
       <title>【Andrej Karpathy 中文播报】What's the perfect encoding? How do you know?</title>
       <link>https://www.youtube.com/watch?v=7L_eTem1SQ4</link>
       <description>Andrej Karpathy 最新视频《What's the perfect encoding? How do you know?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-what-s-the-perfect-encoding-how-do-you-know_7L_eTem1SQ4.mp3" length="1338192" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_什么是完美的编码_你怎么知道_7L_eTem1SQ4.mp3" length="1338192" type="audio/mpeg"/>
       <pubDate>Wed, 10 Jun 2026 13:26:34 +0000</pubDate>
       <itunes:duration>223</itunes:duration>
     </item>
@@ -38,7 +38,7 @@
       <title>【Andrej Karpathy 中文播报】Reinventing Entropy | Compression is Intelligence Part 1</title>
       <link>https://www.youtube.com/watch?v=l6DKRf-fAAM</link>
       <description>Andrej Karpathy 最新视频《Reinventing Entropy | Compression is Intelligence Part 1》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-reinventing-entropy-compression-is-intelligence-part-1_l6DKRf-fAAM.mp3" length="10195437" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_重塑熵_压缩即智能_第一部分_l6DKRf-fAAM.mp3" length="10195437" type="audio/mpeg"/>
       <pubDate>Sun, 07 Jun 2026 11:49:51 +0000</pubDate>
       <itunes:duration>1699</itunes:duration>
     </item>
@@ -46,7 +46,7 @@
       <title>【Andrej Karpathy 中文播报】Tie random ends: How many loops?</title>
       <link>https://www.youtube.com/watch?v=ZHXt0-_gSj4</link>
       <description>Andrej Karpathy 最新视频《Tie random ends: How many loops?》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej-tie-random-ends-how-many-loops_ZHXt0-_gSj4.mp3" length="663696" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_tie_random_ends_how_many_loops_ZHXt0-_gSj4.mp3" length="663696" type="audio/mpeg"/>
       <pubDate>Thu, 21 May 2026 21:49:47 +0000</pubDate>
       <itunes:duration>110</itunes:duration>
     </item>

@@ -116,8 +116,15 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
                 host_style=host_style,
             )
 
-            # Generate audio using VoiceCloner (supports voice cloning)
-            audio_filename = make_episode_filename(video_title, video_id, channel.name)
+            # Translate title to Chinese for filename
+            from podcast.translator import translate_title
+            chinese_title = translate_title(video_title)
+            now_ts = datetime.now().isoformat()
+            audio_filename = make_episode_filename(
+                video_title, video_id, channel.name,
+                chinese_title=chinese_title,
+                timestamp=now_ts,
+            )
             audio_path = os.path.join(config.podcast_episodes_dir, audio_filename)
 
             logger.info("[%s] Generating audio: %s (voice=%s)",

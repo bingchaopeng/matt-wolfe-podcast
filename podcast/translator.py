@@ -436,6 +436,73 @@ def get_podcast_script(
 
 
 # ---------------------------------------------------------------------------
+# 标题翻译（用于 MP3 文件名）
+# ---------------------------------------------------------------------------
+
+_TITLE_PROMPT = (
+    "将以下英文视频标题翻译成中文，用于文件名。\n"
+    "规则：\n"
+    "1. 普通英语单词全部译成中文\n"
+    "2. 仅保留专有名词原样：公司名(Meta/Google/Apple/GitHub)、产品名(ChatGPT/iPhone)、"
+    "缩写(AI/API/GPT/LLM/AGI)、人名\n"
+    "3. 去掉所有标点符号（。，！？、：；\"'…()[]{}—–-）\n"
+    "4. 中文和英文之间加一个空格\n"
+    "5. 只返回结果，不要解释\n"
+    "示例：\n"
+    "  'AI News: An INSANE Week… Here\\'s What Matters'\n"
+    "  → 'AI 新闻 疯狂的一周 重要内容'\n"
+    "  'How Florence Afforded the Renaissance'\n"
+    "  → 'Florence 如何负担得起文艺复兴'\n"
+    "  'GitHub Just Made a Big AI Coding Move'\n"
+    "  → 'GitHub 刚刚在 AI 编码方面做出重大举措'"
+)
+
+
+def translate_title(
+    english_title: str,
+    model: str = "deepseek-v4-flash",
+    max_retries: int = 2,
+) -> str:
+    """将英文视频标题翻译为中文（用于文件名）。
+
+    专有名词（AI, GPT, ChatGPT, Meta, iPhone 等）保留英文原样。
+    结果不含标点，适合嵌入文件名。
+
+    Args:
+        english_title: 英文标题。
+        model: 模型名称。
+        max_retries: 最大重试次数。
+
+    Returns:
+        翻译后的中文标题。
+    """
+    client = get_client()
+    last_error = None
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = client.messages.create(
+                model=model,
+                max_tokens=256,
+                system=_TITLE_PROMPT,
+                messages=[{"role": "user", "content": english_title}],
+            )
+            result = _extract_text(response).strip().strip('"\'。.,!?')
+            if result:
+                logger.info("标题翻译: %s -> %s", english_title[:40], result[:40])
+                return result
+        except Exception as exc:
+            last_error = exc
+            logger.warning("标题翻译失败 (尝试 %d/%d): %s", attempt, max_retries, exc)
+            if attempt < max_retries:
+                time.sleep(2 ** attempt)
+
+    if last_error:
+        logger.warning("标题翻译失败，使用英文原文: %s", last_error)
+    return english_title
+
+
+# ---------------------------------------------------------------------------
 # 测试
 # ---------------------------------------------------------------------------
 

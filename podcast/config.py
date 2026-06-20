@@ -186,49 +186,73 @@ _FILENAME_BLACKLIST = re.compile(r'[<>:"/\\|?*%\x00-\x1f]')
 _MULTI_DASH = re.compile(r'-{2,}')
 
 
+def _fmt_ts(timestamp: str) -> str:
+    """从 ISO 时间戳提取 HHMMSS。"""
+    from datetime import datetime
+    try:
+        dt = datetime.fromisoformat(timestamp)
+        return dt.strftime("%H%M%S")
+    except (ValueError, TypeError):
+        from datetime import datetime as dt2
+        return dt2.now().strftime("%H%M%S")
+
+
 def make_episode_filename(
     title: str,
     video_id: str,
     channel_name: str = "",
+    chinese_title: str = "",
+    timestamp: str = "",
     max_len: int = 80,
 ) -> str:
     """
     根据视频标题生成有意义的 MP3 文件名。
 
     规则：
-    1. 标题做 slugify（去特殊字符、转 ASCII、空格→连字符）
-    2. 可选前置频道名
-    3. 尾部追加 video_id 确保唯一性
-    4. 截断至 max_len 字符
+    1. 有中文标题时直接使用中文，英文专有名词保留原样
+    2. 无中文标题时用英文 slug（空格→下划线）
+    3. 分隔符统一用 _（不用 -）
+    4. 尾部追加时分秒时间戳（避免随机码）
 
     例：
         title="AI News: An INSANE Week… Here's What Matters"
-        video_id="nydHKXjwu0U"
+        chinese_title="AI 新闻 疯狂的一周 重要内容"
         channel="Matt Wolfe"
-        → "Matt-Wolfe-AI-News-An-INSANE-Week-Heres-What_nydHKXjwu0U.mp3"
+        timestamp="2026-06-20T21:15:30"
+        → "matt_AI_新闻_疯狂的一周_重要内容_211530.mp3"
     """
-    # Slugify: 去 html 实体，统一空白，转 ASCII，去非法字符
-    slug = title.replace("&", "and").replace("@", "at")
-    slug = unicodedata.normalize("NFKD", slug).encode("ascii", "ignore").decode("ascii")
-    slug = _FILENAME_BLACKLIST.sub("", slug)
-    slug = slug.strip().lower()
-    slug = re.sub(r"\s+", "-", slug)
-    slug = re.sub(r"[,_;:.!'\"(){}\[\]—–-]+", "-", slug)
-    slug = _MULTI_DASH.sub("-", slug).strip("-")
+    # 时间戳后缀（取时分秒）
+    ts = _fmt_ts(timestamp) if timestamp else video_id[-6:] if len(video_id) >= 6 else video_id
 
-    # 前置频道名（取简短形式）
+    if chinese_title and chinese_title != title:
+        name = chinese_title.strip()
+        name = _FILENAME_BLACKLIST.sub("", name)
+        # 去掉残存标点
+        name = re.sub(r"[!?@#$%^&*()…—–\-'\"「」【】『』《》，。、；：？！ -⁯]", "", name)
+        name = re.sub(r"\s+", "_", name)
+        name = name.strip("_")
+    else:
+        slug = title.replace("&", "and").replace("@", "at")
+        slug = unicodedata.normalize("NFKD", slug).encode("ascii", "ignore").decode("ascii")
+        slug = _FILENAME_BLACKLIST.sub("", slug)
+        slug = slug.strip().lower()
+        slug = re.sub(r"\s+", "_", slug)
+        slug = re.sub(r"[,_;:.!'\"(){}\[\]—–-]+", "_", slug)
+        slug = _MULTI_DASH.sub("_", slug).strip("_")
+        name = slug
+
+    # 前置频道名简写
     prefix = ""
     if channel_name:
         short = channel_name.replace("'s", "").replace("'", "")
-        prefix = short.split()[0].lower() + "-"
+        prefix = short.split()[0].lower() + "_"
 
-    # 组合：前缀 + slug（截断）+ _videoId.mp3
-    base = f"{prefix}{slug}"
-    max_base = max_len - len(video_id) - 5  # 5 = _ + .mp3
+    base = f"{prefix}{name}"
+    max_base = max_len - len(ts) - 5  # 5 = _ + .mp3
     if len(base) > max_base and max_base > 20:
-        base = base[:max_base].rstrip("-")
+        base = base[:max_base].rstrip("_")
 
-    return f"{base}_{video_id}.mp3"
+    return f"{base}_{ts}.mp3"
 
 
 def rename_episode_file(
