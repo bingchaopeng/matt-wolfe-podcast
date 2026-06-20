@@ -23,6 +23,11 @@ data/episodes/*.wav
 data/episodes/*.srt
 data/processed_videos.json
 
+# Test files
+_test_*
+test_cosy*.wav
+_rebuild_*
+
 # OS
 .DS_Store
 Thumbs.db

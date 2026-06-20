@@ -182,8 +182,50 @@ def get_config() -> Config:
 
 # 文件名中需移除的非法字符（Windows + URL safe）
 _FILENAME_BLACKLIST = re.compile(r'[<>:"/\\|?*%\x00-\x1f]')
-# 多个连续空白/分隔符折叠为一个连字符
+# 多个连续空白/分隔符折叠
 _MULTI_DASH = re.compile(r'-{2,}')
+# 中文字符范围
+_CJK = re.compile(r'[一-鿿㐀-䶿豈-﫿]')
+
+
+def _to_camel_case(segments: list[str]) -> str:
+    """将英文词段列表转为驼峰格式，中文段保持原样。
+
+    规则：
+    - 第一个英文词：全小写
+    - 后续英文词：首字母大写
+    - 含中文的段：保持原样
+    - 全数字/缩写（AI/GPT等）：首字母大写其余小写
+
+    例：
+        ['how', 'florence', 'afforded', 'the', 'renaissance']
+        → 'howFlorenceAffordedTheRenaissance'
+
+        ['AI', '新闻', '疯狂的', '一周', '重要内容']
+        → 'AI新闻疯狂的一周重要内容'
+    """
+    result = []
+    for i, seg in enumerate(segments):
+        seg = seg.strip()
+        if not seg:
+            continue
+        # 含中文 → 直接拼接
+        if _CJK.search(seg):
+            result.append(seg)
+        else:
+            # 全大写缩写（AI/GPT/API/LLM 等）→ 保持原样
+            if seg.isupper() and len(seg) <= 6:
+                result.append(seg)
+                continue
+            lower = seg.lower()
+            has_chinese_before = any(_CJK.search(s) for s in result)
+            is_first_english = not result or (i > 0 and not result)
+            # 中文后的第一个英文词 → 首字母大写；否则按位置
+            if has_chinese_before or (result and result[-1] and not _CJK.search(result[-1])):
+                result.append(lower[0].upper() + lower[1:] if lower else "")
+            else:
+                result.append(lower)
+    return "".join(result)
 
 
 def _fmt_ts(timestamp: str) -> str:
@@ -209,17 +251,22 @@ def make_episode_filename(
     根据视频标题生成有意义的 MP3 文件名。
 
     规则：
-    1. 有中文标题时直接使用中文，英文专有名词保留原样
-    2. 无中文标题时用英文 slug（空格→下划线）
-    3. 分隔符统一用 _（不用 -）
-    4. 尾部追加时分秒时间戳（避免随机码）
+    1. 有中文标题时使用中文 + 驼峰英文（专有名词保持 CamelCase）
+    2. 无中文标题时英文词转为驼峰格式
+    3. 分隔符统一用 _（仅用于 前缀/标题/时间戳 之间）
+    4. 尾部追加时分秒时间戳
 
     例：
+        title="How Florence Afforded the Renaissance"
+        channel="Dwarkesh Patel"
+        timestamp="2026-06-20T20:11:46"
+        → "dwarkesh_howFlorenceAffordedTheRenaissance_201146.mp3"
+
         title="AI News: An INSANE Week… Here's What Matters"
         chinese_title="AI 新闻 疯狂的一周 重要内容"
         channel="Matt Wolfe"
         timestamp="2026-06-20T21:15:30"
-        → "matt_AI_新闻_疯狂的一周_重要内容_211530.mp3"
+        → "matt_AI新闻疯狂的一周重要内容_211530.mp3"
     """
     # 时间戳后缀（取时分秒）
     ts = _fmt_ts(timestamp) if timestamp else video_id[-6:] if len(video_id) >= 6 else video_id
@@ -229,17 +276,17 @@ def make_episode_filename(
         name = _FILENAME_BLACKLIST.sub("", name)
         # 去掉残存标点
         name = re.sub(r"[!?@#$%^&*()…—–\-'\"「」【】『』《》，。、；：？！ -⁯]", "", name)
-        name = re.sub(r"\s+", "_", name)
-        name = name.strip("_")
+        # 按空白分割后驼峰化（中文段保持原样，英文段驼峰）
+        segments = re.split(r"\s+", name)
+        name = _to_camel_case([s for s in segments if s])
     else:
         slug = title.replace("&", "and").replace("@", "at")
         slug = unicodedata.normalize("NFKD", slug).encode("ascii", "ignore").decode("ascii")
         slug = _FILENAME_BLACKLIST.sub("", slug)
-        slug = slug.strip().lower()
-        slug = re.sub(r"\s+", "_", slug)
-        slug = re.sub(r"[,_;:.!'\"(){}\[\]—–-]+", "_", slug)
-        slug = _MULTI_DASH.sub("_", slug).strip("_")
-        name = slug
+        slug = re.sub(r"[,_;:.!'\"(){}\[\]—–-]+", " ", slug)
+        slug = re.sub(r"\s+", " ", slug).strip().lower()
+        segments = slug.split(" ")
+        name = _to_camel_case(segments)
 
     # 前置频道名简写
     prefix = ""
@@ -250,7 +297,7 @@ def make_episode_filename(
     base = f"{prefix}{name}"
     max_base = max_len - len(ts) - 5  # 5 = _ + .mp3
     if len(base) > max_base and max_base > 20:
-        base = base[:max_base].rstrip("_")
+        base = base[:max_base]
 
     return f"{base}_{ts}.mp3"
 
