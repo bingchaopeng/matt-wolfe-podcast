@@ -488,9 +488,34 @@ def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str
 
     stderr = result.stderr.strip()
 
-    # 尝试 cookies-from-browser chrome 作为备选（Chrome 需关闭时有效）
-    if "Sign in to confirm" in stderr or "cookies" in stderr.lower():
-        logger.info("cookies.txt 已过期，尝试 --cookies-from-browser chrome...")
+    # cookies 过期 → 自动刷新
+    if "Sign in to confirm" in stderr or "cookies" in stderr.lower() or "HTTP Error 401" in stderr:
+        logger.info("cookies 无效，尝试自动刷新...")
+        try:
+            from podcast.cookie_helper import auto_refresh_cookies
+            if auto_refresh_cookies():
+                logger.info("cookies 已刷新，重试下载字幕...")
+                cmd3 = _build_ytdlp_cmd()
+                if os.path.isfile(cookie_file) and os.path.getsize(cookie_file) > 100:
+                    cmd3 += ["--cookies", cookie_file]
+                cmd3 += [
+                    "--write-auto-subs", "--write-subs",
+                    "--sub-langs", "en",
+                    "--skip-download",
+                    "--convert-subs", "srt",
+                    "--output", out_template,
+                    "--no-progress",
+                    video_url,
+                ]
+                result3 = subprocess.run(cmd3, capture_output=True, text=True, timeout=300, env=env)
+                if result3.returncode == 0:
+                    return
+                logger.warning("自动刷新后仍失败，尝试 cookies-from-browser...")
+        except Exception as exc:
+            logger.warning("自动刷新 cookie 失败: %s", exc)
+
+        # 备选: cookies-from-browser chrome
+        logger.info("尝试 --cookies-from-browser chrome...")
         cmd2 = _build_ytdlp_cmd()
         cmd2 += ["--cookies-from-browser", "chrome"]
         cmd2 += [
