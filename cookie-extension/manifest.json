@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Cookie Auto-Exporter",
+  "version": "1.0",
+  "description": "Automatically exports YouTube cookies for use with yt-dlp",
+  "permissions": [
+    "cookies",
+    "downloads",
+    "alarms"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.google.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": ["*://*.youtube.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "action": {
+    "default_title": "Export YouTube Cookies"
+  }
+}

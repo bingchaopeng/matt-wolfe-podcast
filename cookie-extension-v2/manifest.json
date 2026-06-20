@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "Cookie Export",
+  "version": "1.0",
+  "permissions": ["cookies", "http://127.0.0.1/*", "*://*.youtube.com/*"],
+  "background": {
+    "scripts": ["bg.js"],
+    "persistent": true
+  }
+}
