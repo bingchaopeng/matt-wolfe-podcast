@@ -285,6 +285,7 @@ def download_audio(video_url: str, output_dir: str) -> Optional[str]:
     logger.info("下载音频: %s", video_url)
     try:
         import yt_dlp
+        cookie_file = _get_cookie_file()
         ydl_opts = {
             "format": "bestaudio/best",
             "postprocessors": [{
@@ -296,8 +297,9 @@ def download_audio(video_url: str, output_dir: str) -> Optional[str]:
             "quiet": True,
             "no_warnings": False,
             "extract_flat": False,
-            "cookiesfrombrowser": ("chrome",),
         }
+        if os.path.isfile(cookie_file) and os.path.getsize(cookie_file) > 100:
+            ydl_opts["cookiefile"] = cookie_file
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([video_url])
 
@@ -431,14 +433,9 @@ class ProcessedTracker:
 # ── 内部辅助函数 ──────────────────────────────────────────
 
 
-def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str) -> None:
-    """使用 yt-dlp 下载字幕（自动从浏览器提取 cookies + 代理认证）。"""
+def _build_ytdlp_cmd() -> list[str]:
+    """Build base yt-dlp command with proxy support."""
     cmd = [sys.executable, "-m", "yt_dlp"]
-
-    # 优先从浏览器自动提取 cookies（无需手动维护 cookies.txt）
-    cmd += ["--cookies-from-browser", "chrome"]
-
-    # 添加代理（从 config 读取）
     try:
         from podcast.config import get_config
         proxy = get_config().proxy
@@ -446,6 +443,23 @@ def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str
             cmd += ["--proxy", proxy]
     except Exception:
         pass
+    return cmd
+
+
+def _get_cookie_file() -> str:
+    """Get path to cookies.txt."""
+    return os.path.join(os.path.dirname(os.path.dirname(__file__)), "cookies.txt")
+
+
+def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str) -> None:
+    """使用 yt-dlp 下载字幕（cookies.txt 认证）。"""
+    cookie_file = _get_cookie_file()
+
+    cmd = _build_ytdlp_cmd()
+
+    # 使用 cookies.txt（需用户手动导出一次，有效期数周至数月）
+    if os.path.isfile(cookie_file) and os.path.getsize(cookie_file) > 100:
+        cmd += ["--cookies", cookie_file]
 
     cmd += [
         "--write-auto-subs", "--write-subs",
@@ -469,15 +483,37 @@ def _download_subtitles_ytdlp(video_url: str, output_dir: str, out_template: str
             break
 
     result = subprocess.run(cmd, capture_output=True, text=True, timeout=300, env=env)
-    if result.returncode != 0:
-        stderr = result.stderr.strip()
-        if "Sign in to confirm" in stderr or "cookies" in stderr.lower():
-            raise RuntimeError(
-                "YouTube 需要登录认证。请检查 cookies.txt 是否有效，"
-                "或重新导出：Chrome 登录 YouTube → Get cookies.txt 扩展 → "
-                "Export 到 cookies.txt"
-            )
-        raise RuntimeError(f"yt-dlp failed (code {result.returncode}): {stderr}")
+    if result.returncode == 0:
+        return
+
+    stderr = result.stderr.strip()
+
+    # 尝试 cookies-from-browser chrome 作为备选（Chrome 需关闭时有效）
+    if "Sign in to confirm" in stderr or "cookies" in stderr.lower():
+        logger.info("cookies.txt 已过期，尝试 --cookies-from-browser chrome...")
+        cmd2 = _build_ytdlp_cmd()
+        cmd2 += ["--cookies-from-browser", "chrome"]
+        cmd2 += [
+            "--write-auto-subs", "--write-subs",
+            "--sub-langs", "en",
+            "--skip-download",
+            "--convert-subs", "srt",
+            "--output", out_template,
+            "--no-progress",
+            video_url,
+        ]
+        result2 = subprocess.run(cmd2, capture_output=True, text=True, timeout=300, env=env)
+        if result2.returncode == 0:
+            return
+
+    raise RuntimeError(
+        "YouTube 需要登录认证。请手动刷新 cookies.txt：\n"
+        "1. 打开 Chrome，登录 YouTube\n"
+        "2. 安装 'Get cookies.txt' 扩展 (Chrome 应用商店)\n"
+        "3. 在 YouTube 页面点击扩展 → Export\n"
+        f"4. 保存到 {cookie_file}\n"
+        f"原始错误: {stderr[:200]}"
+    )
 
 
 def _extract_video_id(entry: ET.Element, ns: dict) -> Optional[str]:
