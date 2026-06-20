@@ -27,6 +27,12 @@ data/processed_videos.json
 _test_*
 test_cosy*.wav
 _rebuild_*
+_debug_test.wav
+
+# Regeneration working files
+_regenerate_all.log
+_regenerate_progress.json
+data/podcast_scripts/
 
 # OS
 .DS_Store
