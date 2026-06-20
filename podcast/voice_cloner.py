@@ -228,30 +228,20 @@ class VoiceCloner:
         style_override: str = "",
     ) -> dict:
         """
-        生成 TTS 音频，自动选择最佳声音方案并匹配播报风格。
+        生成 TTS 音频。
+
+        默认使用 CosyVoice 2（GPU），fallback 到 edge-tts。
 
         Args:
             text: 要合成的文本
             output_path: 输出音频路径
-            person_name: 人物名称（用于选择克隆声音和风格）
-            voice_override: 强制使用指定的 edge-tts 语音
+            person_name: 人物名称（用于选择风格）
+            voice_override: 强制使用指定的 edge-tts 语音（仅 edge-tts 模式）
             style_override: 强制使用指定的播报风格 (serious/lively/relaxed)
 
         Returns:
-            {filepath, duration_seconds, size_bytes, voice, style}
+            {filepath, duration_seconds, size_bytes, style}
         """
-        from podcast.tts import generate_audio_long_text
-
-        # 确定使用的语音
-        if voice_override:
-            voice = voice_override
-        elif person_name and self.has_cloned_voice(person_name):
-            profile = self.get_profile(person_name)
-            voice = profile.get("edge_voice", "zh-CN-YunjianNeural")
-        else:
-            profile = self.get_profile(person_name)
-            voice = profile.get("edge_voice", "zh-CN-YunjianNeural")
-
         # 确定播报风格
         style = style_override
         if not style:
@@ -261,11 +251,42 @@ class VoiceCloner:
             style = "lively"
 
         style_cfg = TTS_STYLES[style]
+
+        # 优先使用 CosyVoice 2（GPU）
+        try:
+            logger.info("CosyVoice TTS: person=%s style=%s(%s)",
+                         person_name, style, style_cfg["label"])
+            from podcast.cosyvoice_tts import CosyVoiceEngine
+
+            engine = CosyVoiceEngine()
+            result = engine.generate(text, output_path, style=style)
+            result["style"] = style
+            result["style_label"] = style_cfg["label"]
+            # 补回 voice 字段兼容
+            result["voice"] = "cosyvoice"
+            return result
+
+        except Exception as cv_err:
+            logger.warning("CosyVoice TTS 失败，fallback 到 edge-tts: %s", cv_err)
+
+        # Fallback: edge-tts（CPU）
+        from podcast.tts import generate_audio_long_text
+
+        # 确定 edge-tts 语音
+        if voice_override:
+            voice = voice_override
+        elif person_name and self.has_cloned_voice(person_name):
+            profile = self.get_profile(person_name)
+            voice = profile.get("edge_voice", "zh-CN-YunjianNeural")
+        else:
+            profile = self.get_profile(person_name)
+            voice = profile.get("edge_voice", "zh-CN-YunjianNeural")
+
         rate = style_cfg["rate"]
         volume = style_cfg["volume"]
 
-        logger.info("TTS: person=%s voice=%s style=%s(%s) rate=%s volume=%s",
-                     person_name, voice, style, style_cfg["label"], rate, volume)
+        logger.info("edge-tts fallback: person=%s voice=%s style=%s rate=%s volume=%s",
+                     person_name, voice, style, rate, volume)
 
         result = generate_audio_long_text(
             text, output_path, voice=voice, rate=rate, volume=volume

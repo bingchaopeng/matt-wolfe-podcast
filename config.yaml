@@ -47,9 +47,12 @@ llm:
   temperature: 0.3
 
 tts:
-  engine: "edge-tts"
+  engine: "cosyvoice"
   rate: "+0%"
   volume: "+0%"
+  cosyvoice:
+    model: "CosyVoice2-0.5B"
+    fp16: true
 
 podcast:
   language: "zh-CN"
