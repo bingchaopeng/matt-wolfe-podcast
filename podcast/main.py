@@ -116,16 +116,20 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
                 host_style=host_style,
             )
 
-            # Generate audio with channel-specific voice
+            # Generate audio using VoiceCloner (supports voice cloning)
             audio_filename = f"{video_id}.mp3"
             audio_path = os.path.join(config.podcast_episodes_dir, audio_filename)
 
             logger.info("[%s] Generating audio: %s (voice=%s)",
                        channel.name, audio_filename, channel.tts_voice)
-            audio_result = generate_audio_long_text(
+
+            from podcast.voice_cloner import get_voice_cloner
+            cloner = get_voice_cloner()
+            audio_result = cloner.generate_tts(
                 podcast_script,
                 audio_path,
-                voice=channel.tts_voice,
+                person_name=channel.name,
+                voice_override=channel.tts_voice,  # 使用配置的语音
             )
 
             audio_url = f"{config.podcast_website.rstrip('/')}/episodes/{audio_filename}"
