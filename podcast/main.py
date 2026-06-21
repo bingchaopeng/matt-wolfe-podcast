@@ -54,7 +54,7 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
 
     # Step 1: Get latest videos
     logger.info("[%s] Checking for new videos...", channel.name)
-    videos = get_channel_videos(channel.youtube_url, max_results=5, channel_id_override=channel.channel_id)
+    videos = get_channel_videos(channel.youtube_url, max_results=15, channel_id_override=channel.channel_id)
     if not videos:
         logger.warning("[%s] No videos found", channel.name)
         return result

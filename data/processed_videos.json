@@ -268,5 +268,45 @@
     "duration_seconds": 600,
     "url": "https://www.youtube.com/@mreflow",
     "status": "completed"
+  },
+  "QzDCfJpVGN8": {
+    "title": "Shopping Online Is About To Change Forever",
+    "channel": "Matt Wolfe",
+    "published": "2026-06-08T19:59:05+00:00",
+    "processed_at": "2026-06-21T13:25:59.570615",
+    "audio_file": "matt_网上购物即将永远改变_132549.mp3",
+    "duration_seconds": 134.544,
+    "url": "https://www.youtube.com/watch?v=QzDCfJpVGN8",
+    "status": "completed"
+  },
+  "MF1TpBv40V4": {
+    "title": "Predicting the next big consumer device",
+    "channel": "Lenny's Podcast",
+    "published": "2026-06-10T11:00:33+00:00",
+    "processed_at": "2026-06-21T13:26:48.950914",
+    "audio_file": "lenny_预测下一个大型消费设备_132635.mp3",
+    "duration_seconds": 156.168,
+    "url": "https://www.youtube.com/watch?v=MF1TpBv40V4",
+    "status": "completed"
+  },
+  "gI7CdvwYDqI": {
+    "title": "How the Rockefellers lost their place – Alex Imas and Phil Trammell",
+    "channel": "Dwarkesh Patel",
+    "published": "2026-06-11T13:15:25+00:00",
+    "processed_at": "2026-06-21T13:27:39.016381",
+    "audio_file": "dwarkesh_howTheRockefellersLostTheirPlaceAlexImasAndPhilTrammell_132726.mp3",
+    "duration_seconds": 181.728,
+    "url": "https://www.youtube.com/watch?v=gI7CdvwYDqI",
+    "status": "completed"
+  },
+  "QLu_ZsRc_G0": {
+    "title": "Covering 10 points, a surprisingly tricky puzzle.",
+    "channel": "Andrej Karpathy",
+    "published": "2026-04-16T16:08:21+00:00",
+    "processed_at": "2026-06-21T13:28:09.286536",
+    "audio_file": "andrej_覆盖10个点一个令人惊讶的棘手谜题_132804.mp3",
+    "duration_seconds": 74.88,
+    "url": "https://www.youtube.com/watch?v=QLu_ZsRc_G0",
+    "status": "completed"
   }
 }

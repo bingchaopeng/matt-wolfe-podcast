@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 02:39:31 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 05:28:09 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
@@ -52,6 +52,14 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_随机打结有多少个环_121642.mp3" length="2108205" type="audio/mpeg"/>
       <pubDate>Thu, 21 May 2026 21:49:47 +0000</pubDate>
       <itunes:duration>110</itunes:duration>
+    </item>
+    <item>
+      <title>【Andrej Karpathy 中文播报】Covering 10 points, a surprisingly tricky puzzle.</title>
+      <link>https://www.youtube.com/watch?v=QLu_ZsRc_G0</link>
+      <description>Andrej Karpathy 最新视频《Covering 10 points, a surprisingly tricky puzzle.》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_覆盖10个点一个令人惊讶的棘手谜题_132804.mp3" length="449280" type="audio/mpeg"/>
+      <pubDate>Thu, 16 Apr 2026 16:08:21 +0000</pubDate>
+      <itunes:duration>74</itunes:duration>
     </item>
   </channel>
 </rss>

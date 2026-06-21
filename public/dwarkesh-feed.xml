@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 02:39:31 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 05:27:39 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
@@ -60,6 +60,14 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_isAiMoreLikeElectricityOrSocialMediaAlexImasAndPhilTrammell_121317.mp3" length="3339405" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 12:00:15 +0000</pubDate>
       <itunes:duration>197</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】How the Rockefellers lost their place – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=gI7CdvwYDqI</link>
+      <description>Dwarkesh Patel 最新视频《How the Rockefellers lost their place – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_howTheRockefellersLostTheirPlaceAlexImasAndPhilTrammell_132726.mp3" length="1090368" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 13:15:25 +0000</pubDate>
+      <itunes:duration>181</itunes:duration>
     </item>
   </channel>
 </rss>

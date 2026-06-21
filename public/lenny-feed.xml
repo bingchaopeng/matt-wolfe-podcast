@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 02:39:31 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 05:26:48 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
@@ -41,7 +41,7 @@
       <title>【Lenny's Podcast 中文精选】The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)</title>
       <link>https://www.youtube.com/watch?v=7eh9C3TUotc</link>
       <description>Lenny's Podcast 最新视频《The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)》的peter播客版本。</description>
-      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_theHiddenPatternBehindSuccessfulProductsMarkPincusFarmvilleWord_121108.mp3" length="1354896" type="audio/mpeg"/>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_theHiddenPatternBehindSuccessfulProductsMarkPincusFarmvilleWord_121108.mp3" length="1720845" type="audio/mpeg"/>
       <pubDate>Sun, 14 Jun 2026 12:30:37 +0000</pubDate>
       <itunes:duration>225</itunes:duration>
     </item>
@@ -52,6 +52,14 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_第一个Ipod并不是一个成功_121142.mp3" length="1760205" type="audio/mpeg"/>
       <pubDate>Thu, 11 Jun 2026 11:00:31 +0000</pubDate>
       <itunes:duration>81</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】Predicting the next big consumer device</title>
+      <link>https://www.youtube.com/watch?v=MF1TpBv40V4</link>
+      <description>Lenny's Podcast 最新视频《Predicting the next big consumer device》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_预测下一个大型消费设备_132635.mp3" length="937008" type="audio/mpeg"/>
+      <pubDate>Wed, 10 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>156</itunes:duration>
     </item>
   </channel>
 </rss>

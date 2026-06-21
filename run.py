@@ -54,9 +54,13 @@ def cmd_dry_run(args):
     result = run_daily(dry_run=True)
     print()
     print('=' * 50)
-    print("[DRY RUN] Found {} new video(s)".format(result['new_videos_found']))
-    for p in result['processed']:
-        print("  - {}".format(p['title']))
+    print("[DRY RUN] Found {} new video(s)".format(result.get('total_new', 0)))
+    for ch in result.get('results', []):
+        print()
+        print("  【{}】".format(ch.get('channel', '?')))
+        print("    New videos: {}".format(ch.get('new_videos_found', 0)))
+        for p in ch.get('processed', []):
+            print("    - {} ({})".format(p.get('title', '?'), p.get('id', '?')))
     print('=' * 50)
 
 def cmd_status(args):
