@@ -15,6 +15,7 @@ def create_feed(
     language: str = "zh-CN",
     website: str = "",
     feed_filename: str = "feed.xml",
+    cover_url: str = "",
 ) -> FeedGenerator:
     """
     Create a new podcast RSS feed.
@@ -26,6 +27,7 @@ def create_feed(
         language: Language code (default: zh-CN).
         website: Website URL for the podcast.
         feed_filename: RSS feed filename (for self-link URL).
+        cover_url: URL to podcast cover image.
 
     Returns:
         FeedGenerator instance.
@@ -42,6 +44,13 @@ def create_feed(
     fg.lastBuildDate(datetime.now(timezone.utc))
     fg.load_extension("podcast")
     fg.podcast.itunes_author(author)
+    # Cover art - required by 小宇宙
+    if cover_url:
+        fg.podcast.itunes_image(cover_url)
+    # Category
+    fg.podcast.itunes_category("Technology")
+    # Not explicit
+    fg.podcast.itunes_explicit("no")
     return fg
 
 
@@ -90,6 +99,7 @@ def build_feed_from_history(config, episodes: list[dict],
             language=config.podcast_language,
             website=config.podcast_website,
             feed_filename=channel_config.feed_filename,
+            cover_url=f"{config.podcast_website.rstrip('/')}/cover.jpg",
         )
         title_prefix = f"【{channel_config.podcast_title}】"
         channel_name = channel_config.name
@@ -101,6 +111,7 @@ def build_feed_from_history(config, episodes: list[dict],
             language=config.podcast_language,
             website=config.podcast_website,
             feed_filename="feed.xml",
+            cover_url=f"{config.podcast_website.rstrip('/')}/cover.jpg",
         )
         title_prefix = ""
         channel_name = ""

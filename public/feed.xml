@@ -8,8 +8,11 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 01:10:30 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 01:56:13 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
+    <itunes:category text="Technology"/>
+    <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
+    <itunes:explicit>no</itunes:explicit>
     <item>
       <title>【Dwarkesh Patel】How Florence Afforded the Renaissance</title>
       <link>https://www.youtube.com/watch?v=7x8EOcp8l88</link>
@@ -20,15 +23,16 @@
     </item>
     <item>
       <title>【Matt Wolfe】ChatGPT Memory</title>
+      <link>https://www.youtube.com/@mreflow</link>
       <description>Matt Wolfe 视频《ChatGPT Memory》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_chatgpt记忆_180000.mp3" length="3074637" type="audio/mpeg"/>
       <pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
       <itunes:duration>600</itunes:duration>
     </item>
     <item>
-      <title>【】AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker</title>
+      <title>【Matt Wolfe】AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker</title>
       <link>https://www.youtube.com/watch?v=Db260rUuKJg</link>
-      <description> 视频《AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_aiNewsFableBannedNewOpenSourceLeaderMidjourneyShocker_114633.mp3" length="3950445" type="audio/mpeg"/>
       <pubDate>Fri, 19 Jun 2026 15:00:23 +0000</pubDate>
       <itunes:duration>658</itunes:duration>
@@ -42,17 +46,17 @@
       <itunes:duration>95</itunes:duration>
     </item>
     <item>
-      <title>【】Midjourney Built What?!?</title>
+      <title>【Matt Wolfe】Midjourney Built What?!?</title>
       <link>https://www.youtube.com/watch?v=Qy25rSEXpPQ</link>
-      <description> 视频《Midjourney Built What?!?》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《Midjourney Built What?!?》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_midjourney构建了什么_214242.mp3" length="952128" type="audio/mpeg"/>
       <pubDate>Thu, 18 Jun 2026 04:32:28 +0000</pubDate>
       <itunes:duration>158</itunes:duration>
     </item>
     <item>
-      <title>【】PewDiePie鈥檚 FREE Odysseus AI (Full Review &amp; Setup)</title>
+      <title>【Matt Wolfe】PewDiePie鈥檚 FREE Odysseus AI (Full Review &amp; Setup)</title>
       <link>https://www.youtube.com/watch?v=_7BHqZayPOc</link>
-      <description> 视频《PewDiePie鈥檚 FREE Odysseus AI (Full Review &amp; Setup)》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《PewDiePie鈥檚 FREE Odysseus AI (Full Review &amp; Setup)》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_pewdiepieFreeOdysseusAiFullReviewAndSetup_214431.mp3" length="3963981" type="audio/mpeg"/>
       <pubDate>Wed, 17 Jun 2026 16:12:43 +0000</pubDate>
       <itunes:duration>660</itunes:duration>
@@ -98,9 +102,9 @@
       <itunes:duration>1428</itunes:duration>
     </item>
     <item>
-      <title>【】The Most Insane iPhone AI Features</title>
+      <title>【Matt Wolfe】The Most Insane iPhone AI Features</title>
       <link>https://www.youtube.com/watch?v=NQof8hG8FwE</link>
-      <description> 视频《The Most Insane iPhone AI Features》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《The Most Insane iPhone AI Features》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_最疯狂的IphoneAI功能_214512.mp3" length="1001664" type="audio/mpeg"/>
       <pubDate>Mon, 15 Jun 2026 23:35:04 +0000</pubDate>
       <itunes:duration>166</itunes:duration>
@@ -138,9 +142,9 @@
       <itunes:duration>177</itunes:duration>
     </item>
     <item>
-      <title>【】AI News: An INSANE Week… Here’s What Matters</title>
+      <title>【Matt Wolfe】AI News: An INSANE Week… Here’s What Matters</title>
       <link>https://www.youtube.com/watch?v=nydHKXjwu0U</link>
-      <description> 视频《AI News: An INSANE Week… Here’s What Matters》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《AI News: An INSANE Week… Here’s What Matters》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_AI新闻疯狂的一周重要内容_143257.mp3" length="5154768" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 15:00:18 +0000</pubDate>
       <itunes:duration>1383</itunes:duration>
@@ -162,9 +166,9 @@
       <itunes:duration>197</itunes:duration>
     </item>
     <item>
-      <title>【】Unpopular opinion: you don't need to ask ChatGPT everything</title>
+      <title>【Matt Wolfe】Unpopular opinion: you don't need to ask ChatGPT everything</title>
       <link>https://www.youtube.com/watch?v=1greFablcZY</link>
-      <description> 视频《Unpopular opinion: you don't need to ask ChatGPT everything》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《Unpopular opinion: you don't need to ask ChatGPT everything》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_非主流观点你不需要问Chatgpt所有事情_212402.mp3" length="766800" type="audio/mpeg"/>
       <pubDate>Thu, 11 Jun 2026 12:55:30 +0000</pubDate>
       <itunes:duration>193</itunes:duration>
@@ -178,17 +182,17 @@
       <itunes:duration>81</itunes:duration>
     </item>
     <item>
-      <title>【】Why Everyone Is Freaking Out About Fable 5 (Mythos)</title>
+      <title>【Matt Wolfe】Why Everyone Is Freaking Out About Fable 5 (Mythos)</title>
       <link>https://www.youtube.com/watch?v=2lE1-5hBfKk</link>
-      <description> 视频《Why Everyone Is Freaking Out About Fable 5 (Mythos)》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《Why Everyone Is Freaking Out About Fable 5 (Mythos)》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_为什么每个人都在为Fable5Mythos抓狂_214020.mp3" length="4974048" type="audio/mpeg"/>
       <pubDate>Thu, 11 Jun 2026 01:34:23 +0000</pubDate>
       <itunes:duration>1319</itunes:duration>
     </item>
     <item>
-      <title>【】GitHub Just Made a Big AI Coding Move</title>
+      <title>【Matt Wolfe】GitHub Just Made a Big AI Coding Move</title>
       <link>https://www.youtube.com/watch?v=X9cvCQ3qrVk</link>
-      <description> 视频《GitHub Just Made a Big AI Coding Move》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《GitHub Just Made a Big AI Coding Move》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_github刚刚做出重大AI编码举措_214046.mp3" length="638784" type="audio/mpeg"/>
       <pubDate>Wed, 10 Jun 2026 14:11:43 +0000</pubDate>
       <itunes:duration>184</itunes:duration>
@@ -202,9 +206,9 @@
       <itunes:duration>223</itunes:duration>
     </item>
     <item>
-      <title>【】THIS was the whole point of Microsoft Builld</title>
+      <title>【Matt Wolfe】THIS was the whole point of Microsoft Builld</title>
       <link>https://www.youtube.com/watch?v=wg9jm_d7Emk</link>
-      <description> 视频《THIS was the whole point of Microsoft Builld》的中文播客版本。</description>
+      <description>Matt Wolfe 视频《THIS was the whole point of Microsoft Builld》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/unknown_这正是MicrosoftBuilld的全部_214131.mp3" length="787248" type="audio/mpeg"/>
       <pubDate>Tue, 09 Jun 2026 12:49:35 +0000</pubDate>
       <itunes:duration>217</itunes:duration>

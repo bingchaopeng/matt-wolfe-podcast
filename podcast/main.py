@@ -206,6 +206,7 @@ def build_channel_feed(config, channel: ChannelConfig, episodes: list[dict]):
         language=config.podcast_language,
         website=config.podcast_website,
         feed_filename=channel.feed_filename,
+        cover_url=f"{config.podcast_website.rstrip('/')}/cover.jpg",
     )
     for ep in episodes:
         audio_filename = ep.get("audio_file", "")
@@ -238,6 +239,7 @@ def build_unified_feed(config, episodes: list[dict]):
         language=config.podcast_language,
         website=config.podcast_website,
         feed_filename="feed.xml",
+        cover_url=f"{config.podcast_website.rstrip('/')}/cover.jpg",
     )
     for ep in episodes:
         audio_filename = ep.get("audio_file", "")

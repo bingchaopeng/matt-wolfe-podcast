@@ -6,7 +6,8 @@
     "audio_file": "unknown_AI新闻疯狂的一周重要内容_143257.mp3",
     "duration_seconds": 1383.142857142857,
     "url": "https://www.youtube.com/watch?v=nydHKXjwu0U",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "1greFablcZY": {
     "title": "Unpopular opinion: you don't need to ask ChatGPT everything",
@@ -15,7 +16,8 @@
     "audio_file": "unknown_非主流观点你不需要问Chatgpt所有事情_212402.mp3",
     "duration_seconds": 193.42857142857142,
     "url": "https://www.youtube.com/watch?v=1greFablcZY",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "2lE1-5hBfKk": {
     "title": "Why Everyone Is Freaking Out About Fable 5 (Mythos)",
@@ -24,7 +26,8 @@
     "audio_file": "unknown_为什么每个人都在为Fable5Mythos抓狂_214020.mp3",
     "duration_seconds": 1319.142857142857,
     "url": "https://www.youtube.com/watch?v=2lE1-5hBfKk",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "X9cvCQ3qrVk": {
     "title": "GitHub Just Made a Big AI Coding Move",
@@ -33,7 +36,8 @@
     "audio_file": "unknown_github刚刚做出重大AI编码举措_214046.mp3",
     "duration_seconds": 184.0,
     "url": "https://www.youtube.com/watch?v=X9cvCQ3qrVk",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "Qy25rSEXpPQ": {
     "title": "Midjourney Built What?!?",
@@ -42,7 +46,8 @@
     "audio_file": "unknown_midjourney构建了什么_214242.mp3",
     "duration_seconds": 158.688,
     "url": "https://www.youtube.com/watch?v=Qy25rSEXpPQ",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "NQof8hG8FwE": {
     "title": "The Most Insane iPhone AI Features",
@@ -51,7 +56,8 @@
     "audio_file": "unknown_最疯狂的IphoneAI功能_214512.mp3",
     "duration_seconds": 166.944,
     "url": "https://www.youtube.com/watch?v=NQof8hG8FwE",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "Db260rUuKJg": {
     "title": "AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker",
@@ -60,7 +66,8 @@
     "audio_file": "unknown_aiNewsFableBannedNewOpenSourceLeaderMidjourneyShocker_114633.mp3",
     "duration_seconds": 658.368,
     "url": "https://www.youtube.com/watch?v=Db260rUuKJg",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "IvHtY1X-wzM": {
     "title": "Do we need a new social app?",
@@ -189,7 +196,8 @@
     "audio_file": "unknown_这正是MicrosoftBuilld的全部_214131.mp3",
     "duration_seconds": 217.14285714285714,
     "url": "https://www.youtube.com/watch?v=wg9jm_d7Emk",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "_7BHqZayPOc": {
     "title": "PewDiePie鈥檚 FREE Odysseus AI (Full Review & Setup)",
@@ -198,7 +206,8 @@
     "audio_file": "unknown_pewdiepieFreeOdysseusAiFullReviewAndSetup_214431.mp3",
     "duration_seconds": 660.624,
     "url": "https://www.youtube.com/watch?v=_7BHqZayPOc",
-    "status": "completed"
+    "status": "completed",
+    "channel": "Matt Wolfe"
   },
   "Dr9_Qjr_Nok": {
     "title": "You should be less ambitious",
@@ -257,7 +266,7 @@
     "processed_at": "2026-06-20T18:00:00",
     "audio_file": "matt_chatgpt记忆_180000.mp3",
     "duration_seconds": 600,
-    "url": "",
+    "url": "https://www.youtube.com/@mreflow",
     "status": "completed"
   }
 }
