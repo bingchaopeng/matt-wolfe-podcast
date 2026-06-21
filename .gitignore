@@ -32,6 +32,8 @@ _debug_test.wav
 # Regeneration working files
 _regenerate_all.log
 _regenerate_progress.json
+_retry_single_episode.py
+_retry_episode.log
 data/podcast_scripts/
 
 # OS

@@ -50,7 +50,10 @@ def get_client() -> Anthropic:
                         break
     if not api_key:
         raise ValueError("ANTHROPIC_API_KEY not found in environment or .env file")
-    return Anthropic(api_key=api_key, base_url="https://api.deepseek.com/anthropic")
+    return Anthropic(
+        api_key=api_key, base_url="https://api.deepseek.com/anthropic",
+        timeout=1800,  # 30 min timeout for long transcript translations
+    )
 
 
 # ---------------------------------------------------------------------------

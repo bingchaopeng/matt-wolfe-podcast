@@ -120,7 +120,11 @@ class CosyVoiceEngine:
         if not tensors:
             raise RuntimeError("CosyVoice generated no audio for chunk")
 
-        return torch.cat(tensors, dim=-1)
+        out = torch.cat(tensors, dim=-1)
+        # Free intermediate tensors
+        del tensors
+        torch.cuda.empty_cache()
+        return out
 
     def generate(
         self,
@@ -128,7 +132,7 @@ class CosyVoiceEngine:
         output_path: str,
         style: str = "lively",
         prompt_wav: Optional[str] = None,
-        max_chunk_chars: int = 500,
+        max_chunk_chars: int = 300,
         mp3_bitrate: str = "192k",
     ) -> dict:
         """生成完整 TTS 音频并保存为 MP3。
@@ -157,10 +161,15 @@ class CosyVoiceEngine:
             chunk_files = []
             for i, chunk in enumerate(chunks):
                 logger.info("  Chunk %d/%d: %d chars", i + 1, len(chunks), len(chunk))
+                # Clear GPU cache before each chunk to avoid OOM on 4GB card
+                torch.cuda.empty_cache()
                 chunk_audio = self._generate_chunk(chunk, style, prompt_wav)
                 chunk_path = output_path + f".chunk_{i:04d}.wav"
                 torchaudio.save(chunk_path, chunk_audio.cpu(), self.sample_rate)
                 chunk_files.append(chunk_path)
+                # Free GPU memory
+                del chunk_audio
+                torch.cuda.empty_cache()
 
             wav_path = self._concat_wavs(chunk_files, output_path + ".tmp.wav")
             self._cleanup(chunk_files)
