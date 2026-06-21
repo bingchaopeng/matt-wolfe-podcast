@@ -27,13 +27,15 @@ data/processed_videos.json
 _test_*
 test_cosy*.wav
 _rebuild_*
-_debug_test.wav
+_debug*.wav
 
 # Regeneration working files
 _regenerate_all.log
 _regenerate_progress.json
-_retry_single_episode.py
-_retry_episode.log
+_retry_*.py
+_retry*.log
+_gen_*.py
+_gen_*.log
 data/podcast_scripts/
 
 # OS
