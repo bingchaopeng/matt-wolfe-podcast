@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-Matt Wolfe Zhong Wen Bo Ke -- CLI entry point.
+AI 播客 -- CLI entry point.
 
 Usage:
     python run.py run           # Execute daily processing
     python run.py dry-run       # Dry run, no actual processing
     python run.py status        # View processing status
-    python run.py list-voices   # List available Chinese TTS voices
+
+CosyVoice 自动检测：
+    如果当前 Python 不是 .venv-cosyvoice 环境，会自动切换到该环境重执行。
 """
 import argparse
 import logging
@@ -14,7 +16,22 @@ import sys
 import os
 
 # Ensure the project root is in path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, PROJECT_ROOT)
+
+# ── CosyVoice venv 自动切换 ───────────────────────────────
+# 如果当前不是 .venv-cosyvoice 环境，用子进程切换到正确 Python
+_COSY_PYTHON = os.path.join(
+    PROJECT_ROOT, ".venv-cosyvoice", "Scripts", "python.exe"
+)
+if not os.environ.get("_COSYVOICE_VENV_ACTIVE") and os.path.isfile(_COSY_PYTHON):
+    current = os.path.abspath(sys.executable).lower()
+    target = os.path.abspath(_COSY_PYTHON).lower()
+    if current != target:
+        os.environ["_COSYVOICE_VENV_ACTIVE"] = "1"
+        ret = os.system(f'"{target}" "{__file__}" {" ".join(sys.argv[1:])}')
+        sys.exit(ret >> 8 if ret > 0 else ret)
+
 
 def setup_logging(verbose: bool = False):
     """Configure logging with Chinese-friendly output."""
@@ -24,6 +41,7 @@ def setup_logging(verbose: bool = False):
         format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
+
 
 def cmd_run(args):
     """Execute daily processing pipeline."""
@@ -48,6 +66,7 @@ def cmd_run(args):
                 print("    V {}".format(p['title']))
     print('=' * 50)
 
+
 def cmd_dry_run(args):
     """Dry run: show what would be processed."""
     from podcast.main import run_daily
@@ -62,6 +81,7 @@ def cmd_dry_run(args):
         for p in ch.get('processed', []):
             print("    - {} ({})".format(p.get('title', '?'), p.get('id', '?')))
     print('=' * 50)
+
 
 def cmd_status(args):
     """Show processing status."""
@@ -84,26 +104,10 @@ def cmd_status(args):
     print("输出目录: {}".format(status['output_dir']))
     print('=' * 60)
 
-def cmd_list_voices(args):
-    """List available Chinese TTS voices."""
-    from podcast.tts import list_available_voices
-    voices = list_available_voices()
-    print()
-    print("Available Chinese voices ({} total):".format(len(voices)))
-    print('=' * 50)
-    for v in voices:
-        gender = v.get('gender', '?')
-        name = v.get('short_name', v.get('name', '?'))
-        desc = v.get('description', '')
-        print("  {} {}".format(gender, name))
-        if desc:
-            print("      {}".format(desc))
-    print('=' * 50)
-    print("Recommended: zh-CN-XiaoxiaoNeural (Female, natural and clear, suitable for podcasts)")
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Matt Wolfe Chinese Podcast -- auto fetch, translate, TTS, publish'
+        description='AI Podcast -- auto fetch, translate, TTS(CosyVoice), publish'
     )
     parser.add_argument('-v', '--verbose', action='store_true', help='Verbose logging')
 
@@ -121,10 +125,6 @@ def main():
     p_status = subparsers.add_parser('status', help='View processing status')
     p_status.set_defaults(func=cmd_status)
 
-    # list-voices
-    p_voices = subparsers.add_parser('list-voices', help='List available Chinese TTS voices')
-    p_voices.set_defaults(func=cmd_list_voices)
-
     args = parser.parse_args()
 
     if not args.command:
@@ -133,6 +133,7 @@ def main():
 
     setup_logging(args.verbose)
     args.func(args)
+
 
 if __name__ == '__main__':
     main()

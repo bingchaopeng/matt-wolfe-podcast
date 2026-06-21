@@ -136,7 +136,7 @@ class Config:
     # ── TTS ──
     @property
     def tts_engine(self) -> str:
-        return self._data.get("tts", {}).get("engine", "edge-tts")
+        return self._data.get("tts", {}).get("engine", "cosyvoice")
 
     @property
     def tts_rate(self) -> str:

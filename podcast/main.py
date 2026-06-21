@@ -8,7 +8,7 @@ from pathlib import Path
 from podcast.config import get_config, ChannelConfig, make_episode_filename
 from podcast.fetcher import get_channel_videos, download_subtitles, extract_text_from_srt, ProcessedTracker
 from podcast.translator import get_podcast_script
-from podcast.tts import generate_audio_long_text
+from podcast.voice_cloner import get_voice_cloner
 from podcast.rss import create_feed, add_episode, build_feed_from_history, save_feed
 
 logger = logging.getLogger(__name__)
@@ -130,7 +130,6 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
             logger.info("[%s] Generating audio: %s (voice=%s)",
                        channel.name, audio_filename, channel.tts_voice)
 
-            from podcast.voice_cloner import get_voice_cloner
             cloner = get_voice_cloner()
             audio_result = cloner.generate_tts(
                 podcast_script,

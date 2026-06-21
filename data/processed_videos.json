@@ -1,312 +1,42 @@
 {
-  "nydHKXjwu0U": {
-    "title": "AI News: An INSANE Week… Here’s What Matters",
-    "published": "2026-06-12T15:00:18+00:00",
-    "processed_at": "2026-06-14T14:32:57.809804",
-    "audio_file": "unknown_AI新闻疯狂的一周重要内容_143257.mp3",
-    "duration_seconds": 1383.142857142857,
-    "url": "https://www.youtube.com/watch?v=nydHKXjwu0U",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "1greFablcZY": {
-    "title": "Unpopular opinion: you don't need to ask ChatGPT everything",
-    "published": "2026-06-11T12:55:30+00:00",
-    "processed_at": "2026-06-14T21:24:02.135519",
-    "audio_file": "unknown_非主流观点你不需要问Chatgpt所有事情_212402.mp3",
-    "duration_seconds": 193.42857142857142,
-    "url": "https://www.youtube.com/watch?v=1greFablcZY",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "2lE1-5hBfKk": {
-    "title": "Why Everyone Is Freaking Out About Fable 5 (Mythos)",
-    "published": "2026-06-11T01:34:23+00:00",
-    "processed_at": "2026-06-14T21:40:20.682009",
-    "audio_file": "unknown_为什么每个人都在为Fable5Mythos抓狂_214020.mp3",
-    "duration_seconds": 1319.142857142857,
-    "url": "https://www.youtube.com/watch?v=2lE1-5hBfKk",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "X9cvCQ3qrVk": {
-    "title": "GitHub Just Made a Big AI Coding Move",
-    "published": "2026-06-10T14:11:43+00:00",
-    "processed_at": "2026-06-14T21:40:46.544253",
-    "audio_file": "unknown_github刚刚做出重大AI编码举措_214046.mp3",
-    "duration_seconds": 184.0,
-    "url": "https://www.youtube.com/watch?v=X9cvCQ3qrVk",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "Qy25rSEXpPQ": {
-    "title": "Midjourney Built What?!?",
-    "published": "2026-06-18T04:32:28+00:00",
-    "processed_at": "2026-06-19T21:42:42.373886",
-    "audio_file": "unknown_midjourney构建了什么_214242.mp3",
-    "duration_seconds": 158.688,
-    "url": "https://www.youtube.com/watch?v=Qy25rSEXpPQ",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "NQof8hG8FwE": {
-    "title": "The Most Insane iPhone AI Features",
-    "published": "2026-06-15T23:35:04+00:00",
-    "processed_at": "2026-06-19T21:45:12.614590",
-    "audio_file": "unknown_最疯狂的IphoneAI功能_214512.mp3",
-    "duration_seconds": 166.944,
-    "url": "https://www.youtube.com/watch?v=NQof8hG8FwE",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
   "Db260rUuKJg": {
     "title": "AI News: Fable Banned, New Open-Source Leader, Midjourney Shocker",
+    "channel": "Matt Wolfe",
     "published": "2026-06-19T15:00:23+00:00",
-    "processed_at": "2026-06-20T11:46:33.511502",
-    "audio_file": "unknown_aiNewsFableBannedNewOpenSourceLeaderMidjourneyShocker_114633.mp3",
-    "duration_seconds": 658.368,
+    "processed_at": "2026-06-21T14:30:05.337652",
+    "audio_file": "matt_aiNewsFableBannedNewOpenSourceLeaderMidjourneyShocker_135047.mp3",
+    "duration_seconds": 487.28,
     "url": "https://www.youtube.com/watch?v=Db260rUuKJg",
-    "status": "completed",
-    "channel": "Matt Wolfe"
+    "status": "completed"
   },
   "IvHtY1X-wzM": {
     "title": "Do we need a new social app?",
     "channel": "Lenny's Podcast",
     "published": "2026-06-18T11:00:30+00:00",
-    "processed_at": "2026-06-20T11:52:00.097116",
-    "audio_file": "lenny_我们需要一个新的社交应用吗_115200.mp3",
-    "duration_seconds": 95.064,
+    "processed_at": "2026-06-21T14:38:18.379691",
+    "audio_file": "lenny_我们需要一个新的社交应用_143022.mp3",
+    "duration_seconds": 91.76,
     "url": "https://www.youtube.com/watch?v=IvHtY1X-wzM",
-    "status": "completed"
-  },
-  "0Qd-nUslXGE": {
-    "title": "Innovation starts with copying",
-    "channel": "Lenny's Podcast",
-    "published": "2026-06-16T11:00:29+00:00",
-    "processed_at": "2026-06-20T11:53:02.772458",
-    "audio_file": "lenny_创新始于模仿_115302.mp3",
-    "duration_seconds": 83.424,
-    "url": "https://www.youtube.com/watch?v=0Qd-nUslXGE",
-    "status": "completed"
-  },
-  "AtX1OUacxDM": {
-    "title": "Von Neumann Probes and the End of Human Wages – Alex Imas and Phil Trammell",
-    "channel": "Dwarkesh Patel",
-    "published": "2026-06-16T13:15:32+00:00",
-    "processed_at": "2026-06-20T11:53:47.294109",
-    "audio_file": "dwarkesh_vonNeumannProbesAndTheEndOfHumanWagesAlexImasAndPhilTrammell_115347.mp3",
-    "duration_seconds": 144.288,
-    "url": "https://www.youtube.com/watch?v=AtX1OUacxDM",
-    "status": "completed"
-  },
-  "hgbZNU1pMmw": {
-    "title": "When hiring humans is too great a risk – Alex Imas and Phil Trammell",
-    "channel": "Dwarkesh Patel",
-    "published": "2026-06-15T13:15:13+00:00",
-    "processed_at": "2026-06-20T11:54:35.397984",
-    "audio_file": "dwarkesh_当雇佣人类风险太大AlexImas和PhilTrammell_115435.mp3",
-    "duration_seconds": 187.104,
-    "url": "https://www.youtube.com/watch?v=hgbZNU1pMmw",
-    "status": "completed"
-  },
-  "dT24XjECL3k": {
-    "title": "The GPU Pricing Paradox – Alex Imas and Phil Trammell",
-    "channel": "Dwarkesh Patel",
-    "published": "2026-06-14T13:15:36+00:00",
-    "processed_at": "2026-06-20T11:55:16.776463",
-    "audio_file": "dwarkesh_GPU定价悖论AlexImas和_115516.mp3",
-    "duration_seconds": 222.456,
-    "url": "https://www.youtube.com/watch?v=dT24XjECL3k",
-    "status": "completed"
-  },
-  "wGffBCfrAsE": {
-    "title": "100 random chords, how many intersections?",
-    "channel": "Andrej Karpathy",
-    "published": "2026-06-16T18:04:05+00:00",
-    "processed_at": "2026-06-20T11:55:46.349207",
-    "audio_file": "andrej_100RandomChordsHowManyIntersections_115546.mp3",
-    "duration_seconds": 101.232,
-    "url": "https://www.youtube.com/watch?v=wGffBCfrAsE",
-    "status": "completed"
-  },
-  "-7etvZSBxlk": {
-    "title": "Measuring the entropy of English",
-    "channel": "Andrej Karpathy",
-    "published": "2026-06-12T13:22:02+00:00",
-    "processed_at": "2026-06-20T11:56:25.353838",
-    "audio_file": "andrej_测量English的熵_115625.mp3",
-    "duration_seconds": 184.272,
-    "url": "https://www.youtube.com/watch?v=-7etvZSBxlk",
-    "status": "completed"
-  },
-  "7eh9C3TUotc": {
-    "title": "The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, & more)",
-    "channel": "Lenny's Podcast",
-    "published": "2026-06-14T12:30:37+00:00",
-    "processed_at": "2026-06-20T12:11:08.512343",
-    "audio_file": "lenny_theHiddenPatternBehindSuccessfulProductsMarkPincusFarmvilleWord_121108.mp3",
-    "duration_seconds": 225.816,
-    "url": "https://www.youtube.com/watch?v=7eh9C3TUotc",
-    "status": "completed"
-  },
-  "kpg09CKw3b0": {
-    "title": "The first iPod wasn't a success",
-    "channel": "Lenny's Podcast",
-    "published": "2026-06-11T11:00:31+00:00",
-    "processed_at": "2026-06-20T12:11:42.418402",
-    "audio_file": "lenny_第一个Ipod并不是一个成功_121142.mp3",
-    "duration_seconds": 81.528,
-    "url": "https://www.youtube.com/watch?v=kpg09CKw3b0",
-    "status": "completed"
-  },
-  "a8IW1LyDSTw": {
-    "title": "AI Should Be Commoditized – Alex Imas and Phil Trammell",
-    "channel": "Dwarkesh Patel",
-    "published": "2026-06-13T13:15:09+00:00",
-    "processed_at": "2026-06-20T12:12:41.027461",
-    "audio_file": "dwarkesh_AI应该被商品化AlexIm_121241.mp3",
-    "duration_seconds": 177.768,
-    "url": "https://www.youtube.com/watch?v=a8IW1LyDSTw",
-    "status": "completed"
-  },
-  "AWXM5nXyh5U": {
-    "title": "Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell",
-    "channel": "Dwarkesh Patel",
-    "published": "2026-06-12T12:00:15+00:00",
-    "processed_at": "2026-06-20T12:13:17.764227",
-    "audio_file": "dwarkesh_isAiMoreLikeElectricityOrSocialMediaAlexImasAndPhilTrammell_121317.mp3",
-    "duration_seconds": 197.688,
-    "url": "https://www.youtube.com/watch?v=AWXM5nXyh5U",
-    "status": "completed"
-  },
-  "l6DKRf-fAAM": {
-    "title": "Reinventing Entropy | Compression is Intelligence Part 1",
-    "channel": "Andrej Karpathy",
-    "published": "2026-06-07T11:49:51+00:00",
-    "processed_at": "2026-06-20T12:16:12.474364",
-    "audio_file": "andrej_reinventingEntropyCompressionIsIntelligencePart1_121612.mp3",
-    "duration_seconds": 1699.2,
-    "url": "https://www.youtube.com/watch?v=l6DKRf-fAAM",
-    "status": "completed"
-  },
-  "wg9jm_d7Emk": {
-    "title": "THIS was the whole point of Microsoft Builld",
-    "published": "2026-06-09T12:49:35+00:00",
-    "processed_at": "2026-06-14T21:41:31.307008",
-    "audio_file": "unknown_这正是MicrosoftBuilld的全部_214131.mp3",
-    "duration_seconds": 217.14285714285714,
-    "url": "https://www.youtube.com/watch?v=wg9jm_d7Emk",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "_7BHqZayPOc": {
-    "title": "PewDiePie鈥檚 FREE Odysseus AI (Full Review & Setup)",
-    "published": "2026-06-17T16:12:43+00:00",
-    "processed_at": "2026-06-19T21:44:31.053960",
-    "audio_file": "unknown_pewdiepieFreeOdysseusAiFullReviewAndSetup_214431.mp3",
-    "duration_seconds": 660.624,
-    "url": "https://www.youtube.com/watch?v=_7BHqZayPOc",
-    "status": "completed",
-    "channel": "Matt Wolfe"
-  },
-  "Dr9_Qjr_Nok": {
-    "title": "You should be less ambitious",
-    "channel": "Lenny's Podcast",
-    "published": "2026-06-17T11:00:33+00:00",
-    "processed_at": "2026-06-20T11:52:34.625769",
-    "audio_file": "lenny_你应该不那么雄心勃勃_115234.mp3",
-    "duration_seconds": 123.048,
-    "url": "https://www.youtube.com/watch?v=Dr9_Qjr_Nok",
-    "status": "completed"
-  },
-  "7L_eTem1SQ4": {
-    "title": "What's the perfect encoding? How do you know?",
-    "channel": "Andrej Karpathy",
-    "published": "2026-06-10T13:26:34+00:00",
-    "processed_at": "2026-06-20T11:57:17.028668",
-    "audio_file": "andrej_whatSThePerfectEncodingHowDoYouKnow_115717.mp3",
-    "duration_seconds": 223.032,
-    "url": "https://www.youtube.com/watch?v=7L_eTem1SQ4",
-    "status": "completed"
-  },
-  "ZHXt0-_gSj4": {
-    "title": "Tie random ends: How many loops?",
-    "channel": "Andrej Karpathy",
-    "published": "2026-05-21T21:49:47+00:00",
-    "processed_at": "2026-06-20T12:16:42.897729",
-    "audio_file": "andrej_随机打结有多少个环_121642.mp3",
-    "duration_seconds": 110.616,
-    "url": "https://www.youtube.com/watch?v=ZHXt0-_gSj4",
-    "status": "completed"
-  },
-  "cursor_index_article_2026": {
-    "title": "How Does Cursor Index Your Codebase?",
-    "channel": "Matt Wolfe",
-    "published": "2026-06-16T00:00:00+00:00",
-    "processed_at": "2026-06-20T18:00:02.974611",
-    "audio_file": "matt_cursor如何索引你的代码库_180002.mp3",
-    "duration_seconds": 1428,
-    "url": "https://manthanguptaa.in/posts/how_cursor_index_your_codebase/",
     "status": "completed"
   },
   "7x8EOcp8l88": {
     "title": "How Florence Afforded the Renaissance",
     "channel": "Dwarkesh Patel",
     "published": "2026-06-20T12:00:05+00:00",
-    "processed_at": "2026-06-20T20:11:46.464996",
-    "audio_file": "dwarkesh_florence如何负担得起文艺复兴_201146.mp3",
-    "duration_seconds": 319.44,
+    "processed_at": "2026-06-21T15:00:05.793861",
+    "audio_file": "dwarkesh_florence如何负担得起文艺复兴_143845.mp3",
+    "duration_seconds": 270.52,
     "url": "https://www.youtube.com/watch?v=7x8EOcp8l88",
     "status": "completed"
   },
-  "chatgpt_memory_article": {
-    "title": "ChatGPT Memory",
-    "channel": "Matt Wolfe",
-    "published": "2026-06-20T00:00:00+00:00",
-    "processed_at": "2026-06-20T18:00:00",
-    "audio_file": "matt_chatgpt记忆_180000.mp3",
-    "duration_seconds": 600,
-    "url": "https://www.youtube.com/@mreflow",
-    "status": "completed"
-  },
-  "QzDCfJpVGN8": {
-    "title": "Shopping Online Is About To Change Forever",
-    "channel": "Matt Wolfe",
-    "published": "2026-06-08T19:59:05+00:00",
-    "processed_at": "2026-06-21T13:25:59.570615",
-    "audio_file": "matt_网上购物即将永远改变_132549.mp3",
-    "duration_seconds": 134.544,
-    "url": "https://www.youtube.com/watch?v=QzDCfJpVGN8",
-    "status": "completed"
-  },
-  "MF1TpBv40V4": {
-    "title": "Predicting the next big consumer device",
-    "channel": "Lenny's Podcast",
-    "published": "2026-06-10T11:00:33+00:00",
-    "processed_at": "2026-06-21T13:26:48.950914",
-    "audio_file": "lenny_预测下一个大型消费设备_132635.mp3",
-    "duration_seconds": 156.168,
-    "url": "https://www.youtube.com/watch?v=MF1TpBv40V4",
-    "status": "completed"
-  },
-  "gI7CdvwYDqI": {
-    "title": "How the Rockefellers lost their place – Alex Imas and Phil Trammell",
-    "channel": "Dwarkesh Patel",
-    "published": "2026-06-11T13:15:25+00:00",
-    "processed_at": "2026-06-21T13:27:39.016381",
-    "audio_file": "dwarkesh_howTheRockefellersLostTheirPlaceAlexImasAndPhilTrammell_132726.mp3",
-    "duration_seconds": 181.728,
-    "url": "https://www.youtube.com/watch?v=gI7CdvwYDqI",
-    "status": "completed"
-  },
-  "QLu_ZsRc_G0": {
-    "title": "Covering 10 points, a surprisingly tricky puzzle.",
+  "wGffBCfrAsE": {
+    "title": "100 random chords, how many intersections?",
     "channel": "Andrej Karpathy",
-    "published": "2026-04-16T16:08:21+00:00",
-    "processed_at": "2026-06-21T13:28:09.286536",
-    "audio_file": "andrej_覆盖10个点一个令人惊讶的棘手谜题_132804.mp3",
-    "duration_seconds": 74.88,
-    "url": "https://www.youtube.com/watch?v=QLu_ZsRc_G0",
+    "published": "2026-06-16T18:04:05+00:00",
+    "processed_at": "2026-06-21T15:18:52.962252",
+    "audio_file": "andrej_100个随机弦有多少个交点_150032.mp3",
+    "duration_seconds": 220.72,
+    "url": "https://www.youtube.com/watch?v=wGffBCfrAsE",
     "status": "completed"
   }
 }
