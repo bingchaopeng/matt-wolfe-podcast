@@ -8,11 +8,19 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 06:38:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 11:13:45 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+      <title>【Lenny's Podcast 中文精选】Building the most AI-pilled engineering team in the world | Fiona Fung (Anthropic)</title>
+      <link>https://www.youtube.com/watch?v=Ybrl4FYM57c</link>
+      <description>Lenny's Podcast 最新视频《Building the most AI-pilled engineering team in the world | Fiona Fung (Anthropic)》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_buildingTheMostAiPilledEngineeringTeamInTheWorldFionaFungAnthro_091440.mp3" length="55536045" type="audio/mpeg"/>
+      <pubDate>Sun, 21 Jun 2026 12:30:02 +0000</pubDate>
+      <itunes:duration>2776</itunes:duration>
+    </item>
     <item>
       <title>【Lenny's Podcast 中文精选】Do we need a new social app?</title>
       <link>https://www.youtube.com/watch?v=IvHtY1X-wzM</link>
@@ -20,6 +28,78 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_我们需要一个新的社交应用_143022.mp3" length="1837005" type="audio/mpeg"/>
       <pubDate>Thu, 18 Jun 2026 11:00:30 +0000</pubDate>
       <itunes:duration>91</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】You should be less ambitious</title>
+      <link>https://www.youtube.com/watch?v=Dr9_Qjr_Nok</link>
+      <description>Lenny's Podcast 最新视频《You should be less ambitious》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_你应该少一些雄心壮志_131234.mp3" length="2327085" type="audio/mpeg"/>
+      <pubDate>Wed, 17 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>116</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】Innovation starts with copying</title>
+      <link>https://www.youtube.com/watch?v=0Qd-nUslXGE</link>
+      <description>Lenny's Podcast 最新视频《Innovation starts with copying》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_创新始于模仿_132210.mp3" length="1707885" type="audio/mpeg"/>
+      <pubDate>Tue, 16 Jun 2026 11:00:29 +0000</pubDate>
+      <itunes:duration>85</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)</title>
+      <link>https://www.youtube.com/watch?v=7eh9C3TUotc</link>
+      <description>Lenny's Podcast 最新视频《The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_成功产品背后的隐藏模式MarkPincusFarmvilleWordsWithFriends等_133223.mp3" length="50211885" type="audio/mpeg"/>
+      <pubDate>Sun, 14 Jun 2026 12:30:37 +0000</pubDate>
+      <itunes:duration>2510</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】The first iPod wasn't a success</title>
+      <link>https://www.youtube.com/watch?v=kpg09CKw3b0</link>
+      <description>Lenny's Podcast 最新视频《The first iPod wasn't a success》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_第一个Ipod并不是一个成功_171140.mp3" length="1428045" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 11:00:31 +0000</pubDate>
+      <itunes:duration>71</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】Predicting the next big consumer device</title>
+      <link>https://www.youtube.com/watch?v=MF1TpBv40V4</link>
+      <description>Lenny's Podcast 最新视频《Predicting the next big consumer device》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_预测下一个重大消费设备_171834.mp3" length="2521485" type="audio/mpeg"/>
+      <pubDate>Wed, 10 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>126</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】Great products tell a story</title>
+      <link>https://www.youtube.com/watch?v=y1a7sH3vteY</link>
+      <description>Lenny's Podcast 最新视频《Great products tell a story》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_优秀的产品讲述一个故事_172842.mp3" length="1859085" type="audio/mpeg"/>
+      <pubDate>Tue, 09 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>92</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】Tony Fadell: How to build real taste (and why AI makes it matter more)</title>
+      <link>https://www.youtube.com/watch?v=RJjl1TwyfWM</link>
+      <description>Lenny's Podcast 最新视频《Tony Fadell: How to build real taste (and why AI makes it matter more)》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_tonyFadell如何培养真正的品味以及为什么AI让它更重要_173619.mp3" length="17510445" type="audio/mpeg"/>
+      <pubDate>Sun, 07 Jun 2026 12:30:05 +0000</pubDate>
+      <itunes:duration>875</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】AI won't move as fast as you think</title>
+      <link>https://www.youtube.com/watch?v=VuApa4sBfKA</link>
+      <description>Lenny's Podcast 最新视频《AI won't move as fast as you think》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_AI不会像你想的那么快_184941.mp3" length="2309805" type="audio/mpeg"/>
+      <pubDate>Wed, 03 Jun 2026 11:00:06 +0000</pubDate>
+      <itunes:duration>115</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】We can't predict AI's impact</title>
+      <link>https://www.youtube.com/watch?v=jTMtuayrzzU</link>
+      <description>Lenny's Podcast 最新视频《We can't predict AI's impact》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_我们不能预测AI的影响_185945.mp3" length="3008685" type="audio/mpeg"/>
+      <pubDate>Tue, 02 Jun 2026 11:00:10 +0000</pubDate>
+      <itunes:duration>150</itunes:duration>
     </item>
   </channel>
 </rss>

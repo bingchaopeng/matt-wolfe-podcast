@@ -8,11 +8,19 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 07:18:52 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 11:13:45 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+      <title>【Lenny's Podcast】Building the most AI-pilled engineering team in the world | Fiona Fung (Anthropic)</title>
+      <link>https://www.youtube.com/watch?v=Ybrl4FYM57c</link>
+      <description>Lenny's Podcast 视频《Building the most AI-pilled engineering team in the world | Fiona Fung (Anthropic)》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_buildingTheMostAiPilledEngineeringTeamInTheWorldFionaFungAnthro_091440.mp3" length="55536045" type="audio/mpeg"/>
+      <pubDate>Sun, 21 Jun 2026 12:30:02 +0000</pubDate>
+      <itunes:duration>2776</itunes:duration>
+    </item>
     <item>
       <title>【Dwarkesh Patel】How Florence Afforded the Renaissance</title>
       <link>https://www.youtube.com/watch?v=7x8EOcp8l88</link>
@@ -38,12 +46,196 @@
       <itunes:duration>91</itunes:duration>
     </item>
     <item>
+      <title>【Matt Wolfe】Midjourney Built What?!?</title>
+      <link>https://www.youtube.com/watch?v=Qy25rSEXpPQ</link>
+      <description>Matt Wolfe 视频《Midjourney Built What?!?》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_midjourney建造了什么_153206.mp3" length="2671245" type="audio/mpeg"/>
+      <pubDate>Thu, 18 Jun 2026 04:32:28 +0000</pubDate>
+      <itunes:duration>133</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】PewDiePie’s FREE Odysseus AI (Full Review &amp; Setup)</title>
+      <link>https://www.youtube.com/watch?v=_7BHqZayPOc</link>
+      <description>Matt Wolfe 视频《PewDiePie’s FREE Odysseus AI (Full Review &amp; Setup)》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_pewdiepiesFreeOdysseusAiFullReviewAndSetup_155009.mp3" length="10940685" type="audio/mpeg"/>
+      <pubDate>Wed, 17 Jun 2026 16:12:43 +0000</pubDate>
+      <itunes:duration>546</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】You should be less ambitious</title>
+      <link>https://www.youtube.com/watch?v=Dr9_Qjr_Nok</link>
+      <description>Lenny's Podcast 视频《You should be less ambitious》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_你应该少一些雄心壮志_131234.mp3" length="2327085" type="audio/mpeg"/>
+      <pubDate>Wed, 17 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>116</itunes:duration>
+    </item>
+    <item>
       <title>【Andrej Karpathy】100 random chords, how many intersections?</title>
       <link>https://www.youtube.com/watch?v=wGffBCfrAsE</link>
       <description>Andrej Karpathy 视频《100 random chords, how many intersections?》的中文播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_100个随机弦有多少个交点_150032.mp3" length="4416045" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 18:04:05 +0000</pubDate>
       <itunes:duration>220</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】Innovation starts with copying</title>
+      <link>https://www.youtube.com/watch?v=0Qd-nUslXGE</link>
+      <description>Lenny's Podcast 视频《Innovation starts with copying》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_创新始于模仿_132210.mp3" length="1707885" type="audio/mpeg"/>
+      <pubDate>Tue, 16 Jun 2026 11:00:29 +0000</pubDate>
+      <itunes:duration>85</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】The Most Insane iPhone AI Features</title>
+      <link>https://www.youtube.com/watch?v=NQof8hG8FwE</link>
+      <description>Matt Wolfe 视频《The Most Insane iPhone AI Features》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_最疯狂的IphoneAI功能_182908.mp3" length="2645805" type="audio/mpeg"/>
+      <pubDate>Mon, 15 Jun 2026 23:35:04 +0000</pubDate>
+      <itunes:duration>132</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)</title>
+      <link>https://www.youtube.com/watch?v=7eh9C3TUotc</link>
+      <description>Lenny's Podcast 视频《The hidden pattern behind successful products | Mark Pincus (FarmVille, Words with Friends, &amp; more)》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_成功产品背后的隐藏模式MarkPincusFarmvilleWordsWithFriends等_133223.mp3" length="50211885" type="audio/mpeg"/>
+      <pubDate>Sun, 14 Jun 2026 12:30:37 +0000</pubDate>
+      <itunes:duration>2510</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】AI News: An INSANE Week… Here’s What Matters</title>
+      <link>https://www.youtube.com/watch?v=nydHKXjwu0U</link>
+      <description>Matt Wolfe 视频《AI News: An INSANE Week… Here’s What Matters》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_AI新闻疯狂的一周重要内容_192034.mp3" length="14860845" type="audio/mpeg"/>
+      <pubDate>Fri, 12 Jun 2026 15:00:18 +0000</pubDate>
+      <itunes:duration>742</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】Unpopular opinion: you don't need to ask ChatGPT everything</title>
+      <link>https://www.youtube.com/watch?v=1greFablcZY</link>
+      <description>Matt Wolfe 视频《Unpopular opinion: you don't need to ask ChatGPT everything》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_不受欢迎的观点你不需要问Chatgpt每一件事_222914.mp3" length="2504205" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 12:55:30 +0000</pubDate>
+      <itunes:duration>125</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】The first iPod wasn't a success</title>
+      <link>https://www.youtube.com/watch?v=kpg09CKw3b0</link>
+      <description>Lenny's Podcast 视频《The first iPod wasn't a success》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_第一个Ipod并不是一个成功_171140.mp3" length="1428045" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 11:00:31 +0000</pubDate>
+      <itunes:duration>71</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】Why Everyone Is Freaking Out About Fable 5 (Mythos)</title>
+      <link>https://www.youtube.com/watch?v=2lE1-5hBfKk</link>
+      <description>Matt Wolfe 视频《Why Everyone Is Freaking Out About Fable 5 (Mythos)》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_为什么每个人都在为Fable5Mythos疯狂_230116.mp3" length="15629805" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 01:34:23 +0000</pubDate>
+      <itunes:duration>781</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】GitHub Just Made a Big AI Coding Move</title>
+      <link>https://www.youtube.com/watch?v=X9cvCQ3qrVk</link>
+      <description>Matt Wolfe 视频《GitHub Just Made a Big AI Coding Move》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_github刚刚做出重大AI编程举措_022115.mp3" length="1982445" type="audio/mpeg"/>
+      <pubDate>Wed, 10 Jun 2026 14:11:43 +0000</pubDate>
+      <itunes:duration>99</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】Predicting the next big consumer device</title>
+      <link>https://www.youtube.com/watch?v=MF1TpBv40V4</link>
+      <description>Lenny's Podcast 视频《Predicting the next big consumer device》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_预测下一个重大消费设备_171834.mp3" length="2521485" type="audio/mpeg"/>
+      <pubDate>Wed, 10 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>126</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】THIS was the whole point of Microsoft Builld</title>
+      <link>https://www.youtube.com/watch?v=wg9jm_d7Emk</link>
+      <description>Matt Wolfe 视频《THIS was the whole point of Microsoft Builld》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_这就是MicrosoftBuilld的全部意义_024844.mp3" length="1698285" type="audio/mpeg"/>
+      <pubDate>Tue, 09 Jun 2026 12:49:35 +0000</pubDate>
+      <itunes:duration>84</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】Great products tell a story</title>
+      <link>https://www.youtube.com/watch?v=y1a7sH3vteY</link>
+      <description>Lenny's Podcast 视频《Great products tell a story》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_优秀的产品讲述一个故事_172842.mp3" length="1859085" type="audio/mpeg"/>
+      <pubDate>Tue, 09 Jun 2026 11:00:33 +0000</pubDate>
+      <itunes:duration>92</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】Shopping Online Is About To Change Forever</title>
+      <link>https://www.youtube.com/watch?v=QzDCfJpVGN8</link>
+      <description>Matt Wolfe 视频《Shopping Online Is About To Change Forever》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_网上购物即将永远改变_030735.mp3" length="2598285" type="audio/mpeg"/>
+      <pubDate>Mon, 08 Jun 2026 19:59:05 +0000</pubDate>
+      <itunes:duration>129</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】The Biggest Microsoft Build News in 82 seconds</title>
+      <link>https://www.youtube.com/watch?v=jKgrNh_q_b0</link>
+      <description>Matt Wolfe 视频《The Biggest Microsoft Build News in 82 seconds》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_microsoft在82秒内最大的Build新闻_033904.mp3" length="1920045" type="audio/mpeg"/>
+      <pubDate>Mon, 08 Jun 2026 14:43:43 +0000</pubDate>
+      <itunes:duration>95</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】How Big Tech Lies About AI Layoffs</title>
+      <link>https://www.youtube.com/watch?v=08uMw4_BWOA</link>
+      <description>Matt Wolfe 视频《How Big Tech Lies About AI Layoffs》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_大型科技公司如何就AI裁员撒谎_040519.mp3" length="2168685" type="audio/mpeg"/>
+      <pubDate>Sun, 07 Jun 2026 17:54:13 +0000</pubDate>
+      <itunes:duration>108</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】Tony Fadell: How to build real taste (and why AI makes it matter more)</title>
+      <link>https://www.youtube.com/watch?v=RJjl1TwyfWM</link>
+      <description>Lenny's Podcast 视频《Tony Fadell: How to build real taste (and why AI makes it matter more)》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_tonyFadell如何培养真正的品味以及为什么AI让它更重要_173619.mp3" length="17510445" type="audio/mpeg"/>
+      <pubDate>Sun, 07 Jun 2026 12:30:05 +0000</pubDate>
+      <itunes:duration>875</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】AI News: Microsoft Finally Reveals Their Plan!</title>
+      <link>https://www.youtube.com/watch?v=nz4h3H1MmTg</link>
+      <description>Matt Wolfe 视频《AI News: Microsoft Finally Reveals Their Plan!》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_AI新闻Microsoft终于透露他们的计划_043140.mp3" length="17741805" type="audio/mpeg"/>
+      <pubDate>Fri, 05 Jun 2026 15:00:00 +0000</pubDate>
+      <itunes:duration>887</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】I Didn’t Know AI Could Do THIS</title>
+      <link>https://www.youtube.com/watch?v=UdbndwiYUy4</link>
+      <description>Matt Wolfe 视频《I Didn’t Know AI Could Do THIS》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_我不知道AI能做到这一点_085918.mp3" length="1787085" type="audio/mpeg"/>
+      <pubDate>Fri, 05 Jun 2026 14:06:59 +0000</pubDate>
+      <itunes:duration>89</itunes:duration>
+    </item>
+    <item>
+      <title>【Matt Wolfe】YouTube Is Cracking Down On AI Slop</title>
+      <link>https://www.youtube.com/watch?v=BNKTPkhSibQ</link>
+      <description>Matt Wolfe 视频《YouTube Is Cracking Down On AI Slop》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/matt_youtube正在打击AI垃圾内容_090708.mp3" length="1462605" type="audio/mpeg"/>
+      <pubDate>Thu, 04 Jun 2026 12:45:00 +0000</pubDate>
+      <itunes:duration>73</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】AI won't move as fast as you think</title>
+      <link>https://www.youtube.com/watch?v=VuApa4sBfKA</link>
+      <description>Lenny's Podcast 视频《AI won't move as fast as you think》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_AI不会像你想的那么快_184941.mp3" length="2309805" type="audio/mpeg"/>
+      <pubDate>Wed, 03 Jun 2026 11:00:06 +0000</pubDate>
+      <itunes:duration>115</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast】We can't predict AI's impact</title>
+      <link>https://www.youtube.com/watch?v=jTMtuayrzzU</link>
+      <description>Lenny's Podcast 视频《We can't predict AI's impact》的中文播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_我们不能预测AI的影响_185945.mp3" length="3008685" type="audio/mpeg"/>
+      <pubDate>Tue, 02 Jun 2026 11:00:10 +0000</pubDate>
+      <itunes:duration>150</itunes:duration>
     </item>
   </channel>
 </rss>
