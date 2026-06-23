@@ -498,5 +498,115 @@
     "duration_seconds": 1515.28,
     "url": "https://www.youtube.com/watch?v=l6DKRf-fAAM",
     "status": "completed"
+  },
+  "ZHXt0-_gSj4": {
+    "title": "Tie random ends: How many loops?",
+    "channel": "Andrej Karpathy",
+    "published": "2026-05-21T21:49:47+00:00",
+    "processed_at": "2026-06-23T23:33:21.974664",
+    "audio_file": "andrej_系住随机末端有多少个环_124537.mp3",
+    "duration_seconds": 127.4,
+    "url": "https://www.youtube.com/watch?v=ZHXt0-_gSj4",
+    "status": "completed"
+  },
+  "QLu_ZsRc_G0": {
+    "title": "Covering 10 points, a surprisingly tricky puzzle.",
+    "channel": "Andrej Karpathy",
+    "published": "2026-04-16T16:08:21+00:00",
+    "processed_at": "2026-06-23T23:54:29.892004",
+    "audio_file": "andrej_覆盖10个点一个出乎意料的棘手谜题_233347.mp3",
+    "duration_seconds": 139.68,
+    "url": "https://www.youtube.com/watch?v=QLu_ZsRc_G0",
+    "status": "completed"
+  },
+  "Y7ImxZ_YhJk": {
+    "title": "Escher's most mind-bending piece",
+    "channel": "Andrej Karpathy",
+    "published": "2026-03-27T20:56:02+00:00",
+    "processed_at": "2026-06-24T00:32:36.657935",
+    "audio_file": "andrej_escher最令人费解的作品_235447.mp3",
+    "duration_seconds": 156.08,
+    "url": "https://www.youtube.com/watch?v=Y7ImxZ_YhJk",
+    "status": "completed"
+  },
+  "4h5BEALuh44": {
+    "title": "The subset sum puzzle",
+    "channel": "Andrej Karpathy",
+    "published": "2026-03-25T20:59:04+00:00",
+    "processed_at": "2026-06-24T00:47:20.840019",
+    "audio_file": "andrej_子集和谜题_003248.mp3",
+    "duration_seconds": 57.56,
+    "url": "https://www.youtube.com/watch?v=4h5BEALuh44",
+    "status": "completed"
+  },
+  "ldxFjLJ3rVY": {
+    "title": "How (and why) to take a logarithm of an image",
+    "channel": "Andrej Karpathy",
+    "published": "2026-03-22T12:59:00+00:00",
+    "processed_at": "2026-06-24T02:22:07.411604",
+    "audio_file": "andrej_如何以及为什么对图像取对数_004805.mp3",
+    "duration_seconds": 860.08,
+    "url": "https://www.youtube.com/watch?v=ldxFjLJ3rVY",
+    "status": "completed"
+  },
+  "Qoes9bTJtn0": {
+    "title": "Bacteria Grid Puzzle Solution",
+    "channel": "Andrej Karpathy",
+    "published": "2026-03-21T11:42:53+00:00",
+    "processed_at": "2026-06-24T02:40:14.317373",
+    "audio_file": "andrej_细菌网格谜题解_022223.mp3",
+    "duration_seconds": 217.16,
+    "url": "https://www.youtube.com/watch?v=Qoes9bTJtn0",
+    "status": "completed"
+  },
+  "fsLh-NYhOoU": {
+    "title": "The most beautiful formula not enough people understand",
+    "channel": "Andrej Karpathy",
+    "published": "2026-02-27T15:14:23+00:00",
+    "processed_at": "2026-06-24T03:26:24.094847",
+    "audio_file": "andrej_最美丽的公式没有足够的人理解_024049.mp3",
+    "duration_seconds": 506.04,
+    "url": "https://www.youtube.com/watch?v=fsLh-NYhOoU",
+    "status": "completed"
+  },
+  "d0ai33oqqDE": {
+    "title": "The lattice bacteria puzzle",
+    "channel": "Andrej Karpathy",
+    "published": "2026-02-18T06:02:59+00:00",
+    "processed_at": "2026-06-24T03:32:34.747811",
+    "audio_file": "andrej_格子细菌之谜_032633.mp3",
+    "duration_seconds": 83.32,
+    "url": "https://www.youtube.com/watch?v=d0ai33oqqDE",
+    "status": "completed"
+  },
+  "7gG91SZwBoE": {
+    "title": "Solution to the ladybug clock puzzle",
+    "channel": "Andrej Karpathy",
+    "published": "2026-02-16T14:08:37+00:00",
+    "processed_at": "2026-06-24T03:47:48.666033",
+    "audio_file": "andrej_瓢虫时钟谜题的解法_033250.mp3",
+    "duration_seconds": 182.64,
+    "url": "https://www.youtube.com/watch?v=7gG91SZwBoE",
+    "status": "completed"
+  },
+  "BHdbsHFs2P0": {
+    "title": "Why you can't comb a hairy ball, and why we care",
+    "channel": "Andrej Karpathy",
+    "published": "2026-01-31T14:57:42+00:00",
+    "processed_at": "2026-06-24T05:15:18.987056",
+    "audio_file": "andrej_为什么你不能梳理一个毛球以及为什么我们在意_034852.mp3",
+    "duration_seconds": 1022.84,
+    "url": "https://www.youtube.com/watch?v=BHdbsHFs2P0",
+    "status": "completed"
+  },
+  "t3jZ2xGOvYg": {
+    "title": "The ladybug clock puzzle",
+    "channel": "Andrej Karpathy",
+    "published": "2026-01-16T14:16:12+00:00",
+    "processed_at": "2026-06-24T05:24:17.769127",
+    "audio_file": "andrej_瓢虫时钟谜题_051533.mp3",
+    "duration_seconds": 109.92,
+    "url": "https://www.youtube.com/watch?v=t3jZ2xGOvYg",
+    "status": "completed"
   }
 }

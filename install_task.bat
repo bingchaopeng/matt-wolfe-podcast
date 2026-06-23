@@ -1,38 +1,38 @@
 @echo off
-set PYTHON=C:\Users\30777\AppData\Local\Python\pythoncore-3.14-64\python.exe
-set SCRIPT=C:\Users\30777\matt-wolfe-podcast\run.py
-set COOKIES=C:\Users\30777\matt-wolfe-podcast\cookies.txt
+set "PROJECT_DIR=C:\Users\30777\matt-wolfe-podcast"
+set "BAT_ENTRY=%PROJECT_DIR%\run.bat"
+set "COOKIES=%PROJECT_DIR%\cookies.txt"
 set TASK_NAME=MattWolfePodcast
 set TASK_TIME=21:00
 
 echo ===============================
-echo Matt Wolfe Podcast - Schedule
+echo AI Podcast - Windows Schedule
 echo ===============================
 echo.
 
 net session >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
     echo This script needs administrator rights.
-    echo Right-click and select Run as administrator.
+    echo Right-click and select "Run as administrator".
     pause
     exit /b 1
 )
 
-if not exist "%PYTHON%" (
-    echo Python not found: %PYTHON%
+if not exist "%BAT_ENTRY%" (
+    echo run.bat not found: %BAT_ENTRY%
     pause
     exit /b 1
 )
 
 if not exist "%COOKIES%" (
-    echo cookies.txt not found. Run setup.bat first.
+    echo cookies.txt not found in %PROJECT_DIR%
     pause
     exit /b 1
 )
 
-echo Testing pipeline...
-cd /d "C:\Users\30777\matt-wolfe-podcast"
-"%PYTHON%" run.py dry-run
+echo Testing pipeline (dry-run)...
+cd /d "%PROJECT_DIR%"
+call "%BAT_ENTRY%" dry-run
 if %ERRORLEVEL% NEQ 0 (
     echo Test failed. Check output above.
     pause
@@ -41,7 +41,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo Creating scheduled task (daily at %TASK_TIME%)...
-schtasks /create /tn %TASK_NAME% /tr "\"%PYTHON%\" \"%SCRIPT%\" run" /sc daily /st %TASK_TIME% /f
+schtasks /create /tn %TASK_NAME% /tr "\"%BAT_ENTRY%\" run" /sc daily /st %TASK_TIME% /f /rl HIGHEST
 
 if %ERRORLEVEL% EQU 0 (
     echo ===============================
