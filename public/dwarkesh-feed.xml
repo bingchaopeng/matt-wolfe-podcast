@@ -8,11 +8,27 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 21 Jun 2026 07:00:05 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jun 2026 01:46:56 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
     <itunes:explicit>no</itunes:explicit>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】When Rome Rioted for More Nepotism – Ada Palmer</title>
+      <link>https://www.youtube.com/watch?v=ATScXYYjUrA</link>
+      <description>Dwarkesh Patel 最新视频《When Rome Rioted for More Nepotism – Ada Palmer》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_当罗马为更多的裙带关系而暴动AdaPalmer_045734.mp3" length="11506605" type="audio/mpeg"/>
+      <pubDate>Mon, 22 Jun 2026 15:31:37 +0000</pubDate>
+      <itunes:duration>575</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Why People Loved a Murdering Tyrant - Ada Palmer</title>
+      <link>https://www.youtube.com/watch?v=6ViZYiWqXi8</link>
+      <description>Dwarkesh Patel 最新视频《Why People Loved a Murdering Tyrant - Ada Palmer》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_为什么人们爱一个杀人暴君AdaPalmer_054653.mp3" length="9352845" type="audio/mpeg"/>
+      <pubDate>Sun, 21 Jun 2026 15:35:47 +0000</pubDate>
+      <itunes:duration>467</itunes:duration>
+    </item>
     <item>
       <title>【Dwarkesh Patel 中文播报】How Florence Afforded the Renaissance</title>
       <link>https://www.youtube.com/watch?v=7x8EOcp8l88</link>
@@ -20,6 +36,102 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_florence如何负担得起文艺复兴_143845.mp3" length="5412045" type="audio/mpeg"/>
       <pubDate>Sat, 20 Jun 2026 12:00:05 +0000</pubDate>
       <itunes:duration>270</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Von Neumann Probes and the End of Human Wages – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=AtX1OUacxDM</link>
+      <description>Dwarkesh Patel 最新视频《Von Neumann Probes and the End of Human Wages – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_冯诺依曼探测器与人类工资的终结AlexImas和PhilTrammell_062527.mp3" length="6169005" type="audio/mpeg"/>
+      <pubDate>Tue, 16 Jun 2026 13:15:32 +0000</pubDate>
+      <itunes:duration>308</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】When hiring humans is too great a risk – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=hgbZNU1pMmw</link>
+      <description>Dwarkesh Patel 最新视频《When hiring humans is too great a risk – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_当雇佣人类风险太大AlexImas_065202.mp3" length="4164045" type="audio/mpeg"/>
+      <pubDate>Mon, 15 Jun 2026 13:15:13 +0000</pubDate>
+      <itunes:duration>208</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】The GPU Pricing Paradox – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=dT24XjECL3k</link>
+      <description>Dwarkesh Patel 最新视频《The GPU Pricing Paradox – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_GPU定价悖论AlexImas和PhilTrammell_070952.mp3" length="4507245" type="audio/mpeg"/>
+      <pubDate>Sun, 14 Jun 2026 13:15:36 +0000</pubDate>
+      <itunes:duration>225</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】AI Should Be Commoditized – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=a8IW1LyDSTw</link>
+      <description>Dwarkesh Patel 最新视频《AI Should Be Commoditized – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_AI应该被商品化AlexImas和PhilTrammell_072851.mp3" length="3867885" type="audio/mpeg"/>
+      <pubDate>Sat, 13 Jun 2026 13:15:09 +0000</pubDate>
+      <itunes:duration>193</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=AWXM5nXyh5U</link>
+      <description>Dwarkesh Patel 最新视频《Is AI More Like Electricity or Social Media? – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_AI更像是电力还是社交媒体AlexImas和PhilTrammell_074609.mp3" length="3389805" type="audio/mpeg"/>
+      <pubDate>Fri, 12 Jun 2026 12:00:15 +0000</pubDate>
+      <itunes:duration>169</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】How the Rockefellers lost their place – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=gI7CdvwYDqI</link>
+      <description>Dwarkesh Patel 最新视频《How the Rockefellers lost their place – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_howTheRockefellersLostTheirPlaceAlexImasAndPhilTrammell_080056.mp3" length="2983245" type="audio/mpeg"/>
+      <pubDate>Thu, 11 Jun 2026 13:15:25 +0000</pubDate>
+      <itunes:duration>149</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】The One Thing AI Can't Commoditize – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=6moc2tDRGy0</link>
+      <description>Dwarkesh Patel 最新视频《The One Thing AI Can't Commoditize – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_theOneThingAiCanTCommoditizeAlexImasAndPhilTrammell_081406.mp3" length="2875245" type="audio/mpeg"/>
+      <pubDate>Wed, 10 Jun 2026 14:00:02 +0000</pubDate>
+      <itunes:duration>143</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Why the AI Economy Rewards the Greediest – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=nzF9A5Yzsow</link>
+      <description>Dwarkesh Patel 最新视频《Why the AI Economy Rewards the Greediest – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_为什么AI经济奖励最贪婪的AlexImas和PhilTrammell_082646.mp3" length="3081645" type="audio/mpeg"/>
+      <pubDate>Tue, 09 Jun 2026 13:15:11 +0000</pubDate>
+      <itunes:duration>154</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】The Danger of UBI – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=R8QRz-1liR8</link>
+      <description>Dwarkesh Patel 最新视频《The Danger of UBI – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_全民基本收入的危险AlexImas和PhilTrammell_084010.mp3" length="3553005" type="audio/mpeg"/>
+      <pubDate>Mon, 08 Jun 2026 13:15:13 +0000</pubDate>
+      <itunes:duration>177</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Is there real evidence of AI job displacement? – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=AbLtK_fgte8</link>
+      <description>Dwarkesh Patel 最新视频《Is there real evidence of AI job displacement? – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_是否存在AI取代工作岗位的真实证据AlexImas和PhilTrammell_085517.mp3" length="3993645" type="audio/mpeg"/>
+      <pubDate>Sun, 07 Jun 2026 13:15:15 +0000</pubDate>
+      <itunes:duration>199</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】Will AI Crash the Economy? Debunking Citrini – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=85S8Byf-Ing</link>
+      <description>Dwarkesh Patel 最新视频《Will AI Crash the Economy? Debunking Citrini – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_willAiCrashTheEconomyDebunkingCitriniAlexImasAndPhilTrammell_091241.mp3" length="3493485" type="audio/mpeg"/>
+      <pubDate>Sat, 06 Jun 2026 14:45:23 +0000</pubDate>
+      <itunes:duration>174</itunes:duration>
+    </item>
+    <item>
+      <title>【Dwarkesh Patel 中文播报】The 200 Year Old AI Forecast – Alex Imas and Phil Trammell</title>
+      <link>https://www.youtube.com/watch?v=4VInvvTcVCU</link>
+      <description>Dwarkesh Patel 最新视频《The 200 Year Old AI Forecast – Alex Imas and Phil Trammell》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/dwarkesh_200年历史的AI预测AlexImas和PhilTrammell_092745.mp3" length="4418445" type="audio/mpeg"/>
+      <pubDate>Fri, 05 Jun 2026 14:15:17 +0000</pubDate>
+      <itunes:duration>220</itunes:duration>
     </item>
   </channel>
 </rss>

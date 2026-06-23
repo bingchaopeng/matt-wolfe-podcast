@@ -8,7 +8,7 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 22 Jun 2026 11:13:45 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 20:57:03 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
@@ -100,6 +100,38 @@
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_我们不能预测AI的影响_185945.mp3" length="3008685" type="audio/mpeg"/>
       <pubDate>Tue, 02 Jun 2026 11:00:10 +0000</pubDate>
       <itunes:duration>150</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】The most rational take on AI you’ll hear this year</title>
+      <link>https://www.youtube.com/watch?v=BD3vLtWhT5A</link>
+      <description>Lenny's Podcast 最新视频《The most rational take on AI you’ll hear this year》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_今年你会听到的最理性的AI观点_224958.mp3" length="58357005" type="audio/mpeg"/>
+      <pubDate>Sun, 31 May 2026 12:30:37 +0000</pubDate>
+      <itunes:duration>2917</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】AI makes great PMs more powerful</title>
+      <link>https://www.youtube.com/watch?v=Gfe0qFmEamo</link>
+      <description>Lenny's Podcast 最新视频《AI makes great PMs more powerful》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_AI让优秀的产品经理更强大_042508.mp3" length="2205645" type="audio/mpeg"/>
+      <pubDate>Fri, 29 May 2026 11:00:04 +0000</pubDate>
+      <itunes:duration>110</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】AI still needs humans</title>
+      <link>https://www.youtube.com/watch?v=yCV0ozYz9Ak</link>
+      <description>Lenny's Podcast 最新视频《AI still needs humans》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_AI仍然需要人类_043612.mp3" length="1883085" type="audio/mpeg"/>
+      <pubDate>Thu, 28 May 2026 11:00:25 +0000</pubDate>
+      <itunes:duration>94</itunes:duration>
+    </item>
+    <item>
+      <title>【Lenny's Podcast 中文精选】The AI jobpocalypse isn't real</title>
+      <link>https://www.youtube.com/watch?v=vtjH6LF0ky8</link>
+      <description>Lenny's Podcast 最新视频《The AI jobpocalypse isn't real》的peter播客版本。</description>
+      <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/lenny_AI工作末日并不真实_044335.mp3" length="3078285" type="audio/mpeg"/>
+      <pubDate>Wed, 27 May 2026 11:00:20 +0000</pubDate>
+      <itunes:duration>153</itunes:duration>
     </item>
   </channel>
 </rss>
