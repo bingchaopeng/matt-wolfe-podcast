@@ -232,8 +232,8 @@ def build_channel_feed(config, channel: ChannelConfig, episodes: list[dict]):
 def build_unified_feed(config, episodes: list[dict]):
     """Build a unified RSS feed with all channels."""
     feed = create_feed(
-        title="AI 播客精选合集",
-        description="Matt Wolfe、Lenny's Podcast、Dwarkesh Patel、Andrej Karpathy 等频道的中文播客合集",
+        title="AI乐道人生",
+        description="Matt Wolfe、Lenny's Podcast、Dwarkesh Patel、Andrej Karpathy 等频道的中文播客精选，AI 乐道，品味人生",
         author="AI 播客工坊",
         language=config.podcast_language,
         website=config.podcast_website,
