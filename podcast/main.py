@@ -153,6 +153,7 @@ def process_channel(channel: ChannelConfig, tracker: ProcessedTracker, dry_run: 
                 "audio_file": audio_filename,
                 "duration_seconds": audio_result.get("duration_seconds", 0),
                 "url": video_url,
+                "chinese_title": chinese_title,
             })
 
             # Copy audio to public dir
@@ -215,10 +216,11 @@ def build_channel_feed(config, channel: ChannelConfig, episodes: list[dict]):
             published = datetime.fromisoformat(ep["published"]) if "published" in ep else datetime.now()
         except (ValueError, TypeError):
             published = datetime.now()
-        episode_desc = f"{channel.name} 最新视频《{ep.get('title', '')}》的peter播客版本。"
+        ep_title = ep.get("chinese_title") or ep.get("title", "")
+        episode_desc = f"{channel.name} 最新视频《{ep_title}》的peter播客版本。"
         add_episode(
             feed,
-            title=f"【{channel.podcast_title}】{ep.get('title', '')}",
+            title=f"【{channel.podcast_title}】{ep_title}",
             description=episode_desc,
             audio_path=audio_path,
             audio_url=audio_url,
@@ -249,10 +251,11 @@ def build_unified_feed(config, episodes: list[dict]):
         except (ValueError, TypeError):
             published = datetime.now()
         channel_name = ep.get("channel", "")
-        episode_desc = f"{channel_name} 视频《{ep.get('title', '')}》的中文播客版本。"
+        ep_title = ep.get("chinese_title") or ep.get("title", "")
+        episode_desc = f"{channel_name} 视频《{ep_title}》的中文播客版本。"
         add_episode(
             feed,
-            title=f"【{channel_name}】{ep.get('title', '')}",
+            title=f"【{channel_name}】{ep_title}",
             description=episode_desc,
             audio_path=audio_path,
             audio_url=audio_url,

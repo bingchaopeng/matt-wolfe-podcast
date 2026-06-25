@@ -8,127 +8,127 @@
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>AI Podcast Generator</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 25 Jun 2026 13:23:47 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 13:31:18 +0000</lastBuildDate>
     <itunes:author>AI 播客工坊</itunes:author>
     <itunes:category text="Technology"/>
     <itunes:image href="https://bingchaopeng.github.io/matt-wolfe-podcast/cover.jpg"/>
     <itunes:explicit>no</itunes:explicit>
     <item>
-      <title>【Andrej Karpathy 中文播报】100 random chords, how many intersections?</title>
+      <title>【Andrej Karpathy 中文播报】100个随机和弦 有多少个交点</title>
       <link>https://www.youtube.com/watch?v=wGffBCfrAsE</link>
-      <description>Andrej Karpathy 最新视频《100 random chords, how many intersections?》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《100个随机和弦 有多少个交点》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_100个随机弦有多少个交点_150032.mp3" length="4416045" type="audio/mpeg"/>
       <pubDate>Tue, 16 Jun 2026 18:04:05 +0000</pubDate>
       <itunes:duration>220</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Measuring the entropy of English</title>
+      <title>【Andrej Karpathy 中文播报】测量英语的熵</title>
       <link>https://www.youtube.com/watch?v=-7etvZSBxlk</link>
-      <description>Andrej Karpathy 最新视频《Measuring the entropy of English》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《测量英语的熵》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_测量英语的熵_094717.mp3" length="3709485" type="audio/mpeg"/>
       <pubDate>Fri, 12 Jun 2026 13:22:02 +0000</pubDate>
       <itunes:duration>185</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】What's the perfect encoding? How do you know?</title>
+      <title>【Andrej Karpathy 中文播报】完美的编码是什么 你怎么知道</title>
       <link>https://www.youtube.com/watch?v=7L_eTem1SQ4</link>
-      <description>Andrej Karpathy 最新视频《What's the perfect encoding? How do you know?》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《完美的编码是什么 你怎么知道》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_什么是完美的编码你怎么知道_100446.mp3" length="5956845" type="audio/mpeg"/>
       <pubDate>Wed, 10 Jun 2026 13:26:34 +0000</pubDate>
       <itunes:duration>297</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Reinventing Entropy | Compression is Intelligence Part 1</title>
+      <title>【Andrej Karpathy 中文播报】重新发明熵 压缩即智能 第一部分</title>
       <link>https://www.youtube.com/watch?v=l6DKRf-fAAM</link>
-      <description>Andrej Karpathy 最新视频《Reinventing Entropy | Compression is Intelligence Part 1》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《重新发明熵 压缩即智能 第一部分》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_重塑熵压缩即智能第一部分_103140.mp3" length="30307245" type="audio/mpeg"/>
       <pubDate>Sun, 07 Jun 2026 11:49:51 +0000</pubDate>
       <itunes:duration>1515</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Tie random ends: How many loops?</title>
+      <title>【Andrej Karpathy 中文播报】连接随机端点 有多少个环</title>
       <link>https://www.youtube.com/watch?v=ZHXt0-_gSj4</link>
-      <description>Andrej Karpathy 最新视频《Tie random ends: How many loops?》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《连接随机端点 有多少个环》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_系住随机末端有多少个环_124537.mp3" length="2549805" type="audio/mpeg"/>
       <pubDate>Thu, 21 May 2026 21:49:47 +0000</pubDate>
       <itunes:duration>127</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Covering 10 points, a surprisingly tricky puzzle.</title>
+      <title>【Andrej Karpathy 中文播报】覆盖10个点 一个令人惊讶的棘手谜题</title>
       <link>https://www.youtube.com/watch?v=QLu_ZsRc_G0</link>
-      <description>Andrej Karpathy 最新视频《Covering 10 points, a surprisingly tricky puzzle.》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《覆盖10个点 一个令人惊讶的棘手谜题》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_覆盖10个点一个出乎意料的棘手谜题_233347.mp3" length="2795085" type="audio/mpeg"/>
       <pubDate>Thu, 16 Apr 2026 16:08:21 +0000</pubDate>
       <itunes:duration>139</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Escher's most mind-bending piece</title>
+      <title>【Andrej Karpathy 中文播报】Escher最令人费解的作品</title>
       <link>https://www.youtube.com/watch?v=Y7ImxZ_YhJk</link>
-      <description>Andrej Karpathy 最新视频《Escher's most mind-bending piece》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《Escher最令人费解的作品》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_escher最令人费解的作品_235447.mp3" length="3123405" type="audio/mpeg"/>
       <pubDate>Fri, 27 Mar 2026 20:56:02 +0000</pubDate>
       <itunes:duration>156</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】The subset sum puzzle</title>
+      <title>【Andrej Karpathy 中文播报】子集和谜题</title>
       <link>https://www.youtube.com/watch?v=4h5BEALuh44</link>
-      <description>Andrej Karpathy 最新视频《The subset sum puzzle》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《子集和谜题》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_子集和谜题_003248.mp3" length="1153005" type="audio/mpeg"/>
       <pubDate>Wed, 25 Mar 2026 20:59:04 +0000</pubDate>
       <itunes:duration>57</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】How (and why) to take a logarithm of an image</title>
+      <title>【Andrej Karpathy 中文播报】如何以及为什么对图像取对数</title>
       <link>https://www.youtube.com/watch?v=ldxFjLJ3rVY</link>
-      <description>Andrej Karpathy 最新视频《How (and why) to take a logarithm of an image》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《如何以及为什么对图像取对数》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_如何以及为什么对图像取对数_004805.mp3" length="17203245" type="audio/mpeg"/>
       <pubDate>Sun, 22 Mar 2026 12:59:00 +0000</pubDate>
       <itunes:duration>860</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Bacteria Grid Puzzle Solution</title>
+      <title>【Andrej Karpathy 中文播报】细菌网格谜题解答</title>
       <link>https://www.youtube.com/watch?v=Qoes9bTJtn0</link>
-      <description>Andrej Karpathy 最新视频《Bacteria Grid Puzzle Solution》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《细菌网格谜题解答》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_细菌网格谜题解_022223.mp3" length="4345005" type="audio/mpeg"/>
       <pubDate>Sat, 21 Mar 2026 11:42:53 +0000</pubDate>
       <itunes:duration>217</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】The most beautiful formula not enough people understand</title>
+      <title>【Andrej Karpathy 中文播报】最美丽却不够多人理解的公式</title>
       <link>https://www.youtube.com/watch?v=fsLh-NYhOoU</link>
-      <description>Andrej Karpathy 最新视频《The most beautiful formula not enough people understand》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《最美丽却不够多人理解的公式》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_最美丽的公式没有足够的人理解_024049.mp3" length="10122285" type="audio/mpeg"/>
       <pubDate>Fri, 27 Feb 2026 15:14:23 +0000</pubDate>
       <itunes:duration>506</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】The lattice bacteria puzzle</title>
+      <title>【Andrej Karpathy 中文播报】格子细菌谜题</title>
       <link>https://www.youtube.com/watch?v=d0ai33oqqDE</link>
-      <description>Andrej Karpathy 最新视频《The lattice bacteria puzzle》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《格子细菌谜题》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_格子细菌之谜_032633.mp3" length="1668045" type="audio/mpeg"/>
       <pubDate>Wed, 18 Feb 2026 06:02:59 +0000</pubDate>
       <itunes:duration>83</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Solution to the ladybug clock puzzle</title>
+      <title>【Andrej Karpathy 中文播报】瓢虫时钟谜题解答</title>
       <link>https://www.youtube.com/watch?v=7gG91SZwBoE</link>
-      <description>Andrej Karpathy 最新视频《Solution to the ladybug clock puzzle》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《瓢虫时钟谜题解答》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_瓢虫时钟谜题的解法_033250.mp3" length="3654285" type="audio/mpeg"/>
       <pubDate>Mon, 16 Feb 2026 14:08:37 +0000</pubDate>
       <itunes:duration>182</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】Why you can't comb a hairy ball, and why we care</title>
+      <title>【Andrej Karpathy 中文播报】为什么你不能梳理一个毛球 以及为什么我们在意</title>
       <link>https://www.youtube.com/watch?v=BHdbsHFs2P0</link>
-      <description>Andrej Karpathy 最新视频《Why you can't comb a hairy ball, and why we care》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《为什么你不能梳理一个毛球 以及为什么我们在意》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_为什么你不能梳理一个毛球以及为什么我们在意_034852.mp3" length="20458605" type="audio/mpeg"/>
       <pubDate>Sat, 31 Jan 2026 14:57:42 +0000</pubDate>
       <itunes:duration>1022</itunes:duration>
     </item>
     <item>
-      <title>【Andrej Karpathy 中文播报】The ladybug clock puzzle</title>
+      <title>【Andrej Karpathy 中文播报】瓢虫时钟谜题</title>
       <link>https://www.youtube.com/watch?v=t3jZ2xGOvYg</link>
-      <description>Andrej Karpathy 最新视频《The ladybug clock puzzle》的peter播客版本。</description>
+      <description>Andrej Karpathy 最新视频《瓢虫时钟谜题》的peter播客版本。</description>
       <enclosure url="https://bingchaopeng.github.io/matt-wolfe-podcast/episodes/andrej_瓢虫时钟谜题_051533.mp3" length="2199885" type="audio/mpeg"/>
       <pubDate>Fri, 16 Jan 2026 14:16:12 +0000</pubDate>
       <itunes:duration>109</itunes:duration>

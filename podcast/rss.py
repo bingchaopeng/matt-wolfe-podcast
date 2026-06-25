@@ -125,7 +125,7 @@ def build_feed_from_history(config, episodes: list[dict],
         except (ValueError, TypeError):
             published = datetime.now()
         ep_channel = ep.get("channel", channel_name)
-        title_text = ep.get("title", "")
+        title_text = ep.get("chinese_title") or ep.get("title", "")
         full_title = f"{title_prefix}{title_text}"
         if not title_prefix:
             full_title = f"【{ep_channel}】{title_text}"
